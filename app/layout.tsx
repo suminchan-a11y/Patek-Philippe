@@ -1,44 +1,41 @@
 import type { Metadata } from "next";
-import { Lora, Open_Sans } from "next/font/google";
-import "./globals.css";
+import { Open_Sans, Lora } from "next/font/google";
 import SmoothScroll from "./components/SmoothScroll";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import LoadingListener from "./components/LoadingListener";
+import PasswordGate from "./components/PasswordGate";
+import "./globals.css";
 
-const lora = Lora({
-  variable: "--font-serif",
+const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "700"],
+  variable: "--font-open-sans",
   display: "swap",
 });
 
-const openSans = Open_Sans({
-  variable: "--font-sans",
+const lora = Lora({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400"],
+  variable: "--font-lora",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Patek Philippe — The Hourglass, Singapore",
-  description:
-    "An invitation to experience one of the world's finest horological collections. Visit our boutique on Orchard Road.",
+  title: "Patek Philippe — Suria KLCC Boutique",
+  description: "Enter a space where time is kept differently.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`${lora.variable} ${openSans.variable}`}>
-        <SmoothScroll>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+    <html lang="en" className={`${openSans.variable} ${lora.variable}`}>
+      <body>
+        <PasswordGate>
+          <SmoothScroll>{children}</SmoothScroll>
+          <LoadingListener />
+        </PasswordGate>
       </body>
     </html>
   );

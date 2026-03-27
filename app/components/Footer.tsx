@@ -1,192 +1,264 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import Link from "next/link";
-import Logo from "./Logo";
-
-const footerLinks = [
-  {
-    title: "Collections",
-    links: [
-      { label: "Twenty~4", href: "/collections/twenty-4" },
-      { label: "Calatrava", href: "/collections/calatrava" },
-      { label: "Nautilus", href: "/collections/nautilus" },
-      { label: "Aquanaut", href: "/collections/aquanaut" },
-      { label: "Grand Complications", href: "/collections/grand-complications" },
-    ],
-  },
-  {
-    title: "Experience",
-    links: [
-      { label: "The Boutique", href: "/boutique" },
-      { label: "Services", href: "/services" },
-      { label: "All Collections", href: "/collections" },
-    ],
-  },
+const boutiqueLinks = [
+  "Ion Orchard",
+  "Marina Bay Sands",
+  "Ngee Ann City",
+  "Raffles Hotel",
+  "Suria KLCC",
+  "Pavilion KL",
+  "Siam Paragon",
+  "ICONSIAM",
+  "Central Embassy",
 ];
 
-export default function Footer() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
+const collectionLinks = [
+  "Aquanaut",
+  "Calatrava",
+  "Complications",
+  "Cubitus",
+  "Golden Ellipse",
+  "Gondolo",
+  "Grand Complications",
+  "Nautilus",
+  "Twenty-4",
+];
 
+const serviceLinks = [
+  "Reserve An Appointment",
+  "Maintenance",
+];
+
+const headerStyle: React.CSSProperties = {
+  fontFamily: "var(--font-open-sans), sans-serif",
+  fontSize: 12,
+  fontWeight: 400,
+  letterSpacing: "0.1em",
+  lineHeight: "110%",
+  color: "#8C7A66",
+  textTransform: "uppercase",
+  margin: 0,
+};
+
+const linkStyle: React.CSSProperties = {
+  fontFamily: "var(--font-lora), serif",
+  fontSize: 14,
+  fontWeight: 400,
+  color: "#D9D9D9",
+  textDecoration: "none",
+  lineHeight: "20px",
+};
+
+export default function Footer() {
   return (
     <footer
       style={{
-        padding: "160px 48px 48px",
-        background: "var(--dk)",
-        color: "var(--dkd)",
+        backgroundColor: "#050608",
+        padding: "80px 80px 80px 80px",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
+      {/* Top divider line — 6% white */}
       <div
-        ref={ref}
         style={{
-          maxWidth: 1400,
-          margin: "0 auto",
+          width: 1344,
+          height: 1,
+          backgroundColor: "rgba(255,255,255,0.06)",
+          alignSelf: "center",
+          marginBottom: 64,
+        }}
+      />
+
+      {/* Main content */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
+          width: "100%",
         }}
       >
-        {/* Top — logo */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            marginBottom: 80,
-          }}
-        >
-          <Logo variant="white" height={28} />
-        </motion.div>
-
-        {/* Link columns */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1.4, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
-            gap: 48,
-            marginBottom: 80,
-          }}
-        >
-          {footerLinks.map((group) => (
-            <div key={group.title}>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 9,
-                  letterSpacing: 5,
-                  textTransform: "uppercase",
-                  color: "var(--dkd)",
-                  marginBottom: 24,
-                }}
-              >
-                {group.title}
-              </p>
-              <ul style={{ listStyle: "none" }}>
-                {group.links.map((link) => (
-                  <li key={link.label} style={{ marginBottom: 12 }}>
-                    <Link
-                      href={link.href}
-                      style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "0.8rem",
-                        fontWeight: 300,
-                        color: "var(--dkd)",
-                        transition: "color 0.8s ease-in-out",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.color = "var(--dkt)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.color = "var(--dkd)")
-                      }
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Address column */}
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 9,
-                letterSpacing: 5,
-                textTransform: "uppercase",
-                color: "var(--dkd)",
-                marginBottom: 24,
-              }}
-            >
-              Visit
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.8rem",
-                fontWeight: 300,
-                lineHeight: 1.95,
-                color: "var(--dkd)",
-              }}
-            >
-              The Hourglass
-              <br />
-              391 Orchard Road
-              <br />
-              #01-03 Ngee Ann City
-              <br />
-              Singapore 238872
-              <br />
-              <br />
-              +65 6732 2420
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Legal */}
+        {/* Content area */}
         <div
           style={{
-            paddingTop: 28,
-            borderTop: "1px solid var(--dkb)",
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            gap: 12,
+            flexDirection: "column",
+            gap: 64,
           }}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.65rem",
-              fontWeight: 300,
-              color: "rgba(255,255,255,0.15)",
-            }}
-          >
-            &copy; {new Date().getFullYear()} The Hourglass. Patek Philippe is a
-            registered trademark of Patek Philippe SA.
-          </p>
+          {/* Top row: Visit Us + Logo — space-between */}
           <div
             style={{
               display: "flex",
-              gap: 20,
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.65rem",
-              fontWeight: 300,
-              color: "rgba(255,255,255,0.15)",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
             }}
           >
-            <a href="#" style={{ color: "inherit" }}>
-              Privacy
-            </a>
-            <a href="#" style={{ color: "inherit" }}>
-              Legal
-            </a>
+            {/* Visit Us */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+              }}
+            >
+              <h3 style={{ ...headerStyle, opacity: 0.9 }}>
+                VISIT US
+              </h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "var(--font-lora), serif",
+                    fontSize: 14,
+                    fontWeight: 400,
+                    lineHeight: "20px",
+                    color: "#D9D9D9",
+                    margin: 0,
+                    maxWidth: 253,
+                  }}
+                >
+                  Lot G226-227, Ground Floor<br />
+                  The Gardens Mall, Medan Syed Putra<br />
+                  Utara, 59200 Kuala Lumpur, Malaysia
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-lora), serif",
+                    fontSize: 14,
+                    fontWeight: 400,
+                    lineHeight: "22px",
+                    color: "#D9D9D9",
+                    margin: 0,
+                  }}
+                >
+                  Visit us today
+                  <br />
+                  10:00am - 5:00pm
+                </p>
+              </div>
+            </div>
+
+            {/* Logo */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/pp-footer-logo.png"
+              alt="Patek Philippe"
+              style={{ width: 238, height: 130, objectFit: "contain" }}
+            />
           </div>
+
+          {/* Columns row: Our Boutiques + Collections + Services */}
+          <div
+            style={{
+              display: "flex",
+              gap: 40,
+            }}
+          >
+            {/* Column 1: Our Boutiques */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+                width: 199,
+              }}
+            >
+              <h3 style={headerStyle}>OUR BOUTIQUES</h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                }}
+              >
+                {boutiqueLinks.map((link) => (
+                  <a key={link} href="#" style={linkStyle}>
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2: Collections */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+                width: 199,
+              }}
+            >
+              <h3 style={headerStyle}>COLLECTIONS</h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                }}
+              >
+                {collectionLinks.map((link) => (
+                  <a key={link} href="#" style={linkStyle}>
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3: Services */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+              }}
+            >
+              <h3 style={{ ...headerStyle, opacity: 0.9 }}>SERVICES</h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                }}
+              >
+                {serviceLinks.map((link) => (
+                  <a key={link} href="#" style={linkStyle}>
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Divider — warm brown, full opacity */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: 1352,
+              height: 0.5,
+              backgroundColor: "#8C7A66",
+            }}
+          />
         </div>
+
+        {/* Copyright */}
+        <span
+          style={{
+            fontFamily: "var(--font-open-sans), sans-serif",
+            fontSize: 14,
+            fontWeight: 400,
+            lineHeight: "22px",
+            color: "#D9D9D9",
+          }}
+        >
+          © 2026 Patek Philippe Boutique The Gardens Mall. All rights reserved
+        </span>
       </div>
     </footer>
   );
