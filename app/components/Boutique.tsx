@@ -1,132 +1,170 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+
+const items = [
+  {
+    label: "Chronograph watches",
+    video: "https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/281999-source/pp-5370r-001-banner-22-9",
+  },
+  {
+    label: "The cubitus",
+    video: "https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/220673-source/pp-5821-1ar-001-banner-screen-16-9",
+  },
+  {
+    label: "Grand complication",
+    video: "https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/281999-source/pp-5370r-001-banner-22-9",
+  },
+];
 
 export default function Boutique() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -120]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const textRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   return (
     <section
-      ref={ref}
       id="boutique"
       style={{
         position: "relative",
         width: "100%",
         height: "100vh",
         overflow: "hidden",
+        backgroundColor: "#FFFFFF",
+        padding: 64,
       }}
     >
-      {/* Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        src="/images/boutique-interior.mp4"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "95% 5%",
-          position: "absolute",
-          inset: 0,
-        }}
-      />
-
-      {/* Bottom blur + gradient — 396px from bottom, progressive blur */}
+      {/* Video container — inset with 64px padding */}
       <div
         style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 396,
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0) 100%)",
-          backdropFilter: "blur(2px)",
-          WebkitBackdropFilter: "blur(2px)",
-          maskImage:
-            "linear-gradient(to top, black 0%, black 76%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to top, black 0%, black 76%, transparent 100%)",
-        }}
-      />
-
-      {/* Content — bottom left, vertical stack, floats away on scroll */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: "120px 64px 80px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 40,
-          y: textY,
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
         }}
       >
-        {/* Heading */}
-        <h2
-          style={{
-            fontFamily: "var(--font-open-sans), sans-serif",
-            fontSize: 40,
-            fontWeight: 400,
-            letterSpacing: "0.1em",
-            lineHeight: "110%",
-            color: "#FFFFFF",
-            textTransform: "uppercase" as const,
-            margin: 0,
-          }}
-        >
-          Experience the space
-        </h2>
+        {/* Background videos — crossfade */}
+        {items.map((item, i) => (
+          <video
+            key={i}
+            autoPlay
+            loop
+            muted
+            playsInline
+            src={item.video}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: i === activeIndex ? 1 : 0,
+              transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
+              zIndex: i === activeIndex ? 1 : 0,
+            }}
+          />
+        ))}
 
-        {/* Address + Hours row */}
+        {/* Bottom gradient overlay — 80% opacity */}
         <div
           style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 358,
+            background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+            zIndex: 2,
+          }}
+        />
+
+        {/* Content overlay */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 358,
             display: "flex",
-            flexDirection: "row",
-            gap: 51,
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            padding: "0 64px 80px",
+            zIndex: 3,
           }}
         >
-          <p
+          {/* Left: 3 text items */}
+          <div
             style={{
-              fontFamily: "var(--font-lora), serif",
-              fontSize: 16,
-              fontWeight: 400,
-              lineHeight: "20px",
-              color: "#FFFFFF",
-              margin: 0,
-              maxWidth: 313,
+              display: "flex",
+              flexDirection: "column",
+              gap: 24,
             }}
           >
-            Lot G226-227, Ground Floor<br />The Gardens Mall, Medan Syed Putra<br />Utara, 59200 Kuala Lumpur, Malaysia.
-          </p>
-          <p
+            {items.map((item, i) => {
+              const isActive = i === activeIndex;
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: isActive ? 16 : 16,
+                    cursor: "pointer",
+                    width: 530,
+                  }}
+                >
+                  <span
+                    ref={(el) => { textRefs.current[i] = el; }}
+                    style={{
+                      fontFamily: "var(--font-open-sans), sans-serif",
+                      fontSize: 16,
+                      fontWeight: 400,
+                      letterSpacing: "0.12em",
+                      lineHeight: "110%",
+                      color: "#FFFFFF",
+                      textTransform: "uppercase",
+                      opacity: isActive ? 1 : 0.3,
+                      transform: isActive ? "scale(1.5)" : "scale(1)",
+                      transformOrigin: "left center",
+                      transition: "transform 0.6s cubic-bezier(0.25, 0.1, 0.1, 1), opacity 0.6s cubic-bezier(0.25, 0.1, 0.1, 1)",
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    {item.label}
+                  </span>
+                  <div
+                    style={{
+                      width: 350,
+                      height: 0.5,
+                      backgroundColor: "#FFFFFF",
+                      opacity: isActive ? 1 : 0.3,
+                      transition: "width 0.6s cubic-bezier(0.25, 0.1, 0.1, 1), opacity 0.6s cubic-bezier(0.25, 0.1, 0.1, 1)",
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right: View Collection CTA */}
+          <a
+            href="#"
+            className="cta-link cta-link-white"
             style={{
-              fontFamily: "var(--font-lora), serif",
-              fontSize: 16,
+              fontFamily: "var(--font-open-sans), sans-serif",
+              fontSize: 12,
               fontWeight: 400,
-              lineHeight: "20px",
+              letterSpacing: "0.1em",
               color: "#FFFFFF",
-              margin: 0,
+              textTransform: "uppercase",
+              textDecoration: "none",
             }}
           >
-            Visit us today
-            <br />
-            10:00am - 5:00pm
-          </p>
+            VIEW COLLECTION
+          </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

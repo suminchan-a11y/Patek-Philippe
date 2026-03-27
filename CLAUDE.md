@@ -55,11 +55,11 @@ app/components/
 ├── PasswordGate.tsx          — Client-side password protection
 ├── Hero.tsx                  — Homepage hero with video bg
 ├── HeroCurtain.tsx           — Parallax wrapper for Hero → Boutique
-├── Boutique.tsx              — Interior video section
+├── Boutique.tsx              — Interactive video section: 3 hover items, crossfade videos, scale text
 ├── Gondolo.tsx               — Split panel: watch + chandelier
 ├── Guillochage.tsx           — Split panel: wall pattern + video
 ├── CraftVideo.tsx            — Full-screen video with text drift
-├── AppointmentCTA.tsx        — Form with 3 fields + submit button
+├── AppointmentCTA.tsx        — Form with 3 fields (floating labels, hints) + submit button
 ├── Footer.tsx                — Dark footer with 3 columns + logo
 ├── SmoothScroll.tsx          — Lenis wrapper
 ├── ForYouHero.tsx            — AI curated response hero
@@ -185,6 +185,57 @@ All Open Sans headings and CTAs use **10% letter-spacing**.
 | Footer Header | Open Sans | 12px | 400 | 10% | UPPER | Footer column headers |
 | Footer Link | Lora | 14px | 400 | 0 | Normal | Footer links |
 | SearchBar | Lora | 14px | 400 | 0 | Normal | Search bar prompts |
+
+## Session Log (2026-03-27)
+
+### Completed This Session
+
+1. **Boutique section redesigned** (`Boutique.tsx`)
+   - Replaced old layout (heading + address + hours) with new interactive design
+   - Video container inset 64px from all sides (white border visible)
+   - 3 hover-interactive text items: "Chronograph watches", "The cubitus", "Grand complication"
+   - Hover: text scales 1.5x via `transform: scale()` (GPU-accelerated), opacity 30% → 100%
+   - Background video crossfades between items on hover
+   - Videos: Chronograph → Patek 5370R-001 hero banner, Cubitus → Patek 5821-1AR-001 hero banner
+   - Bottom gradient overlay (80% black), "VIEW COLLECTION" CTA bottom-right
+   - Underlines: fixed 350px width, opacity transitions only
+   - Decision: used `transform: scale(1.5)` instead of `fontSize` transition — font-size causes layout reflow/jank, transform is GPU-composited and smooth
+
+2. **AppointmentCTA redesigned** (`AppointmentCTA.tsx`)
+   - 3 form fields now in single row (was wrapping), width 1030px, gap 65px
+   - Third field: "CONTACT NUMBER" (was "CONTACT") with thin phone icon from Figma
+   - Floating label input behavior: clicking field shrinks label 14px → 12px, reveals input area below
+   - Suggestive placeholder text: "your name", "your@email.com", "+60"
+   - Underline stays fixed in place (anchored to bottom of 59px container)
+   - Input text: 10px, 50% opacity warm brown, uppercase
+   - All icons updated to 0.75 stroke weight for consistency
+   - Decision: used fixed `height: 59` container with `justifyContent: space-between` to keep underline anchored while label floats up
+
+3. **GitHub push** — all changes committed and pushed to `https://github.com/suminchan-a11y/Patek-Philippe`
+
+### Files Modified This Session
+
+```
+app/components/Boutique.tsx          — Complete rewrite: interactive video section with hover text
+app/components/AppointmentCTA.tsx    — Redesigned: single-row form, floating labels, new phone icon
+```
+
+### Current Task / Where to Resume
+
+- **Boutique section**: Videos for "The cubitus" and "Grand complication" are currently using placeholder CDN videos. Need to source correct videos for each collection.
+- **AppointmentCTA**: Floating label behavior is implemented. Needs testing on deployed site — not yet deployed with latest changes.
+- **Not yet deployed**: Latest Boutique + AppointmentCTA changes are local only. Run deploy command to push to Firebase.
+- **Git**: Changes not yet committed from this session's work. Commit and push before continuing.
+
+### Decisions Made & Why
+
+| Decision | Why |
+|----------|-----|
+| `transform: scale(1.5)` for Boutique hover text | `font-size` transition causes layout reflow = jank. `transform` is GPU-composited = 60fps smooth |
+| Fixed height container (59px) for form fields | Keeps underline anchored in place while label floats up. Alternative (dynamic height) would move the line down, breaking the Figma layout |
+| Thin phone icon (`stroke-width: 0.75`) | Matches Figma's `iconamoon:phone-thin` exactly. Previous icon was a calendar/contact card which was wrong |
+| Single-row form (1030px) | Figma shows all 3 fields on one line. Previous `flexWrap` at 676px caused Contact to wrap to second row |
+| Suggestive hint text as `placeholder` | Only appears when `isActive` — prevents showing hint in default state which would clutter the clean label-only look |
 
 ## Conventions
 

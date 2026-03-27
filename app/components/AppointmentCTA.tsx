@@ -2,45 +2,72 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  border: "none",
-  outline: "none",
-  background: "transparent",
-  fontFamily: "var(--font-open-sans), sans-serif",
-  fontSize: 14,
-  fontWeight: 400,
-  letterSpacing: "0.1em",
-  lineHeight: "110%",
-  color: "#8C7A66",
-  textTransform: "uppercase" as const,
-};
+function FormField({ label, icon, type = "text", hint = "" }: { label: string; icon: React.ReactNode; type?: string; hint?: string }) {
+  const [value, setValue] = useState("");
+  const [focused, setFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const isActive = focused || value.length > 0;
 
-function FormField({ label, icon, type = "text" }: { label: string; icon: React.ReactNode; type?: string }) {
   return (
-    <div style={{ width: 300, display: "flex", flexDirection: "column", gap: 16 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <input
-          type={type}
-          placeholder={label}
-          style={inputStyle}
-        />
+    <div
+      onClick={() => inputRef.current?.focus()}
+      style={{ width: 300, height: 59, display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "text" }}
+    >
+      {/* Top: Label + Icon */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <span
+          style={{
+            fontFamily: "var(--font-open-sans), sans-serif",
+            fontSize: isActive ? 12 : 14,
+            fontWeight: 400,
+            letterSpacing: "0.1em",
+            lineHeight: "110%",
+            color: "#8C7A66",
+            textTransform: "uppercase",
+            transition: "font-size 0.3s cubic-bezier(0.25, 0.1, 0.1, 1)",
+          }}
+        >
+          {label}
+        </span>
         <div style={{ flexShrink: 0 }}>{icon}</div>
       </div>
-      <div style={{ width: 300, height: 0.5, backgroundColor: "rgba(140,122,102,0.8)" }} />
+
+      {/* Bottom: Input + Line (fixed position) */}
+      <div>
+        <input
+          ref={inputRef}
+          type={type}
+          value={value}
+          placeholder={isActive ? hint : ""}
+          onChange={(e) => setValue(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          style={{
+            width: "100%",
+            display: "block",
+            height: isActive ? 14 : 0,
+            opacity: isActive ? 1 : 0,
+            border: "none",
+            outline: "none",
+            background: "transparent",
+            fontFamily: "var(--font-open-sans), sans-serif",
+            fontSize: 10,
+            fontWeight: 400,
+            letterSpacing: "0.1em",
+            lineHeight: "110%",
+            color: "rgba(140,122,102,0.5)",
+            textTransform: "uppercase",
+            padding: 0,
+            marginBottom: isActive ? 5 : 0,
+            caretColor: "#8C7A66",
+            transition: "height 0.3s cubic-bezier(0.25, 0.1, 0.1, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.1, 1), margin-bottom 0.3s cubic-bezier(0.25, 0.1, 0.1, 1)",
+          }}
+        />
+        <div style={{ width: 300, height: 0.5, backgroundColor: "rgba(140,122,102,0.8)" }} />
+      </div>
     </div>
   );
 }
-
-const fieldLabelStyle: React.CSSProperties = {
-  fontFamily: "var(--font-open-sans), sans-serif",
-  fontSize: 14,
-  fontWeight: 400,
-  letterSpacing: "0.1em",
-  lineHeight: "110%",
-  color: "#8C7A66",
-  textTransform: "uppercase",
-};
 
 export default function AppointmentCTA() {
   const ref = useRef<HTMLElement>(null);
@@ -99,7 +126,7 @@ export default function AppointmentCTA() {
         Request your Appointment
       </h2>
 
-      {/* Form Fields */}
+      {/* Form + Submit */}
       <div
         style={{
           display: "flex",
@@ -109,18 +136,19 @@ export default function AppointmentCTA() {
           ...itemStyle(0.15),
         }}
       >
-        {/* Fields Row */}
+        {/* Fields Row — single line */}
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            gap: "24px 24px",
-            width: 676,
+            flexDirection: "row",
+            gap: 65,
+            width: 1030,
           }}
         >
           {/* Name Field */}
           <FormField
             label="NAME"
+            hint="your name"
             icon={
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <g clipPath="url(#clip-name)">
@@ -138,22 +166,24 @@ export default function AppointmentCTA() {
           {/* Email Field */}
           <FormField
             label="EMAIL"
+            hint="your@email.com"
             type="email"
             icon={
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="3" width="14" height="10" rx="1" stroke="#8C7A66" strokeWidth="1" fill="none" />
-                <path d="M1 4L8 9L15 4" stroke="#8C7A66" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <rect x="1" y="3" width="14" height="10" rx="1" stroke="#8C7A66" strokeWidth="0.75" fill="none" />
+                <path d="M1 4L8 9L15 4" stroke="#8C7A66" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
               </svg>
             }
           />
 
-          {/* Contact Field */}
+          {/* Contact Number Field */}
           <FormField
-            label="CONTACT"
+            label="CONTACT NUMBER"
+            hint="+60"
             type="tel"
             icon={
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10.6667 1.3335V2.66683M11.9433 14.6668C11.9433 13.606 11.5219 12.5885 10.7718 11.8384C10.0216 11.0883 9.0042 10.6668 7.94333 10.6668C6.88247 10.6668 5.86505 11.0883 5.11491 11.8384C4.36476 12.5885 3.94333 13.606 3.94333 14.6668M5.33333 1.3335V2.66683M10.6667 8.00016C10.6667 9.47292 9.47276 10.6668 8 10.6668C6.52724 10.6668 5.33333 9.47292 5.33333 8.00016C5.33333 6.5274 6.52724 5.3335 8 5.3335C9.47276 5.3335 10.6667 6.5274 10.6667 8.00016ZM3.33333 2.66683H12.6667C13.403 2.66683 14 3.26378 14 4.00016V13.3335C14 14.0699 13.403 14.6668 12.6667 14.6668H3.33333C2.59695 14.6668 2 14.0699 2 13.3335V4.00016C2 3.26378 2.59695 2.66683 3.33333 2.66683Z" stroke="#8C7A66" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M13.0038 5.3065C12.5282 7.16149 11.5628 8.85458 10.2087 10.2087C8.85458 11.5628 7.16149 12.5282 5.3065 13.0038C3.87917 13.3672 2.6665 12.1398 2.6665 10.6665V9.99984C2.6665 9.63184 2.96584 9.3365 3.33184 9.29984C3.93877 9.2395 4.53455 9.09617 5.1025 8.87384L6.11584 9.88717C7.76575 9.09623 9.09623 7.76575 9.88717 6.11584L8.87384 5.1025C9.09639 4.53458 9.23996 3.9388 9.3005 3.33184C9.3365 2.96517 9.63184 2.6665 9.99984 2.6665H10.6665C12.1398 2.6665 13.3672 3.87917 13.0038 5.3065Z" stroke="#8C7A66" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             }
           />
