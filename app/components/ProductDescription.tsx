@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export default function ProductDescription() {
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -32,13 +34,13 @@ export default function ProductDescription() {
     <section
       ref={ref}
       style={{
-        height: 300,
+        width: "100%",
         backgroundColor: "#FFFFFF",
+        padding: isMobile ? "80px 24px" : "80px 80px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 80px",
       }}
     >
       <div
@@ -47,16 +49,18 @@ export default function ProductDescription() {
           flexDirection: "column",
           alignItems: "center",
           gap: 16,
+          maxWidth: 1352,
         }}
       >
         <h2
           style={{
-            fontFamily: "var(--font-lora), serif",
-            fontSize: 56,
+            fontFamily: "var(--font-open-sans), sans-serif",
+            fontSize: isMobile ? 32 : 40,
             fontWeight: 400,
-            letterSpacing: "-0.02em",
+            letterSpacing: "0.12em",
             lineHeight: "110%",
             color: "#8C7A66",
+            textTransform: "uppercase",
             textAlign: "center",
             margin: 0,
             ...itemStyle(0),
@@ -67,14 +71,13 @@ export default function ProductDescription() {
         <p
           style={{
             fontFamily: "var(--font-lora), serif",
-            fontSize: 16,
+            fontSize: isMobile ? 14 : 16,
             fontWeight: 400,
-            letterSpacing: 0,
-            lineHeight: "110%",
+            lineHeight: "140%",
             color: "#8C7A66",
             textAlign: "center",
             margin: 0,
-            maxWidth: 518,
+            maxWidth: 700,
             ...itemStyle(0.15),
           }}
         >

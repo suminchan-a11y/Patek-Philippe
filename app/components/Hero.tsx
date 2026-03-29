@@ -2,17 +2,116 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useIsMobile } from "../hooks/useIsMobile";
+
 
 const ease = [0.25, 0.1, 0.1, 1] as const;
 
-export default function Hero() {
+function MobileHero() {
+  return (
+      <section
+        id="hero"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="/images/hero-video-mobile.mp4"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+
+        {/* Bottom gradient overlay — 60% opacity */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 386,
+            background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)",
+          }}
+        />
+
+        {/* Content — bottom, centered */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            padding: "40px 24px 136px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 16,
+            }}
+          >
+            <h1
+              className="reveal-up"
+              style={{
+                fontFamily: "var(--font-lora), serif",
+                fontSize: 56,
+                fontWeight: 400,
+                letterSpacing: "-0.02em",
+                lineHeight: "110%",
+                color: "#FFFFFF",
+                textAlign: "center",
+                margin: 0,
+              }}
+            >
+              Begin your
+              <br />
+              story
+            </h1>
+            <p
+              className="reveal-up"
+              style={{
+                fontFamily: "var(--font-lora), serif",
+                fontSize: 14,
+                fontWeight: 400,
+                lineHeight: "110%",
+                color: "#FFFFFF",
+                textAlign: "center",
+                margin: 0,
+                maxWidth: 269,
+              }}
+            >
+              Enter the world of Patek Philippe, where time is not kept, but passed&nbsp;on.
+            </p>
+          </div>
+        </div>
+      </section>
+  );
+}
+
+function DesktopHero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  // Heading floats away faster than the section scrolls
   const textY = useTransform(scrollYProgress, [0, 0.5], [0, -120]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
 
@@ -33,7 +132,7 @@ export default function Hero() {
         loop
         muted
         playsInline
-        src="/images/hero-video.mp4"
+        src="/images/hero-video-new.mp4"
         style={{
           position: "absolute",
           inset: 0,
@@ -83,7 +182,7 @@ export default function Hero() {
             color: "rgba(255,255,255,0.8)",
             textAlign: "center",
             whiteSpace: "nowrap",
-            marginBottom: 16,
+            marginBottom: 24,
           }}
         >
           Begin your story
@@ -107,4 +206,10 @@ export default function Hero() {
       </motion.div>
     </section>
   );
+}
+
+export default function Hero() {
+  const isMobile = useIsMobile();
+  if (isMobile) return <MobileHero />;
+  return <DesktopHero />;
 }

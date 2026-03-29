@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface ForYouCTAProps {
   heading: string;
   body: string;
+  bgColor?: string;
 }
 
-export default function ForYouCTA({ heading, body }: ForYouCTAProps) {
+export default function ForYouCTA({ heading, body, bgColor }: ForYouCTAProps) {
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -37,13 +40,12 @@ export default function ForYouCTA({ heading, body }: ForYouCTAProps) {
     <section
       ref={ref}
       style={{
-        height: 450,
-        backgroundColor: "#EDEDED",
+        backgroundColor: bgColor || "#EDEDED",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 80px",
+        padding: isMobile ? "80px 24px" : "80px 80px",
       }}
     >
       <div
@@ -52,12 +54,13 @@ export default function ForYouCTA({ heading, body }: ForYouCTAProps) {
           flexDirection: "column",
           alignItems: "center",
           gap: 16,
+          maxWidth: isMobile ? 299 : undefined,
         }}
       >
         <h2
           style={{
             fontFamily: "var(--font-open-sans), sans-serif",
-            fontSize: 40,
+            fontSize: isMobile ? 32 : 40,
             fontWeight: 400,
             letterSpacing: "0.1em",
             lineHeight: "110%",
@@ -74,14 +77,14 @@ export default function ForYouCTA({ heading, body }: ForYouCTAProps) {
         <p
           style={{
             fontFamily: "var(--font-lora), serif",
-            fontSize: 16,
+            fontSize: isMobile ? 14 : 16,
             fontWeight: 400,
             letterSpacing: 0,
-            lineHeight: "120%",
+            lineHeight: isMobile ? "140%" : "120%",
             color: "#8C7A66",
             textAlign: "center",
             margin: 0,
-            maxWidth: 596,
+            maxWidth: isMobile ? undefined : 596,
             ...itemStyle(0.15),
           }}
         >

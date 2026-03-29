@@ -88,7 +88,7 @@ export default function Boutique() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
-            padding: "0 64px 80px",
+            padding: "0 64px 80px 24px",
             zIndex: 3,
           }}
         >

@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export default function ProductGallery2() {
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -28,6 +30,49 @@ export default function ProductGallery2() {
     transition: `opacity 1.0s cubic-bezier(0.25, 0.1, 0.1, 1) ${delay}s, transform 1.0s cubic-bezier(0.25, 0.1, 0.1, 1) ${delay}s`,
   });
 
+  if (isMobile) {
+    return (
+      <section
+        ref={ref}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          width: "100%",
+        }}
+      >
+        {[
+          { src: "/images/pdp-split-left.jpg", objectPosition: "center center" },
+          { src: "/images/pdp-split-right.jpg", objectPosition: "80% center" },
+          { src: "/images/pdp-pp-full.jpg", objectPosition: "center center" },
+        ].map((img, i) => (
+          <div
+            key={img.src}
+            style={{
+              width: "100%",
+              height: 600,
+              overflow: "hidden",
+              ...itemStyle(i * 0.1),
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={img.src}
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: img.objectPosition,
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
+      </section>
+    );
+  }
+
   return (
     <section
       ref={ref}
@@ -39,7 +84,7 @@ export default function ProductGallery2() {
         height: 776,
       }}
     >
-      {/* Left Panel — equal width */}
+      {/* Left Panel */}
       <div
         style={{
           flex: 1,
@@ -50,7 +95,7 @@ export default function ProductGallery2() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/pdp-gallery2-left.png"
+          src="/images/pdp-split-left.jpg"
           alt="Nautilus detail"
           style={{
             width: "100%",
@@ -61,7 +106,7 @@ export default function ProductGallery2() {
         />
       </div>
 
-      {/* Right Panel — equal width */}
+      {/* Right Panel */}
       <div
         style={{
           flex: 1,
@@ -72,7 +117,7 @@ export default function ProductGallery2() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/pdp-gallery2-right.png"
+          src="/images/pdp-split-right.jpg"
           alt="Nautilus movement"
           style={{
             width: "100%",

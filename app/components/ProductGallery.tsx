@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const heroImages = [
-  "/images/pdp-gallery1.png",
-  "/images/pdp-nav-thumb-2.jpg",
-  "/images/pdp-nav-thumb-3.jpg",
+  "/images/pdp-hero-1.jpg",
+  "/images/pdp-hero-2.jpg",
+  "/images/pdp-hero-3.jpg",
 ];
 
 const thumbImages = [
-  "/images/pdp-nav-thumb-1.jpg",
-  "/images/pdp-nav-thumb-2.jpg",
-  "/images/pdp-nav-thumb-3.jpg",
+  "/images/pdp-thumb-1.jpg",
+  "/images/pdp-thumb-2.jpg",
+  "/images/pdp-thumb-3.jpg",
 ];
 
 const revealStyle = (delay: number): React.CSSProperties => ({
@@ -21,10 +22,45 @@ const revealStyle = (delay: number): React.CSSProperties => ({
 });
 
 export default function ProductGallery() {
+  const isMobile = useIsMobile();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const prev = () => setActiveIndex((i) => (i - 1 + heroImages.length) % heroImages.length);
   const next = () => setActiveIndex((i) => (i + 1) % heroImages.length);
+
+  if (isMobile) {
+    return (
+      <section
+        id="hero"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: 750,
+          overflow: "hidden",
+          ...revealStyle(0.1),
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/pdp-hero-1.jpg"
+          alt="Nautilus"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.2)",
+          }}
+        />
+      </section>
+    );
+  }
 
   return (
     <section
@@ -57,7 +93,7 @@ export default function ProductGallery() {
         />
       ))}
 
-      {/* Navigation overlay — bottom right, thumbnails LEFT then arrows RIGHT */}
+      {/* Navigation overlay — bottom right: thumbnails LEFT, arrows RIGHT */}
       <div
         style={{
           position: "absolute",
@@ -65,7 +101,6 @@ export default function ProductGallery() {
           right: 64,
           display: "flex",
           alignItems: "center",
-          width: 380,
           zIndex: 2,
         }}
       >

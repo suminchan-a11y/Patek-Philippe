@@ -1,5 +1,7 @@
 "use client";
 
+import { useIsMobile } from "../hooks/useIsMobile";
+
 const revealStyle = (delay: number): React.CSSProperties => ({
   opacity: 0,
   transform: "translateY(40px)",
@@ -7,19 +9,21 @@ const revealStyle = (delay: number): React.CSSProperties => ({
 });
 
 export default function AquanautHero() {
+  const isMobile = useIsMobile();
+
   return (
     <section
+      id="hero"
       style={{
         position: "relative",
         width: "100%",
-        height: 812,
+        height: isMobile ? 750 : 812,
         overflow: "hidden",
       }}
     >
-      {/* Background Image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/aquanaut-hero.png"
+        src={isMobile ? "/images/aq-hero-mobile.jpg" : "/images/aq-hero.jpg"}
         alt="Aquanaut collection"
         style={{
           position: "absolute",
@@ -30,37 +34,25 @@ export default function AquanautHero() {
         }}
       />
 
-      {/* Bottom gradient overlay */}
+      {/* Content — bottom */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
-          height: 400,
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)",
-        }}
-      />
-
-      {/* Content — bottom left */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 80,
-          left: 80,
-          right: 80,
+          padding: isMobile ? "40px 24px 80px" : "0 80px 80px",
           display: "flex",
           flexDirection: "column",
-          gap: 40,
+          gap: isMobile ? 24 : 40,
         }}
       >
         <h1
           style={{
             fontFamily: "var(--font-open-sans), sans-serif",
-            fontSize: 80,
+            fontSize: isMobile ? 32 : 56,
             fontWeight: 400,
-            letterSpacing: "0.1em",
+            letterSpacing: "0.12em",
             lineHeight: "82%",
             color: "#FFFFFF",
             textTransform: "uppercase",
@@ -68,22 +60,21 @@ export default function AquanautHero() {
             ...revealStyle(0.1),
           }}
         >
-          AQUANAUT
+          Aquanaut
         </h1>
         <p
           style={{
             fontFamily: "var(--font-lora), serif",
-            fontSize: 20,
+            fontSize: isMobile ? 14 : 20,
             fontWeight: 400,
             lineHeight: "143%",
             color: "#FFFFFF",
             margin: 0,
-            maxWidth: 452,
+            maxWidth: isMobile ? 345 : 452,
             ...revealStyle(0.25),
           }}
         >
-          For more than 185 years, Patek Philippe watches have captivated
-          connoisseurs and horology enthusiasts with their exceptional artistry.
+          For more than 185 years, Patek Philippe watches have captivated connoisseurs and horology enthusiasts with their exceptional&nbsp;artistry.
         </p>
       </div>
     </section>
