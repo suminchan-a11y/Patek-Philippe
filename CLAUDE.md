@@ -320,26 +320,57 @@ public/images/aq-hero-mobile.jpg     — Aquanaut mobile hero (crown close-up), 
 public/images/pdp-gallery-3.jpg      — Replaced with wrist shot from Figma node 578:3012
 ```
 
-### Current Task / Where to Resume
+### Session 3 Completed (2026-03-29)
 
-- **Nav transparency on hero NOT working** — `inHero` defaults to `true` and observer is set up with retry, but the nav still shows white bg on hero sections (both mobile and desktop). This is the immediate bug to fix on resume. Debug approach: check if the observer is firing, verify the hero element exists in DOM, consider using a CSS-based approach instead of JS observer.
-- **All 4 pages have mobile responsive** — Homepage, For You, Aquanaut, PDP all implemented
-- **Not yet deployed** — all changes are local only
-- **Git**: Changes not yet committed. Commit before continuing.
+1. **Nav transparency fixed** — replaced IntersectionObserver with scroll-based `getBoundingClientRect()` check
+2. **Desktop location dropdown** — 15px blur background overlay, white text, click-away dismiss, "THE GARDENS MALL, KL" title on mobile dropdown
+3. **SearchBar redesign**
+   - Unified sticky behavior: `position: sticky; bottom: 40px` on both mobile and desktop
+   - Close/dismiss button (16x16, black circle, white X) — top-right, only shows outside hero
+   - Auto-reappears when user scrolls back to hero section
+   - `dismissedRef` (ref-based, not state) for reliable dismiss
+   - Wrapper div structure: outer div handles sticky + sizing, inner pill handles visuals
+   - `inline` prop for non-sticky usage (ForYouHero)
+   - Background: `rgba(0,0,0,0.60)` + 50px blur
+4. **Mobile hero → 100vh** with video background (was 650px static image)
+5. **Hero video stitched** — Patek Boutique (0:01-0:03) + Patek Boutique_2 (0:01-0:03) + hero_final (full 17s)
+   - Desktop: `hero-video-new.mp4` (1920x1080)
+   - Mobile: `hero-video-mobile.mp4` (1080x1920)
+6. **Framer Motion hydration fix** — split Hero into `MobileHero` + `DesktopHero` so `useScroll` only runs on desktop
+7. **Appointment CTA**
+   - Form state lifted to parent for validation
+   - Error messages: red "! message" at 10px below underline, clears on click anywhere
+   - Success modal: animated SVG tick (stroke-dashoffset draw animation), "We will be in touch", "Return to Boutique" button
+   - Input text color changed to #2B1C1A
+8. **CraftVideo audio** — 5s chime extracted from Patek "Striking a Sound" (0:27-0:32)
+   - Auto-plays on scroll into view, loops, pauses when scrolled away
+   - Mute/unmute button (bottom-right, dark glass circle, speaker icon)
+   - Pre-unlocks audio on first user click (PasswordGate interaction)
+9. **ForYou page SearchBar** — replaced "Welcome to Patek Philippe" text+arrow with SearchBar inline component
+
+### Current State
+
+- **All changes committed**: `0394e85`
+- **Deployed to Firebase**: https://patek-philippe-v3.web.app
+- **All 4 pages mobile responsive**: Homepage, For You, Aquanaut, PDP
+- **No known bugs**
 
 ### Decisions Made & Why
 
 | Decision | Why |
 |----------|-----|
 | `useIsMobile` with lazy `useState` initializer | `useSyncExternalStore` caused hydration mismatches. Lazy initializer reads `window.innerWidth` synchronously on client, eliminating desktop→mobile flash. |
-| Single SearchBar on mobile (inline in hero only) | User explicitly wanted no duplicate — sticky version returns null on mobile. Inline version in hero provides the same functionality. |
+| Single sticky SearchBar on mobile + desktop | One SearchBar in page.tsx (after CraftVideo) with `sticky; bottom: 40`. Mobile hero is 100vh so bar overlays hero. `inline` prop for non-sticky usage in ForYouHero. |
 | `MobileHero` as separate function component | Cleaner separation of mobile/desktop hero logic. Avoids deeply nested conditionals. |
 | `inHero` defaults to `true` | All pages have hero sections. Starting transparent prevents white flash, observer corrects when scrolled past hero. |
 | Dark SearchBar design (black 30% bg) | Figma design change from frosted white to dark glass. Applied consistently across all SearchBar instances (desktop sticky, mobile inline). |
 | `mobileObjectPosition` prop on ProductGalleryFull | Different images need different crop positions on mobile's 600px height. Per-instance prop avoids one-size-fits-all. |
 | Removed ProductHeroFull on mobile, images moved to ProductGallery2 | Mobile PDP has 3 stacked images in one section instead of separate split panel + full-bleed. Simpler layout, matches Figma. |
 | ExploreOverlay mobile: simple list (no image crossfade) | Figma mobile design shows plain dark gradient with text list. No background images or hover states needed on mobile. |
-| Nav observer retry with setTimeout | Hero element may not exist when Nav's useEffect runs due to useIsMobile hydration timing. Retry loop ensures observer attaches. |
+| Nav scroll-based hero check (getBoundingClientRect) | IntersectionObserver had timing/race issues with isMobile hydration. Scroll handler is synchronous and reliable. |
+| `dismissedRef` instead of `useState` for SearchBar dismiss | React state batching caused dismiss to not work. Ref updates synchronously, forceRender triggers UI update. |
+| DesktopHero / MobileHero split | `useScroll` with `target: ref` throws "ref not hydrated" when MobileHero renders (ref never attached). Split ensures hooks only run when their DOM exists. |
+| Audio pre-unlock on click | Browsers block autoplay audio. Playing muted then pausing on first user click (PasswordGate) unlocks the audio element for later programmatic play. |
 
 ## Mobile Responsive
 
