@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hourglass × Patek Philippe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fff;--ow:#f8f6f2;--warm:#ede9e3;--bdr:#d8d3cb;
+  --t1:#1a1715;--t2:#2c2825;--t3:#6b6560;--t4:#9a9590;--t5:#bdb8b2;
+  --dk:#0e0d0c;--dk2:#161514;--dk3:#1e1c1a;--dkt:#c8c2ba;--dkd:#6a655f;--dkb:rgba(255,255,255,.06);
+  --serif:'Lora',Georgia,serif;--sans:'Open Sans','Helvetica Neue',sans-serif;
+}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:auto}
+body{background:var(--dk);color:var(--dkt);font-family:var(--serif);font-weight:400;line-height:1.7;overflow-x:hidden}
+
+/* ── REVEALS ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv-up{opacity:0;transform:translateY(60px);transition:opacity 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
+.rv-up.v{opacity:1;transform:translateY(0)}
+.rv-fade{opacity:0;transition:opacity 1.8s ease}
+.rv-fade.v{opacity:1}
+.rv-left{opacity:0;transform:translateX(-40px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.rv-left.v{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}.d5{transition-delay:.6s}.d6{transition-delay:.72s}.d7{transition-delay:.84s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;pointer-events:none}
+.nb,.nl{font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);pointer-events:auto}
+
+/* ── FULL SECTIONS ── */
+section{position:relative}
+.full{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pad{padding:200px 60px;max-width:1400px;margin:0 auto;width:100%}
+.pad-narrow{padding:200px 60px;max-width:1000px;margin:0 auto;width:100%}
+.c{text-align:center}
+
+/* ── VIDEO ── */
+.vbg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+.vbg video{width:100%;height:100%;object-fit:cover}
+.vbg .ov{position:absolute;inset:0}
+.vi{position:relative;width:100%;overflow:hidden}
+.vi video{width:100%;display:block}
+.vp{overflow:hidden}
+.vp video{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── DARK / LIGHT ── */
+.light{background:var(--ow);color:var(--t2)}
+.light .td,.light .th1,.light .th2{color:var(--t1)}
+.light .tb{color:var(--t3)}
+.light .ts{color:var(--t4)}
+
+/* ── TYPOGRAPHY — Fantasy scale ── */
+.td{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,7vw,6.5rem);line-height:1.02;letter-spacing:-.03em;color:var(--ow)}
+.th1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.5vw,3.8rem);line-height:1.08;letter-spacing:-.02em;color:var(--ow)}
+.th2{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.2;color:var(--ow)}
+.th3{font-family:var(--serif);font-weight:500;font-size:1.1rem;line-height:1.35;color:var(--ow)}
+.tb{font-family:var(--serif);font-weight:400;font-size:clamp(.92rem,1.05vw,1rem);line-height:1.95;color:var(--dkt)}
+.tbl{font-family:var(--serif);font-weight:400;font-size:clamp(1rem,1.15vw,1.08rem);line-height:1.95;color:var(--dkt)}
+.ts{font-family:var(--sans);font-weight:300;font-size:.78rem;line-height:1.7;color:var(--dkd)}
+.tl{font-family:var(--sans);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--dkd)}
+.tq{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.55;color:var(--ow)}
+
+.light .tl{color:var(--t4)}
+.light .tbl{color:var(--t3)}
+
+/* ── STAT ── */
+.stat{font-family:var(--serif);font-weight:400;font-size:clamp(4rem,8vw,7rem);line-height:1;color:var(--ow);letter-spacing:-.03em}
+.stat-label{font-family:var(--sans);font-size:.72rem;color:var(--dkd);letter-spacing:1px;margin-top:8px}
+.stat-body{font-family:var(--serif);font-size:.92rem;line-height:1.9;color:var(--dkt);margin-top:16px;max-width:300px}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:60px}
+.gw{display:grid;grid-template-columns:1.2fr 1fr;gap:120px;align-items:start}
+
+/* ── ARCHETYPE ── */
+.ar{padding:48px 0;border-top:1px solid var(--dkb)}
+.ar:last-child{border-bottom:1px solid var(--dkb)}
+.ag{display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:baseline}
+.an{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ow)}
+
+/* ── FROM/TO ── */
+.ft{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.ft .col{padding:48px}
+.ft .col:first-child{border-right:1px solid var(--bdr)}
+.ftl{font-family:var(--sans);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--t4);margin-bottom:32px}
+.fti{font-family:var(--serif);font-size:1.02rem;line-height:1.5;padding:12px 0;color:var(--t4)}
+.ft .col:last-child .fti{color:var(--t1)}
+
+/* ── PRINCIPLES ── */
+.pr{padding:48px 0;border-top:1px solid var(--dkb)}
+.pr:last-child{border-bottom:1px solid var(--dkb)}
+.pr .pg{display:grid;grid-template-columns:44px 1fr;gap:24px;align-items:start}
+.pn{font-family:var(--serif);font-size:1.3rem;color:var(--dkd)}
+.pt{font-family:var(--serif);font-weight:500;font-size:1.15rem;color:var(--ow);margin-bottom:8px}
+.pb{font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--dkt)}
+
+/* ── EMOTION ── */
+.eg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ec{background:var(--dk2);padding:48px 32px;min-height:400px;display:flex;flex-direction:column;justify-content:space-between}
+.en{font-family:var(--serif);font-size:4rem;font-weight:400;color:var(--dk3);line-height:1}
+.em{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--ow);margin:12px 0 4px}
+.emo{font-family:var(--sans);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--dkd);margin-bottom:20px}
+.eb{font-family:var(--serif);font-size:.86rem;line-height:1.95;color:var(--dkt)}
+
+/* ── TONALITY ── */
+.tr{display:grid;grid-template-columns:110px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--dkb);align-items:start}
+.trl{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dkd);padding-top:5px}
+.trb{font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--dkt)}
+.tre{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--ow);margin-top:8px}
+
+/* ── VIDEO TRIO ── */
+.vtrio{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;width:100%}
+.vtrio .vp{aspect-ratio:9/16;max-height:80vh}
+
+/* ── LINE ── */
+.line{width:48px;height:1px;background:rgba(255,255,255,.08);margin:40px 0}
+.line-c{margin-left:auto;margin-right:auto}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .g2,.g3,.gw,.ft{grid-template-columns:1fr}
+  .eg{grid-template-columns:1fr}
+  .ag{grid-template-columns:1fr}.tr{grid-template-columns:1fr}
+  .ft .col{padding:28px 0}.ft .col:first-child{border-right:none;border-bottom:1px solid var(--bdr)}
+  .pad,.pad-narrow{padding:120px 24px}nav{padding:16px 24px}
+  .pr .pg{grid-template-columns:1fr}.pn{display:none}
+  .vtrio{grid-template-columns:1fr}.vtrio .vp{aspect-ratio:16/9;max-height:50vh}
+  .stat{font-size:clamp(3rem,12vw,5rem)}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nb">AKQA / Aleph-Labs</div><div class="nl">Confidential</div></nav>
+
+<!-- ═══════════════════════════════════════
+     HERO — Full-bleed video. Fantasy-scale.
+     ═══════════════════════════════════════ -->
+<section class="full">
+  <div class="vbg">
+    <video autoplay muted loop playsinline>
+      <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/413492-source/pp-5204g-001-banner-16-9-homepage" type="video/mp4">
+    </video>
+    <div class="ov" style="background:rgba(14,13,12,.5)"></div>
+  </div>
+  <div style="position:relative;z-index:2;text-align:center;padding:48px">
+    <div class="rv ts" style="color:rgba(255,255,255,.35);margin-bottom:48px">Experience Strategy</div>
+    <div class="rv d1 td">The Hourglass<br>Patek Philippe Boutique</div>
+    <div class="rv d3" style="font-family:var(--serif);font-size:1rem;color:var(--dkt);line-height:1.95;max-width:380px;margin:48px auto 0">A standalone digital presence for each boutique — where the experience begins before you step through the door.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE PROVOCATION — Giant text. One thought.
+     ═══════════════════════════════════════ -->
+<section class="full" style="background:var(--dk)">
+  <div style="text-align:center;padding:48px">
+    <div class="rv-up td" style="font-size:clamp(2.8rem,6.5vw,6rem)">A beginning of a lifelong.</div>
+    <div class="rv-up d3" style="width:48px;height:1px;background:rgba(255,255,255,.1);margin:48px auto"></div>
+    <div class="rv-up d4 tbl" style="max-width:380px;margin:32px auto 0">The sentence doesn't end.<br>Neither does the relationship.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE WORLD — Opening insight, big centered.
+     ═══════════════════════════════════════ -->
+<section class="full light">
+  <div style="text-align:center;padding:48px;max-width:900px">
+    <div class="rv-up th1" style="color:var(--t1)">The world they already inhabit.</div>
+    <div class="rv-up d2 tbl" style="color:var(--t3);max-width:540px;margin:24px auto 0">Southeast Asia's ultra-wealthy are not emerging — they have arrived. Understanding who they are, how they signal, and what they value is the foundation of everything we design.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     STATS — Fantasy-scale numbers. Cinematic.
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad">
+    <div class="g3">
+      <div class="rv">
+        <div class="stat">268%</div>
+        <div class="stat-label">growth in Singapore UHNWIs over one decade</div>
+        <div class="stat-body">Four of the top twelve fastest-growing UHNWI markets globally are in Southeast Asia. By 2026, Asia is projected to surpass Europe as a wealth hub.</div>
+      </div>
+      <div class="rv d2">
+        <div class="stat">86%</div>
+        <div class="stat-label">of SEA luxury consumers prioritize craft over brand</div>
+        <div class="stat-body">The old model of conspicuous consumption is giving way to inconspicuous consumption — status signalled through subtle markers only peers can decode.</div>
+      </div>
+      <div class="rv d4">
+        <div class="stat">60%</div>
+        <div class="stat-label">of Southeast Asian HNWIs are above 60</div>
+        <div class="stat-body">The region stands at the largest intergenerational wealth transfer in history. A Patek Philippe watch is not a purchase. It is a vessel of legacy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FACE NOT FLASH
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad">
+    <div class="gw">
+      <div class="rv">
+        <div class="th2" style="margin-bottom:32px">Face, not flash.</div>
+        <div class="tbl">In Confucian-influenced cultures across Singapore, Malaysia, Thailand, and Hong Kong, luxury consumption was historically driven by "face" — social standing within relational networks. But the UHNWI tier has evolved past display.</div>
+        <div class="tbl" style="margin-top:16px">They signal through exclusive recognition — markers only peers can read. A Calatrava on the wrist, not a Nautilus. The website must speak this language: not loud, not hidden, but <em style="color:var(--ow)">legible only to those who know</em>.</div>
+      </div>
+      <div class="rv d3" style="padding-top:60px">
+        <div class="tq">"When I look at the 3919, I see my grandfather. When I look at the 6119, I am looking at my sons."</div>
+        <div class="ts" style="margin-top:20px">Thierry Stern, President, Patek Philippe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     VIDEO BREAK — Gemsetting. Full bleed.
+     ═══════════════════════════════════════ -->
+<div class="vi">
+  <video autoplay muted loop playsinline>
+    <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/357729-source/pp-savoir-faire-banner-16-9-7118-1450r-gemsetting" type="video/mp4">
+  </video>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PROTAGONISTS — Big headline, then archetypes.
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad c">
+    <div class="rv-up th1" style="max-width:700px;margin:0 auto">The world's most<br>patient connoisseurs.</div>
+    <div class="rv-up d2 tb" style="max-width:520px;margin:24px auto 0">They do not chase. They understand that the watch finds you, not the other way around. They value the relationship as much as the timepiece.</div>
+  </div>
+</section>
+
+<section style="background:var(--dk)">
+  <div class="pad-narrow" style="padding-top:0">
+    <div class="ar rv"><div class="ag"><div class="an">The Custodian</div><div class="tb">Already owns Patek Philippe. Views each piece as something held in trust for the next generation. Expects digital to mirror the considered attention they receive in the boutique. They notice what is missing more than what is present.</div></div></div>
+    <div class="ar rv d1"><div class="ag"><div class="an">The Convert</div><div class="tb">Walks in asking for the Nautilus. Leaves understanding the Calatrava. The boutique's greatest skill is this gentle redirection — from aspiration to appreciation. The website must begin this journey before they step through the door.</div></div></div>
+    <div class="ar rv d2"><div class="ag"><div class="an">The Connoisseur</div><div class="tb">Speaks in finishing, complications, and calibres. Knows the difference between perlage and Côtes de Genève. For them, the collection pages are not decoration — they are substance.</div></div></div>
+    <div class="ar rv d3"><div class="ag"><div class="an">The Heir</div><div class="tb">Younger, digitally fluent, inheriting both wealth and taste from a family already within the Patek world. The website is often their first touchpoint — it must feel like the brand they grew up with.</div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE SHIFT — Full viewport. One giant statement.
+     ═══════════════════════════════════════ -->
+<section class="full light">
+  <div style="text-align:center;padding:48px;max-width:800px">
+    <div class="rv-up td" style="color:var(--t1)">Not what you wear,<br>but what you pass on.</div>
+    <div class="rv-up d3 tbl" style="color:var(--t3);max-width:500px;margin:32px auto 0">Luxury was once defined by scarcity and price. Today, for the Patek collector, it is defined by time — the time to craft, the time to wait, the time to pass on.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WAS → NOW — Light section with the table.
+     ═══════════════════════════════════════ -->
+<section class="light">
+  <div class="pad c" style="padding-top:0">
+    <div class="ft rv" style="max-width:640px;margin:0 auto;border:1px solid var(--bdr)">
+      <div class="col"><div class="ftl">Was</div><div class="fti">Price</div><div class="fti">Aspirational</div><div class="fti">Exclusive</div><div class="fti">Display</div><div class="fti">Transaction</div></div>
+      <div class="col"><div class="ftl">Now</div><div class="fti">Appreciation</div><div class="fti">Meaningful</div><div class="fti">Intimate</div><div class="fti">Recognition</div><div class="fti">Relationship</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE QUESTION — Full viewport. Dark. Dramatic.
+     ═══════════════════════════════════════ -->
+<section class="full" style="background:var(--dk)">
+  <div style="text-align:center;padding:48px;max-width:900px">
+    <div class="rv-up td" style="font-size:clamp(2.4rem,5.5vw,5rem)">What if the most prestigious watch in the world had the most intimate website?</div>
+  </div>
+</section>
+
+<section style="background:var(--dk)">
+  <div class="pad" style="padding-top:40px">
+    <div class="g2">
+      <div class="rv-left">
+        <div class="tbl">Every competitor site tries to be impressive. Grand. Cinematic. But Patek's power has never been spectacle — it's the opposite. The quiet room at the back. The private appointment. The handwritten note.</div>
+        <div class="tbl" style="margin-top:20px">What if we designed the website not for the many, but for <em style="color:var(--ow)">the one</em>?</div>
+      </div>
+      <div class="rv-left d3">
+        <div class="tbl">A digital experience so considered, so unhurried, that the person browsing feels the same shift they feel when they step from the street into the boutique — the noise falls away, the pace changes, and someone has been expecting them.</div>
+        <div class="tbl" style="margin-top:20px;color:var(--ow)">No one in the luxury watch digital space has done this. We have the chance to set the global benchmark.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE POSITION — Biggest type on the page.
+     ═══════════════════════════════════════ -->
+<section class="full" style="background:var(--dk)">
+  <div style="text-align:center;padding:48px;max-width:1100px">
+    <div class="rv-up" style="font-family:var(--serif);font-weight:400;font-size:clamp(3.5rem,8vw,8rem);line-height:.98;letter-spacing:-.04em;color:var(--ow)">The website<br>as threshold.</div>
+    <div class="rv-up d3 tbl" style="max-width:520px;margin:40px auto 0">Not a storefront. Not a catalogue. A threshold — the moment of transition between the world outside and the world within the Patek Philippe boutique.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PRINCIPLES
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad-narrow">
+    <div class="pr rv"><div class="pg"><div class="pn">I</div><div><div class="pt">Recognize, don't impress.</div><div class="pb">The website speaks to someone who already knows. Like a boutique ambassador who greets you by name — the experience assumes understanding, and deepens it. Content is layered: surface for the curious, depth for the collector.</div></div></div></div>
+    <div class="pr rv d1"><div class="pg"><div class="pn">II</div><div><div class="pt">Redirect, don't restrict.</div><div class="pb">The Nautilus-to-Calatrava conversion begins here. We don't gatekeep. We sequence. The content architecture leads from aspiration through education to invitation. The story does the work the website never can.</div></div></div></div>
+    <div class="pr rv d2"><div class="pg"><div class="pn">III</div><div><div class="pt">One atmosphere, nine addresses.</div><div class="pb">The shared architecture is invisible. What the visitor feels is singular — the light, the space, the materials of their boutique. The template scales; the soul does not.</div></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     VIDEO TRIO — Three watches. No text. Pure craft.
+     ═══════════════════════════════════════ -->
+<div class="vtrio">
+  <div class="vp"><video autoplay muted loop playsinline><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266929-source/pp-5316-50p-001-screen-8-9-chiming-product-loop" type="video/mp4"></video></div>
+  <div class="vp"><video autoplay muted loop playsinline><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266927-source/pp-6002r-001-celestial-watch-loop-960x1080" type="video/mp4"></video></div>
+  <div class="vp"><video autoplay muted loop playsinline><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266928-source/pp-5236p-010-screen-8-9-product-loop" type="video/mp4"></video></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     THE EMOTION — Poetry break. Like Capella's stardust.
+     ═══════════════════════════════════════ -->
+<section class="full" style="background:var(--dk)">
+  <div style="text-align:center;padding:48px;max-width:640px">
+    <div class="rv-fade tq" style="font-size:clamp(1.15rem,1.8vw,1.5rem);color:var(--ow)">No collection is without a story.<br><br>Because every beginning is born<br>from centuries of something precise.<br><br>A balance. A spring.<br>A mechanism that's travelled through time<br>just to meet you, now, on your wrist.</div>
+    <div class="rv-fade d4 tl" style="margin-top:48px">The emotion that meets you</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     DESIGNING FOR EMOTION — The framework.
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad c">
+    <div class="rv-up th1" style="margin-bottom:16px">Designing for human emotions.</div>
+    <div class="rv-up d1 tb" style="max-width:500px;margin:0 auto">Three emotional states the website must orchestrate — mapping directly to the Patek collector's psychology.</div>
+  </div>
+</section>
+
+<section style="background:var(--dk)">
+  <div style="padding:0 60px 200px;max-width:1400px;margin:0 auto">
+    <div class="eg rv-up">
+      <div class="ec"><div><div class="en">1</div><div class="em">Stillness</div><div class="emo">The moment of arrival</div></div><div class="eb">The homepage creates a deceleration. The first three seconds establish pace: generous space, slow imagery, restrained motion. The body language of the site says: <em>take your time</em>.</div></div>
+      <div class="ec"><div><div class="en">2</div><div class="em">Recognition</div><div class="emo">The moment of depth</div></div><div class="eb">The collection pages. Where the collector leans in. They see language they know — <em>perlage, Côtes de Genève, tourbillon</em>. The experience says: <em>we see you</em>.</div></div>
+      <div class="ec"><div><div class="en">3</div><div class="em">Invitation</div><div class="emo">The moment of decision</div></div><div class="eb">The concierge form. Not a form — a gesture. "We would be honoured to welcome you." <em>I am being invited into something, not pushed toward something.</em></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     THE DETAILS — Design language and voice.
+     ═══════════════════════════════════════ -->
+<section style="background:var(--dk)">
+  <div class="pad c">
+    <div class="rv-up th1">The details.</div>
+    <div class="rv-up d1 tb" style="max-width:500px;margin:16px auto 0">A design language derived from <a href="https://www.patek.com/" style="color:var(--dkt);text-decoration:underline" target="_blank" rel="noopener">patek.com</a> — the global site's restraint becomes our foundation. The boutique site adds warmth.</div>
+  </div>
+</section>
+
+<section style="background:var(--dk)">
+  <div class="pad-narrow" style="padding-top:0">
+    <div class="tr rv"><div class="trl">Typography</div><div><div class="trb">Lora for headlines and body. Open Sans for labels. Weight 300–400 only. The quietness of the type signals confidence. Sentence case at every scale.</div></div></div>
+    <div class="tr rv d1"><div class="trl">Colour</div><div><div class="trb">Predominantly white. Warm off-whites for alternating sections. Dark used sparingly for hero moments. The watches themselves provide the palette.</div></div></div>
+    <div class="tr rv d2"><div class="trl">Imagery</div><div><div class="trb">All from the PPE DAM. Product on clean backgrounds. Video plays in-situ, never in modals. Detail shots emphasize finishing: dial textures, case curves, movement.</div></div></div>
+    <div class="tr rv d3"><div class="trl">Space</div><div><div class="trb">Zero border-radius — sharp edges signal precision. 160px section padding. Text constrained to 620px. White space is the design itself.</div></div></div>
+    <div class="tr rv d4"><div class="trl">Interaction</div><div><div class="trb">Deliberately slow. Scroll-driven reveals. No parallax. CTAs are text links, never buttons. The site trusts you to explore.</div></div></div>
+    <div class="tr rv d5"><div class="trl">Voice</div><div><div class="trb">Declarative and unhurried. Short sentences that state, never persuade. First-person plural. No superlatives, no urgency.</div><div class="tre">"Legendary Purity."</div><div class="tre">"The Quintessential Round Watch."</div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CLOSE — Video hero. The chiming mechanism.
+     ═══════════════════════════════════════ -->
+<section class="full" style="min-height:80vh">
+  <div class="vbg">
+    <video autoplay muted loop playsinline>
+      <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266930-source/pp-5373p-001-screen-8-9-product-loop" type="video/mp4">
+    </video>
+    <div class="ov" style="background:rgba(14,13,12,.45)"></div>
+  </div>
+  <div style="position:relative;z-index:2;text-align:center;padding:48px">
+    <div class="rv-up td">Thank you.</div>
+    <div class="rv-up d2 tl" style="margin-top:36px">AKQA / Aleph-Labs</div>
+    <div class="rv-up d3 ts" style="margin-top:60px;color:var(--dkd)">Confidential — prepared for The Hourglass Group</div>
+  </div>
+</section>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.04,rootMargin:'0px 0px -10px 0px'});
+document.querySelectorAll('.rv,.rv-up,.rv-fade,.rv-left').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

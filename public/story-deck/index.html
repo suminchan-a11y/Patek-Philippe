@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hourglass × Patek Philippe</title>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+/* ── DESIGN TOKENS ── */
+:root{
+  --white:#ffffff;
+  --warm:#f7f6f5;
+  --brown:#563017;
+  --body-dark:#2b2624;
+  --text-light:#f8f6f2;
+  --overlay-light:rgba(0,0,0,0.2);
+  --overlay-heavy:rgba(0,0,0,0.5);
+  --frost:rgba(94,94,94,0.2);
+  --chart-dark:#6e645a;
+  --chart-mid:#99918a;
+  --chart-light:#c9c7bf;
+  --chart-pale:#d9d4cc;
+  --serif:'Lora',Georgia,serif;
+  --sans:'Open Sans','Helvetica Neue',sans-serif;
+  --pad-x:3.75vw;
+  --pad-y:6.25vw;
+  --card-pad-x:3.75vw;
+  --card-pad-y:4.167vw;
+  --gap:0.833vw;
+}
+
+/* ── BASE ── */
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto}
+body{background:var(--white);color:var(--body-dark);font-family:var(--serif);font-weight:400;line-height:1.7;overflow-x:hidden}
+
+/* ── SLIDE ── */
+.slide{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* ── BACKGROUND ── */
+.slide-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.slide-bg img{position:absolute;width:100%;height:100%;object-fit:cover;display:block}
+.slide-bg .overlay{position:absolute;inset:0}
+.overlay--light{background:var(--overlay-light)}
+.overlay--heavy{background:var(--overlay-heavy)}
+.overlay--frost{background:var(--frost);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
+.overlay--gradient{background:linear-gradient(180deg,rgba(0,0,0,0) 61.7%,rgba(0,0,0,0.5) 100%)}
+.overlay--combo{background:linear-gradient(90deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%),linear-gradient(180deg,rgba(0,0,0,0) 61.7%,rgba(0,0,0,0.5) 100%)}
+
+/* ── CONTENT ── */
+.slide-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
+
+/* ── TYPOGRAPHY ── */
+.label{font-family:var(--sans);font-weight:400;font-size:0.833vw;font-style:normal;letter-spacing:0.167vw;text-transform:uppercase;line-height:110%;opacity:0.7;font-feature-settings:'liga' off,'clig' off}
+.headline{font-family:var(--serif);font-weight:400;font-size:3.333vw;font-style:normal;letter-spacing:0.033vw;line-height:110%}
+.sub-headline{font-family:var(--serif);font-weight:400;font-size:2.083vw;font-style:normal;line-height:160%}
+.body-lg{font-family:var(--serif);font-weight:400;font-size:1.25vw;font-style:normal;line-height:160%}
+.body{font-family:var(--serif);font-weight:400;font-size:1.042vw;font-style:normal;line-height:140%}
+.body-sm{font-family:var(--serif);font-weight:400;font-size:0.833vw;font-style:normal;line-height:140%}
+.caption{font-family:var(--serif);font-weight:400;font-size:1.667vw;line-height:140%;text-align:center}
+.hero-title{font-family:var(--serif);font-weight:400;font-size:4.167vw;line-height:160%;text-align:center}
+.card-title{font-family:var(--sans);font-weight:600;font-size:1.667vw;letter-spacing:-0.017vw;text-transform:capitalize;line-height:110%}
+.framework-label{font-family:var(--sans);font-weight:400;font-size:0.833vw;letter-spacing:0.1vw;text-transform:uppercase;line-height:120%}
+.text-white{color:var(--white)}.text-offwhite{color:var(--text-light)}.text-brown{color:var(--brown)}.text-dark{color:var(--body-dark)}
+.bg-white{background:var(--white)}.bg-warm{background:var(--warm)}
+.bold{font-weight:700}
+
+/* ── HERO SEQUENCE (slides 1–4) ── */
+.hero-sequence{position:relative;height:400vh}
+.hero-fixed{position:sticky;top:0;height:100vh;width:100%;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{position:absolute;width:100%;height:100%;object-fit:cover}
+.hero-frost{position:absolute;inset:0;background:var(--frost);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);opacity:0}
+.hero-text{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;opacity:0}
+.hero-text--cover{justify-content:center;align-items:flex-end;padding-bottom:4.167vw}
+
+/* ── WHATIF SEQUENCE (slides 9–10) ── */
+.whatif-sequence{position:relative;height:340vh}
+
+/* ── LEFT HERO ── */
+.left-hero{padding:var(--pad-y) var(--pad-x);justify-content:flex-start;align-items:flex-start;gap:0.521vw}
+.left-hero .content-block{display:flex;flex-direction:column;gap:var(--gap);max-width:38.802vw}
+
+/* ── CENTERED HERO ── */
+.centered-hero{justify-content:center;align-items:center;text-align:center}
+
+/* ── TRIPTYCH ── */
+.triptych{flex-direction:column}
+.triptych-images{display:flex;flex:1;min-height:0}
+.triptych-images .col{flex:1;position:relative;overflow:hidden}
+.triptych-images .col img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.triptych-text{display:flex;height:16.823vw;flex-shrink:0}
+.triptych-text .card{flex:1;padding:var(--card-pad-y) var(--card-pad-x);display:flex;flex-direction:column;gap:var(--gap)}
+
+/* ── SPLIT PROSE ── */
+.split-prose .slide-content{flex-direction:row}
+.split-prose-sequence{position:relative}
+.split-prose-stage{position:relative;height:100vh;overflow:hidden}
+.split-prose-panel{position:absolute;inset:0}
+.half{flex:1;display:flex;padding:var(--card-pad-y) var(--card-pad-x)}
+.half--tl{align-items:flex-start;justify-content:flex-start}
+.half--br{align-items:flex-end;justify-content:flex-end}
+.prose-block{max-width:38.333vw}
+
+/* ── IMAGE + 2-COL TEXT ── */
+.image-twocol{flex-direction:column}
+.image-twocol .hero-image{flex:1;position:relative;overflow:hidden;min-height:0}
+.image-twocol .hero-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.image-twocol .text-row{display:flex;height:16.25vw;flex-shrink:0}
+.image-twocol .text-row .col{flex:1;padding:var(--card-pad-y) var(--card-pad-x)}
+
+/* ── FRAMEWORK ── */
+.framework .slide-content{flex-direction:row}
+.fw-left{width:26.302vw;padding:var(--pad-y) var(--pad-x);display:flex;flex-direction:column;gap:var(--gap)}
+.fw-right{flex:1;padding:var(--pad-y) 0;display:flex;gap:3.333vw;align-items:flex-start}
+.fw-labels{display:flex;flex-direction:column;gap:5.573vw;width:10.208vw;text-align:right}
+.fw-labels p{opacity:0.5}
+.fw-bars{display:flex;flex-direction:column;gap:0.26vw;width:10.506vw}
+.fw-bars .bar{width:100%}
+.fw-annotations{display:flex;flex-direction:column;gap:3.958vw;flex:1}
+.anno{display:flex;gap:1.563vw;align-items:flex-start}
+.anno .line{width:8.333vw;height:1px;background:var(--body-dark);opacity:0.3;margin-top:0.469vw;flex-shrink:0}
+.anno .anno-text{display:flex;flex-direction:column;gap:0.417vw}
+.anno .anno-text .body-sm{font-size:0.729vw;line-height:120%}
+
+/* ── CIRCLES ── */
+.circles-slide .slide-bg img{object-fit:cover}
+.circles-content{display:flex;flex-direction:row;gap:5.885vw;padding-left:13.333vw;align-items:center}
+.circles-content .card{width:22.917vw;flex-shrink:0;display:flex;flex-direction:column;gap:var(--gap)}
+
+/* ── WHAT-IF ── */
+.whatif-content{display:flex;align-items:flex-start;text-align:left}
+.whatif-content .whatif-left{font-family:var(--serif);font-size:1.667vw;line-height:120%;padding-right:2.5vw;white-space:nowrap;opacity:0;transition:opacity .35s ease}
+.whatif-content .whatif-line{width:35.625vw;height:1.979vw;display:flex;align-items:center;flex-shrink:0;opacity:0;--whatif-line-scale:0}
+.whatif-content .whatif-line::after{content:'';display:block;width:100%;height:1px;background:rgba(255,255,255,0.4);transform:scaleX(var(--whatif-line-scale));transform-origin:left center;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.whatif-content .whatif-right{padding:0 2.5vw;font-family:var(--serif);font-size:1.667vw;line-height:140%;text-align:left;opacity:0;transition:opacity .35s ease}
+
+/* ── POEM ── */
+.poem-content{display:flex;flex-direction:column;gap:1.25vw;align-items:center;max-width:35.469vw}
+.poem-content .vline{width:1px;height:7.031vw;background:rgba(255,255,255,0.4)}
+
+/* ── BOTTOM LIST ── */
+.bottom-list{display:flex;flex-direction:column;gap:var(--gap)}
+.bottom-list p{font-family:var(--serif);font-size:1.042vw;line-height:140%}
+
+/* ── REVEALS ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:0.1s}.rv-d2{transition-delay:0.2s}.rv-d3{transition-delay:0.3s}
+.rv-d4{transition-delay:0.4s}.rv-d5{transition-delay:0.5s}.rv-d6{transition-delay:0.6s}
+
+/* ── LOGOS ── */
+/* ── NAV ── */
+.deck-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:2.083vw var(--pad-x);display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.nav-tabs{display:flex;gap:1.667vw;pointer-events:auto}
+.nav-logo{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none}
+.calatrava-logo{height:2.5vw;transition:filter 0.4s ease,opacity 0.4s ease}
+/* Dark bg (default) — white logo */
+.calatrava-logo{filter:brightness(0) invert(1);opacity:0.7}
+/* Light bg — dark logo */
+.deck-nav.nav-light .calatrava-logo{filter:brightness(0);opacity:0.5}
+.nav-tab{font-family:var(--sans);font-size:0.833vw;font-weight:400;letter-spacing:0.167vw;text-transform:uppercase;text-decoration:none;transition:color 0.4s ease;cursor:pointer}
+/* Dark bg (default) — white text */
+.nav-tab{color:rgba(255,255,255,0.4)}
+.nav-tab.active{color:rgba(255,255,255,0.8)}
+/* Light bg — dark text */
+.deck-nav.nav-light .nav-tab{color:rgba(43,38,36,0.4)}
+.deck-nav.nav-light .nav-tab.active{color:rgba(43,38,36,0.8)}
+/* Experience link */
+.nav-experience{font-family:var(--sans);font-size:0.833vw;font-weight:400;letter-spacing:0.167vw;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.313vw;pointer-events:auto;transition:color 0.4s ease}
+.nav-experience:hover{color:rgba(255,255,255,0.8)}
+.nav-experience svg{width:0.521vw;height:0.521vw;opacity:0.6}
+.deck-nav.nav-light .nav-experience{color:rgba(43,38,36,0.5)}
+.deck-nav.nav-light .nav-experience:hover{color:rgba(43,38,36,0.8)}
+
+/* ── LOGOS ── */
+.thg-wordmark{width:15.26vw;height:auto;display:block}
+.aleph-logo{width:5.208vw;height:auto;display:block}
+</style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#050608;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.25vw">
+  <div style="font-family:var(--sans);font-size:0.521vw;letter-spacing:0.156vw;text-transform:uppercase;color:#8C7A66">Enter password</div>
+  <input id="pwInput" type="password" autofocus style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.06);color:#fff;font-family:var(--serif);font-size:1.042vw;padding:0.417vw 0;width:12.5vw;text-align:center;outline:none;letter-spacing:0.104vw" placeholder="">
+  <div id="pwError" style="font-family:var(--sans);font-size:0.573vw;color:#c44;opacity:0;transition:opacity .3s ease">Incorrect password</div>
+</div>
+<script>
+(function(){
+  var EXPIRY=3600000;
+  var stored=localStorage.getItem('pw_ts');
+  if(stored&&(Date.now()-parseInt(stored))<EXPIRY){document.getElementById('pwGate').style.display='none';return}
+  document.body.style.overflow='hidden';
+  var input=document.getElementById('pwInput'),error=document.getElementById('pwError'),gate=document.getElementById('pwGate');
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      if(input.value==='Aleph2026!'){
+        localStorage.setItem('pw_ts',Date.now().toString());
+        gate.style.opacity='0';gate.style.transition='opacity .6s ease';
+        document.body.style.overflow='';
+        setTimeout(function(){gate.style.display='none'},600);
+      }else{error.style.opacity='1';input.value='';setTimeout(function(){error.style.opacity='0'},2000)}
+    }
+  });
+})();
+</script>
+
+<!-- ═══ NAV ═══ -->
+<nav class="deck-nav">
+  <div class="nav-tabs">
+    <a class="nav-tab active" data-tab="brief" href="#brief">Brief</a>
+    <a class="nav-tab" data-tab="vision" href="#vision">Vision</a>
+  </div>
+  <div class="nav-logo">
+    <img src="assets/images/pp-calatrava.svg" alt="Patek Philippe" class="calatrava-logo">
+  </div>
+  <a class="nav-experience" href="https://patek-philippe-v3.web.app/" target="_blank" rel="noopener">Experience <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+</nav>
+
+<!-- ═══ BRIEF ═══ -->
+<div id="brief">
+
+<!-- SLIDES 01–04 — Scroll-driven hero sequence -->
+<div class="hero-sequence nav-is-light" id="heroSequence">
+  <div class="hero-fixed">
+    <div class="hero-bg">
+      <img src="assets/images/slides/slide-01.jpg" alt="">
+      <div class="overlay overlay--gradient" id="heroGradient"></div>
+      <div class="hero-frost" id="heroFrost"></div>
+    </div>
+    <div class="hero-text hero-text--cover" id="heroText0">
+      <div style="display:flex;flex-direction:column;gap:var(--gap);align-items:center">
+        <p class="label text-white" style="opacity:0.7">Prepared for</p>
+        <img src="assets/images/slides/thg-wordmark.svg" alt="The Hour Glass" class="thg-wordmark">
+      </div>
+    </div>
+    <div class="hero-text" id="heroText1">
+      <p class="hero-title text-white">Welcome</p>
+    </div>
+    <div class="hero-text" id="heroText2">
+      <p class="sub-headline text-white" style="max-width:43.177vw;text-align:center">We invite you to step inside — where the experience lives before the visit.</p>
+    </div>
+    <div class="hero-text" id="heroText3">
+      <p class="sub-headline text-white" style="max-width:43.177vw;text-align:center">"An extension of the physical boutique, an immersive, ultra-luxury experience. The digital gateway to explore Patek Philippe, view collections, and request personalised boutique appointments."</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 05 — Your Buyer -->
+<section class="slide left-hero">
+  <div class="slide-bg">
+    <img src="assets/images/slides/slide-05.jpg" alt="">
+    <div class="overlay overlay--light"></div>
+  </div>
+  <div class="slide-content">
+    <div class="content-block text-white">
+      <p class="label rv">Your Buyer</p>
+      <h2 class="headline rv rv-d1">They each carry a different weight of time.</h2>
+      <p class="body-sm rv rv-d2" style="max-width:34.375vw">Each arrival brings a unique relationship with Patek Philippe. The website must honor all: depth for seekers, space for explorers, and recognition for long-time patrons.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 06 — Triptych: Buyer Personas -->
+<section class="slide triptych bg-white">
+  <div class="triptych-images">
+    <div class="col"><img src="assets/images/slides/slide-06a.jpg" alt="The Custodian"></div>
+    <div class="col"><img src="assets/images/slides/slide-06b.jpg" alt="The Convert"></div>
+    <div class="col"><img src="assets/images/slides/slide-06c.jpg" alt="The Connoisseur"></div>
+  </div>
+  <div class="triptych-text text-brown">
+    <div class="card rv"><h3 class="card-title">The Custodian</h3><p class="body">Owns Patek Philippe, viewing pieces as held in trust. Expects digital to reflect the attention given in boutiques, noticing what's missing more than what's present.</p></div>
+    <div class="card rv rv-d1"><h3 class="card-title">The Convert</h3><p class="body">Asks for the Nautilus, leaves with the Calatrava. The boutique gently redirects from aspiration to appreciation, starting the journey online.</p></div>
+    <div class="card rv rv-d2"><h3 class="card-title">The Connoisseur</h3><p class="body">Speaks in finishing and calibres. Knows perlage from Côtes de Genève. For them, collection pages are substance.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 07 — Your Competitors -->
+<section class="slide left-hero">
+  <div class="slide-bg">
+    <img src="assets/images/slides/slide-07.jpg" alt="" style="object-fit:cover;object-position:center 37%">
+    <div class="overlay overlay--light"></div>
+  </div>
+  <div class="slide-content">
+    <div class="content-block text-white">
+      <p class="label rv">Your Competitors</p>
+      <h2 class="headline rv rv-d1">We're not the only thing on their mind.</h2>
+      <p class="body-sm text-offwhite rv rv-d2" style="max-width:29.479vw">The competition isn't just other watchmakers. It's anyone competing for the time and attention of someone who values both above everything else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 08 — Concentric Circles -->
+<section class="slide circles-slide nav-is-light" style="align-items:center;justify-content:center">
+  <div class="slide-bg"><img src="assets/images/slides/slide-08.jpg" alt=""></div>
+  <div class="slide-content circles-content text-brown" style="flex-direction:row;align-items:center;padding-left:calc(13.333vw - 100px)">
+    <div class="card rv"><h3 class="card-title">The Wrist</h3><p class="body">The website must go where theirs cannot — behind the dial, into the finishing, through the centuries of craft that no competitor can claim.</p></div>
+    <div class="card rv rv-d1"><h3 class="card-title">The Street</h3><p class="body">The website must own the first impression — the moment someone searches for Patek Philippe in this city, the boutique site must be the door they walk through.</p></div>
+    <div class="card rv rv-d2"><h3 class="card-title">The World</h3><p class="body">Competing for the same person's attention, time, and sense of belonging. The website must feel like it belongs among the world's most considered luxury experiences.</p></div>
+  </div>
+</section>
+
+<!-- SLIDES 09–10 — Scroll-driven whatif sequence -->
+<div class="whatif-sequence" id="whatifSequence">
+  <div class="hero-fixed">
+    <div class="hero-bg">
+      <img src="assets/images/slides/slide-09.jpg" alt="">
+    </div>
+    <div class="hero-text" id="whatifText0">
+      <div class="whatif-content text-white">
+        <span class="whatif-left" id="whatifLead">What if</span>
+        <div class="whatif-line" id="whatifLine"></div>
+        <div class="whatif-right" id="whatifCopy">
+          <p>the journey began with quiet intimacy</p>
+          <p>rich with detail, free from noise?</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-text" id="whatifText1">
+      <p class="caption text-white" style="max-width:39.531vw">Where the craft comes forward because everything else has stepped back.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11 — Split Prose -->
+<div class="split-prose-sequence" id="splitProseSequence">
+  <div class="split-prose-stage">
+    <section class="slide split-prose split-prose-panel" id="splitProsePanel">
+      <div class="slide-bg">
+        <div class="overlay overlay--light"></div>
+        <img src="assets/images/slides/slide-11.jpg" alt="">
+      </div>
+      <div class="slide-content">
+        <div class="half half--tl">
+          <div class="prose-block text-white rv">
+            <p class="body-lg">Every competitor site tries to be impressive. Grand. Cinematic. But Patek's power has never been spectacle — it's the opposite. The quiet room at the back. The private appointment. The specialist who already knows your name. The digital experience should feel the same way — <span class="bold">not louder, but closer.</span></p>
+          </div>
+        </div>
+        <div class="half half--br">
+          <div class="prose-block text-white rv rv-d2">
+            <p class="body-lg">A digital experience so considered that <span class="bold">every detail earns its place</span> — the movement, the finishing, the centuries of craft — all present, nothing in the way. Not designed for the many, but for the one. The person browsing should feel the same shift they feel when they step from the street into the boutique: the noise falls away, the pace changes, and someone has been expecting them.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+</div><!-- /brief -->
+
+<!-- ═══ VISION ═══ -->
+<div id="vision">
+
+<!-- SLIDE 12 — Poem -->
+<section class="slide centered-hero">
+  <div class="slide-bg">
+    <img src="assets/images/slides/slide-12a.jpg" alt="">
+    <img src="assets/images/slides/slide-12b.jpg" alt="">
+  </div>
+  <div class="slide-content" style="justify-content:center;align-items:center">
+    <div class="poem-content text-white">
+      <div class="rv"><p class="caption">Before the door opens,</p><p class="caption">there is a room.</p></div>
+      <div class="vline rv rv-d1"></div>
+      <div class="rv rv-d2"><p class="caption">Not empty — considered.</p><p class="caption">Every detail placed the way a hand places</p><p class="caption">an index on a dial.</p></div>
+      <div class="vline rv rv-d3"></div>
+      <div class="rv rv-d4"><p class="caption">The craft took centuries.</p><p class="caption">Your decision deserves its own time.</p><p class="caption">This is where that time begins.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13 — Creative Direction -->
+<section class="slide centered-hero">
+  <div class="slide-bg">
+    <img src="assets/images/slides/slide-13.jpg" alt="">
+    <div class="overlay overlay--heavy"></div>
+  </div>
+  <div class="slide-content" style="justify-content:center;align-items:center;padding:var(--pad-y) var(--pad-x)">
+    <div style="display:flex;flex-direction:column;gap:var(--gap);align-items:center;max-width:31.406vw;text-align:center" class="text-white">
+      <p class="label rv">Creative Direction</p>
+      <h2 class="headline rv rv-d1">The Art of Curated Maximalism</h2>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 14 — Curated Maximalism Detail -->
+<section class="slide image-twocol bg-white nav-is-light">
+  <div class="hero-image"><img src="assets/images/slides/slide-14.jpg" alt=""></div>
+  <div class="text-row text-dark">
+    <div class="col rv"><p class="body-lg">Luxury on the internet defaults to whitespace, vast, clinical, safe. But walk into any Patek Philippe boutique and the room is full. Warm wood. Flowers. A display case lit like a stage. Every detail present, every detail considered.</p></div>
+    <div class="col rv rv-d1"><p class="body-lg">The digital experience should feel the same not sparse, but <span class="bold">curated</span>. Not minimal, but <span class="bold">intentional</span>. A room where everything earns its place through craft, through history, through <span class="bold">meaning</span>.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 15 — Story: Journey -->
+<section class="slide left-hero">
+  <div class="slide-bg"><img src="assets/images/slides/slide-15.jpg" alt=""></div>
+  <div class="slide-content">
+    <div class="content-block text-white" style="max-width:31.406vw">
+      <p class="label rv">Story</p>
+      <h2 class="headline rv rv-d1">The journey invites you to</h2>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16 — Triptych: Collections / Craft / Story -->
+<section class="slide triptych bg-warm">
+  <div class="triptych-images">
+    <div class="col"><img src="assets/images/slides/slide-16a.jpg" alt="The Collections"></div>
+    <div class="col"><img src="assets/images/slides/slide-16b.jpg" alt="The Craft"></div>
+    <div class="col"><img src="assets/images/slides/slide-16c.jpg" alt="The Story"></div>
+  </div>
+  <div class="triptych-text text-brown">
+    <div class="card rv"><h3 class="card-title">The Collections</h3><p class="body">The watches presented not as catalogue entries but as craft objects the movement, the finishing, the complications. Close enough to feel the weight.</p></div>
+    <div class="card rv rv-d1"><h3 class="card-title">The Craft</h3><p class="body">Behind the dial. The savoir-faire. Centuries of technique distilled into a single beveled edge. The closer you look, the more you find.</p></div>
+    <div class="card rv rv-d2"><h3 class="card-title">The Story</h3><p class="body">An concierge experience that listens — your taste, your relationship with time, your reasons for looking. A conversation that helps you discover which Patek Philippe belongs in your life.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 22 — Homepage Experience Framework -->
+<section class="slide bg-warm" style="flex-direction:row;align-items:flex-start;padding:var(--pad-y) var(--pad-x)">
+  <div class="slide-content" style="flex-direction:row;align-items:flex-start;gap:0">
+    <div style="display:flex;flex-direction:column;gap:var(--gap);flex-shrink:0" class="text-brown">
+      <h3 class="card-title rv" style="width:22.552vw">Homepage Experience Framework</h3>
+      <p class="body rv rv-d1" style="max-width:19.375vw">Surface for the curious. Depth for the collector. The closer you look, the more you find.</p>
+    </div>
+    <div class="rv rv-d1" style="width:59.01vw;height:44.948vw;flex-shrink:0">
+      <img src="assets/images/slides/slide-22-framework.png" alt="Homepage Experience Framework" style="width:100%;height:100%;object-fit:contain">
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 17 — Triptych: Space / Culture / Boutique -->
+<section class="slide triptych bg-warm">
+  <div class="triptych-images">
+    <div class="col"><img src="assets/images/slides/slide-17a.jpg" alt="The Space"></div>
+    <div class="col"><img src="assets/images/slides/slide-17b.jpg" alt="The Culture"></div>
+    <div class="col"><img src="assets/images/slides/slide-17c-bg.jpg" alt="The Boutique"></div>
+  </div>
+  <div class="triptych-text text-brown">
+    <div class="card rv"><h3 class="card-title">The Space</h3><p class="body">The boutique's architecture and atmosphere define its place in the city. Each location is uniquely rendered. Malaysia feels like itself.</p></div>
+    <div class="card rv rv-d1"><h3 class="card-title">The Culture</h3><p class="body">The world the watch lives in — the specific light of a city, the texture of its hospitality, the way time feels in that place. Each boutique becomes a portrait of where the watch belongs.</p></div>
+    <div class="card rv rv-d2"><h3 class="card-title">The Boutique</h3><p class="body">The final threshold. A personalised appointment — not a form, but a considered request. The specialist already knows your name before you walk through the door.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 18 — Guided by Three Principles -->
+<section class="slide left-hero nav-is-light">
+  <div class="slide-bg"><img src="assets/images/slides/slide-18.jpg" alt=""></div>
+  <div class="slide-content">
+    <div class="content-block text-white" style="max-width:31.406vw">
+      <p class="label rv">Story</p>
+      <h2 class="headline rv rv-d1">Guided by Three Principles</h2>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 19 — Triptych: Three Principles Detail -->
+<section class="slide triptych bg-white nav-is-light">
+  <div class="triptych-images">
+    <div class="col"><img src="assets/images/slides/slide-19b.jpg" alt="Intentional Density"></div>
+    <div class="col"><img src="assets/images/slides/slide-19c.jpg" alt="Language of Detail"></div>
+    <div class="col"><img src="assets/images/slides/slide-19d.jpg" alt="Layered Depth"></div>
+  </div>
+  <div class="triptych-text text-brown">
+    <div class="card rv"><h3 class="card-title">Intentional Density</h3><p class="body">Every element earns its place through craft, history, or meaning. The page feels inhabited. Like a boutique, not a gallery.</p></div>
+    <div class="card rv rv-d1"><h3 class="card-title">Language of Detail</h3><p class="body">Perlage. Côtes de Genève. Beveling. Chamfering. The language of the craft becomes the language of the interface.</p></div>
+    <div class="card rv rv-d2"><h3 class="card-title">Layered Depth</h3><p class="body">Surface for the curious. Depth for the collector. The closer you look, the more you find.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 20 — Intelligence Layer -->
+<section class="slide left-hero" style="justify-content:space-between">
+  <div class="slide-bg"><img src="assets/images/slides/slide-20.jpg" alt="" style="object-fit:cover;object-position:center 35%"></div>
+  <div class="slide-content" style="justify-content:space-between">
+    <div class="content-block text-white" style="max-width:35vw">
+      <p class="label rv">The Intelligence Layer</p>
+      <h2 class="headline rv rv-d1">Every story finds the one it was meant for</h2>
+      <p class="body rv rv-d2">You arrive with a thread — a milestone, a curiosity, a name. The intelligence layer takes that thread and weaves it into Patek's own.</p>
+    </div>
+    <div class="bottom-list text-white rv rv-d3">
+      <p>A story weaver</p>
+      <p>A page generated for you — from the same visual language as the site</p>
+      <p>A quiet presence that listens, remembers, and deepens over time</p>
+      <p>A bridge between the screen and the boutique door</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 21 — Closing -->
+<section class="slide bg-white" style="justify-content:center;align-items:center;position:relative">
+  <div style="position:absolute;top:44%;transform:translateY(-50%);display:flex;flex-direction:column;gap:var(--gap);align-items:center" class="rv">
+    <p class="label text-dark" style="text-align:center">Prepared for</p>
+    <img src="assets/images/slides/thg-wordmark-dark.svg" alt="The Hour Glass" class="thg-wordmark">
+  </div>
+  <div class="rv rv-d2" style="position:absolute;bottom:9%;display:flex;align-items:center">
+    <img src="assets/images/slides/aleph-logo.svg" alt="Aleph" class="aleph-logo">
+  </div>
+</section>
+
+</div><!-- /vision -->
+
+<script>
+const lenis=new Lenis({duration:1.6,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+function raf(time){lenis.raf(time);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+
+// Hero sequence scroll animation
+(function(){
+  const seq=document.getElementById('heroSequence');
+  const frost=document.getElementById('heroFrost');
+  const gradient=document.getElementById('heroGradient');
+  const texts=[
+    document.getElementById('heroText0'),
+    document.getElementById('heroText1'),
+    document.getElementById('heroText2'),
+    document.getElementById('heroText3')
+  ];
+
+  function updateHero(){
+    const top=-seq.getBoundingClientRect().top;
+    const vh=innerHeight;
+    const rawProgress=Math.max(0,top/vh);
+    const transitionSpan=0.35;
+    const segment=Math.min(2,Math.floor(rawProgress));
+    const withinSegment=rawProgress-segment;
+    const transitionProgress=Math.min(withinSegment/transitionSpan,1);
+    const progress=Math.min(segment+transitionProgress,3);
+
+    frost.style.opacity=Math.min(1,progress);
+    gradient.style.opacity=Math.max(0,1-progress);
+
+    texts.forEach((t,i)=>{
+      const dist=Math.abs(progress-i);
+      const o=dist<0.5?1-dist*2:0;
+      t.style.opacity=Math.max(0,o);
+    });
+  }
+
+  window.addEventListener('scroll',()=>requestAnimationFrame(updateHero),{passive:true});
+  updateHero();
+})();
+
+// What-if sequence scroll animation (slides 9-10)
+(function(){
+  const seq=document.getElementById('whatifSequence');
+  const text0=document.getElementById('whatifText0');
+  const text1=document.getElementById('whatifText1');
+  const lead=document.getElementById('whatifLead');
+  const line=document.getElementById('whatifLine');
+  const copy=document.getElementById('whatifCopy');
+  let lineTriggered=false;
+
+  function clamp(value,min,max){
+    return Math.min(max,Math.max(min,value));
+  }
+
+  function updateWhatif(){
+    const top=-seq.getBoundingClientRect().top;
+    const vh=innerHeight;
+    const progress=Math.max(0,top/vh);
+    const firstPanelOpacity=progress < 1.5 ? 1 : clamp(1-((progress-1.5)/0.14),0,1);
+    const secondPanelOpacity=progress < 1.5 ? 0 : clamp((progress-1.5)/0.14,0,1);
+
+    text0.style.opacity=String(firstPanelOpacity);
+    text1.style.opacity=String(secondPanelOpacity);
+
+    const staged=clamp(progress,0,0.999);
+    const leadProgress=clamp(staged/0.33,0,1);
+    const lineProgress=clamp((staged-0.33)/0.33,0,1);
+    const copyProgress=clamp((staged-0.66)/0.34,0,1);
+
+    lead.style.opacity=String(leadProgress);
+    if(lineProgress > 0.12 && !lineTriggered){
+      lineTriggered=true;
+      line.style.opacity='1';
+      line.style.setProperty('--whatif-line-scale', '1');
+    } else if(lineProgress <= 0.02 && lineTriggered){
+      lineTriggered=false;
+      line.style.opacity='0';
+      line.style.setProperty('--whatif-line-scale', '0');
+    } else {
+      line.style.opacity=lineTriggered ? '1' : '0';
+    }
+
+    copy.style.opacity=String(copyProgress);
+  }
+
+  window.addEventListener('scroll',()=>requestAnimationFrame(updateWhatif),{passive:true});
+  updateWhatif();
+})();
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Tab navigation
+const navEl=document.querySelector('.deck-nav');
+const tabLinks=document.querySelectorAll('.nav-tab');
+tabLinks.forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.getElementById(link.dataset.tab);
+    if(target){
+      tabLinks.forEach(t=>t.classList.remove('active'));
+      link.classList.add('active');
+      target.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+// Update active tab and nav style on scroll
+const slides=document.querySelectorAll('.slide');
+const briefEl=document.getElementById('brief');
+const visionEl=document.getElementById('vision');
+
+function getCurrentSlide(){
+  // Check hero sequence first
+  const hero=document.getElementById('heroSequence');
+  const heroRect=hero.getBoundingClientRect();
+  if(heroRect.top<=100&&heroRect.bottom>0) return hero;
+  // Find the slide that occupies the nav area
+  for(let i=slides.length-1;i>=0;i--){
+    if(slides[i].getBoundingClientRect().top<=100) return slides[i];
+  }
+  return slides[0];
+}
+
+function applyNavStyle(){
+  // Tab active state
+  const visionTop=visionEl.getBoundingClientRect().top;
+  const inVision=visionTop<innerHeight/2;
+  tabLinks.forEach(t=>t.classList.remove('active'));
+  document.querySelector(`.nav-tab[data-tab="${inVision?'vision':'brief'}"]`).classList.add('active');
+
+  // Light/dark detection
+  const s=getCurrentSlide();
+  if(s){
+    const cl=s.classList;
+    const isLight=cl.contains('bg-white')||cl.contains('bg-warm')||cl.contains('nav-is-light');
+    navEl.classList.toggle('nav-light',isLight);
+  }
+}
+let navTick=false;
+window.addEventListener('scroll',()=>{
+  if(!navTick){navTick=true;requestAnimationFrame(()=>{applyNavStyle();navTick=false})}
+},{passive:true});
+applyNavStyle();
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();const c=[...slides].findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=-100&&r.top<innerHeight/2});const n=Math.min(c+1,slides.length-1);if(n>=0)slides[n].scrollIntoView({behavior:'smooth'})}
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();const c=[...slides].findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=-100&&r.top<innerHeight/2});const p=Math.max(c-1,0);if(p>=0)slides[p].scrollIntoView({behavior:'smooth'})}
+});
+</script>
+</body>
+</html>

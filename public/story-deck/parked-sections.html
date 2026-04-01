@@ -1,0 +1,715 @@
+<!-- ═══════════════════════════════════════
+     PARKED — SECTION 5 — YOUR BOUTIQUES
+     Full-bleed photos, boutique names left, statement right
+     ═══════════════════════════════════════ -->
+<section data-snap="3" class="full-bleed" style="position:relative;z-index:10;min-height:100vh;display:flex;align-items:center;overflow:hidden">
+  <!-- Background images — cycle on click -->
+  <div id="boutiqueImages" style="position:absolute;inset:0">
+    <div class="boutique-bg" data-idx="0" style="position:absolute;inset:0;opacity:1;transition:opacity 1.2s ease"><img src="assets/images/boutiques/ion-orchard.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="1" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/marina-bay-sands.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="2" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/ngee-ann-city.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="3" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/raffles-hotel.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="4" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/suria-klcc.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="5" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/pavilion-kl.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="6" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/siam-paragon.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="7" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/iconsiam.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="boutique-bg" data-idx="8" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease"><img src="assets/images/boutiques/central-embassy.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+  </div>
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.45)"></div>
+
+  <!-- Content -->
+  <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;width:100%;padding:80px">
+    <!-- Left: boutique names -->
+    <div id="boutiqueNames" style="display:flex;flex-direction:column;gap:24px">
+      <div class="boutique-name" data-idx="0" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:1;line-height:1.1">ION Orchard</div>
+      <div class="boutique-name" data-idx="1" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Marina Bay Sands</div>
+      <div class="boutique-name" data-idx="2" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Ngee Ann City</div>
+      <div class="boutique-name" data-idx="3" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Raffles Hotel</div>
+      <div class="boutique-name" data-idx="4" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Suria KLCC</div>
+      <div class="boutique-name" data-idx="5" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Pavilion KL</div>
+      <div class="boutique-name" data-idx="6" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Siam Paragon</div>
+      <div class="boutique-name" data-idx="7" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">ICONSIAM</div>
+      <div class="boutique-name" data-idx="8" style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:white;cursor:pointer;transition:opacity .4s ease;opacity:.3;line-height:1.1">Central Embassy</div>
+    </div>
+    <!-- Right: statement -->
+    <div style="max-width:400px;text-align:right">
+      <div class="tbl rv-fade" style="color:rgba(255,255,255,.7)">Patek Philippe defines the boutique. Every detail — furniture, colours, layout — is mandated and consistent. The website is the only canvas where Singapore can feel like Singapore and Tokyo can feel like Tokyo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PARKED — SECTION 6 — OUR VISIT, OUR INTERVIEWS
+     ═══════════════════════════════════════ -->
+<section data-snap="4" style="background:var(--dk);position:relative;z-index:10">
+  <div class="pad" style="text-align:center">
+    <div class="th1 rv-up">We went. We listened.</div>
+    <div class="tb rv-fade d2" style="max-width:640px;margin:32px auto 80px">We didn't just research from afar. We visited the boutiques, talked to specialists, and experienced the world before proposing&nbsp;anything.</div>
+    <!-- Three photos with hover-to-reveal insights -->
+    <div class="g3 rv d3">
+      <div class="visit-card" style="position:relative;overflow:hidden;cursor:default">
+        <div style="background:var(--dk2);height:400px;display:flex;align-items:center;justify-content:center">
+          <div class="ts">Visit Photo</div>
+        </div>
+        <div class="visit-overlay" style="position:absolute;inset:0;background:rgba(14,13,12,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;transition:opacity .4s ease">
+          <div>
+            <div class="th3" style="margin-bottom:12px">It's called a boutique</div>
+            <div class="tb">Not a store, not a branch. The language matters. Every detail of how The Hour Glass speaks about PP is considered.</div>
+          </div>
+        </div>
+      </div>
+      <div class="visit-card" style="position:relative;overflow:hidden;cursor:default">
+        <div style="background:var(--dk2);height:400px;display:flex;align-items:center;justify-content:center">
+          <div class="ts">Visit Photo</div>
+        </div>
+        <div class="visit-overlay" style="position:absolute;inset:0;background:rgba(14,13,12,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;transition:opacity .4s ease">
+          <div>
+            <div class="th3" style="margin-bottom:12px">90% walk-in at Pavilion</div>
+            <div class="tb">The website shapes an impression for visitors who haven't planned their visit. First impressions happen on a screen.</div>
+          </div>
+        </div>
+      </div>
+      <div class="visit-card" style="position:relative;overflow:hidden;cursor:default">
+        <div style="background:var(--dk2);height:400px;display:flex;align-items:center;justify-content:center">
+          <div class="ts">Visit Photo</div>
+        </div>
+        <div class="visit-overlay" style="position:absolute;inset:0;background:rgba(14,13,12,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;transition:opacity .4s ease">
+          <div>
+            <div class="th3" style="margin-bottom:12px">Everything is manual</div>
+            <div class="tb">Register interest, email, sales proposes a time. The process is human. The digital experience should honour that.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PARKED — TAB 3: PROGRAMME (HTML + JS)
+     Parked 2026-03-24. Restore by moving back into index.html.
+     ═══════════════════════════════════════ -->
+
+<!-- ── PROGRAMME HTML ── -->
+<div class="tab-content tab-programme" data-tab="programme" style="display:none">
+
+<!-- PROGRAMME CROWN NAV -->
+<div class="crown-nav" id="crownNavProg" style="display:none">
+  <div class="crown-section" data-section-prog="0"><div class="crown-label">A Phased Journey</div><div class="crown-ridges"><div class="crown-ridge active"></div><div class="ridge-gap"></div><div class="crown-ridge active"></div><div class="ridge-gap"></div><div class="crown-ridge active"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="1"><div class="crown-label">Today's Scope</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="2"><div class="crown-label">Architecture</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="3"><div class="crown-label">Timeline</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="4"><div class="crown-label">Team</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="5"><div class="crown-label">Risk</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section-prog="9"><div class="crown-label">Next Steps</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+</div>
+
+<!-- ═══ PAST PROJECTS ═══ -->
+<section class="light" style="position:relative;z-index:10;overflow:hidden;min-height:100vh;display:flex;align-items:center">
+  <div style="width:100%;text-align:center;padding:80px 60px">
+    <div class="rv" style="display:flex;justify-content:center;margin-bottom:80px;align-items:center;width:100%;max-width:1200px;margin-left:auto;margin-right:auto">
+      <div class="cred-logo" data-cred="porsche" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;flex:1.3">
+        <div style="height:50px;display:flex;align-items:center"><img src="assets/images/logos/porsche.svg" alt="Porsche" style="height:14px;width:auto;opacity:.25;transition:opacity .3s"></div>
+        <div class="cred-teaser ts" style="opacity:0;transition:opacity .3s;min-height:18px;margin-top:12px">Making the complex accessible</div>
+      </div>
+      <div class="cred-logo" data-cred="cartier" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;flex:1">
+        <div style="height:50px;display:flex;align-items:center"><img src="assets/images/logos/cartier.svg" alt="Cartier" style="height:22px;width:auto;opacity:.25;transition:opacity .3s"></div>
+        <div class="cred-teaser ts" style="opacity:0;transition:opacity .3s;min-height:18px;margin-top:12px">Heritage honoured through contemporary vision</div>
+      </div>
+      <div class="cred-logo" data-cred="rollsroyce" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;flex:1">
+        <div style="height:50px;display:flex;align-items:center"><img src="assets/images/logos/rolls-royce.svg" alt="Rolls-Royce" style="height:50px;width:auto;opacity:.25;transition:opacity .3s"></div>
+        <div class="cred-teaser ts" style="opacity:0;transition:opacity .3s;min-height:18px;margin-top:12px">In-camera craft, no shortcuts</div>
+      </div>
+      <div class="cred-logo" data-cred="hermes" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;flex:1">
+        <div style="height:50px;display:flex;align-items:center"><img src="assets/images/logos/hermes.svg" alt="Hermès" style="height:40px;width:auto;opacity:.25;transition:opacity .3s"></div>
+        <div class="cred-teaser ts" style="opacity:0;transition:opacity .3s;min-height:18px;margin-top:12px">The perfect store, reimagined online</div>
+      </div>
+      <div class="cred-logo" data-cred="vancleef" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;flex:1.3">
+        <div style="height:50px;display:flex;align-items:center"><img src="assets/images/logos/vancleef.svg" alt="Van Cleef & Arpels" style="height:32px;width:auto;opacity:.25;transition:opacity .3s"></div>
+        <div class="cred-teaser ts" style="opacity:0;transition:opacity .3s;min-height:18px;margin-top:12px">Crafting wonder into digital</div>
+      </div>
+    </div>
+    <div class="rv d2 tbl" style="max-width:500px;margin:0 auto;color:var(--t3)">What every project taught us: the website doesn't sell.<br>It initiates a&nbsp;relationship.</div>
+  </div>
+
+  <div id="credBackdrop" style="position:absolute;inset:0;z-index:101;background:rgba(14,13,12,0);pointer-events:none;transition:background .5s ease"></div>
+  <div id="credSheet2" style="position:absolute;top:0;right:0;bottom:0;width:50%;background:var(--dk);z-index:102;transform:translateX(100%);transition:transform .6s cubic-bezier(.16,1,.3,1) .08s;overflow:hidden">
+    <div id="credVideoArea" style="position:absolute;inset:0;cursor:pointer">
+      <video id="credVideo" autoplay muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
+      <div style="position:absolute;inset:0;background:rgba(14,13,12,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;transition:background .3s" onmouseenter="this.style.background='rgba(14,13,12,.25)'" onmouseleave="this.style.background='rgba(14,13,12,.4)'">
+        <div style="width:48px;height:48px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,.5)"><polygon points="9,6 18,12 9,18"/></svg></div>
+        <div style="font-family:var(--sans);font-size:7px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3)">Watch project</div>
+      </div>
+    </div>
+  </div>
+  <div id="credSheet1" style="position:absolute;top:0;right:0;bottom:0;width:28%;min-width:360px;background:var(--ow);border-left:1px solid var(--bdr);z-index:103;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,1,.3,1);padding:64px 48px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px">
+      <img id="credSheetLogo" src="" alt="" style="height:40px;width:auto;opacity:.25">
+      <div id="credCloseBtn" style="cursor:pointer;font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t4);transition:color .3s">Close &times;</div>
+    </div>
+    <div id="credSheetTitle" style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--t1);margin-bottom:24px;line-height:1.3"></div>
+    <div id="credSheetBody" style="font-family:var(--serif);font-size:.85rem;line-height:2;color:var(--t3);flex:1"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--bdr)">
+      <div id="credPrev" style="cursor:pointer;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t4);transition:color .3s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,6 9,12 15,18"/></svg><span id="credPrevLabel"></span></div>
+      <div id="credNext" style="cursor:pointer;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t4);transition:color .3s"><span id="credNextLabel"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,6 15,12 9,18"/></svg></div>
+    </div>
+  </div>
+  <div id="credVideoFull" style="position:absolute;inset:0;background:var(--dk);z-index:104;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease">
+    <video id="credVideoFullPlayer" autoplay muted loop playsinline style="width:88%;max-height:80vh;object-fit:contain"></video>
+    <div id="credVideoFullClose" style="cursor:pointer;font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dkd);margin-top:32px;transition:color .3s">Close &times;</div>
+  </div>
+</section>
+
+<!-- ═══ P1 — A PHASED JOURNEY ═══ -->
+<section id="phasedJourneyWrap" data-snap-prog="0" style="background:var(--ow);position:relative;z-index:10;height:500vh">
+  <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 80px;overflow:hidden">
+    <!-- Title -->
+    <div class="th1 rv-up" style="text-align:center;margin-bottom:80px">A Phased Journey</div>
+
+    <!-- Horizontal timeline — vertical tick marks like a nautical gauge -->
+    <div style="position:relative;width:100%;padding:0 40px;height:60px">
+      <!-- Tick marks — small ticks between phases, tall ticks at phase positions -->
+      <div style="position:absolute;top:0;left:40px;right:40px;display:flex;justify-content:space-between;align-items:flex-start;height:100%">
+        <div class="phase-marker" data-phase="0" style="display:flex;flex-direction:column;align-items:center">
+          <div class="phase-tick" style="width:1.5px;height:32px;background:rgba(26,23,21,.45);transition:all .4s ease"></div>
+          <div class="tl phase-marker-label" style="margin-top:12px;color:var(--t2);opacity:1;transition:all .4s">I</div>
+        </div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div class="phase-marker" data-phase="1" style="display:flex;flex-direction:column;align-items:center">
+          <div class="phase-tick" style="width:1.5px;height:32px;background:rgba(26,23,21,.1);transition:all .4s ease"></div>
+          <div class="tl phase-marker-label" style="margin-top:12px;color:var(--t4);opacity:.5;transition:all .4s">II</div>
+        </div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div class="phase-marker" data-phase="2" style="display:flex;flex-direction:column;align-items:center">
+          <div class="phase-tick" style="width:1.5px;height:32px;background:rgba(26,23,21,.1);transition:all .4s ease"></div>
+          <div class="tl phase-marker-label" style="margin-top:12px;color:var(--t4);opacity:.5;transition:all .4s">III</div>
+        </div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div style="width:1px;height:12px;background:rgba(26,23,21,.08);margin-top:10px"></div>
+        <div style="width:1px;height:8px;background:rgba(26,23,21,.06);margin-top:12px"></div>
+        <div class="phase-marker" data-phase="3" style="display:flex;flex-direction:column;align-items:center">
+          <div class="phase-tick" style="width:1.5px;height:32px;background:rgba(26,23,21,.1);transition:all .4s ease"></div>
+          <div class="tl phase-marker-label" style="margin-top:12px;color:var(--t4);opacity:.5;transition:all .4s">IV</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase content (fades in/out below timeline) -->
+    <div style="text-align:center;margin-top:80px;min-height:160px;position:relative">
+      <div class="phase-content" data-phase="0" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .5s ease">
+        <div class="th2" style="margin-bottom:16px">Boutique Websites</div>
+        <div class="tbl" style="max-width:500px;color:var(--t3)">9 standalone digital experiences for Patek Philippe boutiques across Singapore, Malaysia, Thailand, Hong Kong, Japan, and&nbsp;Australia.</div>
+      </div>
+      <div class="phase-content" data-phase="1" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .5s ease">
+        <div class="th2" style="margin-bottom:16px">[Phase II]</div>
+        <div class="tbl" style="max-width:500px;color:var(--t3)">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco&nbsp;laboris.</div>
+      </div>
+      <div class="phase-content" data-phase="2" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .5s ease">
+        <div class="th2" style="margin-bottom:16px">[Phase III]</div>
+        <div class="tbl" style="max-width:500px;color:var(--t3)">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla&nbsp;pariatur.</div>
+      </div>
+      <div class="phase-content" data-phase="3" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .5s ease">
+        <div class="th2" style="margin-bottom:16px">[Phase IV]</div>
+        <div class="tbl" style="max-width:500px;color:var(--t3)">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est&nbsp;laborum.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ P2 — TODAY'S SCOPE ═══ -->
+<section data-snap-prog="1" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad">
+    <div class="th1 rv-up c" style="margin-bottom:48px">Today's Scope</div>
+    <div class="tbl rv d2" style="max-width:920px;margin:0 auto;line-height:2.2">
+      9 boutique websites across 6 countries: SG&nbsp;(1), MY&nbsp;(2), TH&nbsp;(2), HK&nbsp;(1), JP&nbsp;(1), AU&nbsp;(2).<br>
+      Pages: Homepage, Collections, Experience, Our Partnership, Services, Contact&nbsp;Us.<br>
+      One template, 9&nbsp;URLs. No ecommerce, no pricing, no stock.<br>
+      All assets from PPE DAM.<br>
+      Designs submitted to PP Geneva for brand compliance.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ P3 — SOLUTION ARCHITECTURE ═══ -->
+<section data-snap-prog="2" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad" style="text-align:center">
+    <div class="th1 rv-up">Solution Architecture</div>
+    <div class="tbl rv-fade d2" style="margin-top:48px;color:var(--t4)">[Architecture diagram placeholder]</div>
+  </div>
+</section>
+
+<!-- ═══ P4 — TIMELINE: 9 SITES, 9 WEEKS (GANTT) ═══ -->
+<section data-snap-prog="3" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad">
+    <div class="tl rv" style="text-align:center;margin-bottom:12px">Method</div>
+    <div class="th1 rv-up c" style="margin-bottom:48px">9 Sites, 9 Weeks</div>
+    <div style="max-width:920px;margin:0 auto">
+      <div class="gantt-wrap rv d2">
+        <div class="gantt-months">
+          <span class="gantt-month" style="left:0%">Today</span>
+          <span class="gantt-month" style="left:17.8%">April</span>
+          <span class="gantt-month" style="left:51.1%">May</span>
+          <span class="gantt-month" style="left:85.6%">June</span>
+        </div>
+        <div class="gantt-body" id="ganttBody">
+          <div class="g-today-line"></div>
+          <div class="gantt-row" data-phase="1">
+            <div class="gantt-label"><span class="g-num">Phase 01</span><span class="g-name">Discovery &amp; Foundations</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:15.6%;width:4.4%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="2">
+            <div class="gantt-label"><span class="g-num">Phase 02</span><span class="g-name">UX Wireframing</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:20%;width:7.8%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="3">
+            <div class="gantt-label"><span class="g-num">Phase 03</span><span class="g-name">UI Design &amp; Brand</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:27.8%;width:15.6%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="4">
+            <div class="gantt-label"><span class="g-num">Phase 04 &#9888;</span><span class="g-name">Geneva Approval</span></div>
+            <div class="gantt-track"><div class="g-bar g-risk" style="left:43.3%;width:13.3%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="5">
+            <div class="gantt-label"><span class="g-num">Phase 05</span><span class="g-name">Development</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:50%;width:26.7%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="6">
+            <div class="gantt-label"><span class="g-num">Phase 06</span><span class="g-name">QA &amp; UAT</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:74.4%;width:7.8%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="7">
+            <div class="gantt-label"><span class="g-num">Phase 07</span><span class="g-name">Launch</span></div>
+            <div class="gantt-track"><div class="g-bar g-launch" style="left:84.4%"></div></div>
+          </div>
+          <div class="gantt-row" data-phase="8">
+            <div class="gantt-label"><span class="g-num">Phase 08</span><span class="g-name">Post-Launch Support</span></div>
+            <div class="gantt-track"><div class="g-bar" style="left:85.6%;width:14.4%"></div></div>
+          </div>
+        </div>
+        <div class="gantt-detail" id="ganttDetail">
+          <div class="gd-header">
+            <span class="gd-title" id="gdTitle"></span>
+            <span class="gd-dates" id="gdDates"></span>
+            <span class="gd-risk-badge" id="gdRisk"></span>
+          </div>
+          <ul class="gd-acts" id="gdActs"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P5+P6 removed — see parked-sections.html -->
+
+<!-- ═══ P7 — TEAM: CRAFT MEETS DISCIPLINE ═══ -->
+<section data-snap-prog="6" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad">
+    <div class="th1 rv-up c" style="margin-bottom:48px">Team</div>
+    <div style="max-width:820px;margin:0 auto">
+      <div class="team-table rv d2">
+        <div class="team-row team-header">
+          <span class="team-role-head">Role</span>
+          <span class="team-resp-head">Responsibility</span>
+        </div>
+        <div class="team-row"><span class="team-role">Project Manager</span><span class="team-resp">Single point of contact, timeline ownership, Patek Geneva liaison coordination</span></div>
+        <div class="team-row"><span class="team-role">Creative Director</span><span class="team-resp">Overall creative vision, luxury brand alignment, design sign-off, client-facing creative lead</span></div>
+        <div class="team-row"><span class="team-role">Design Lead</span><span class="team-resp">Visual design system, information architecture, micro-interactions, 9-site adaptation</span></div>
+        <div class="team-row"><span class="team-role">Engineering Lead</span><span class="team-resp">Component library, responsive build, CMS, performance, security</span></div>
+        <div class="team-row"><span class="team-role">Content Strategist</span><span class="team-resp">DAM curation, editorial sequencing, per-boutique content direction, SEO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ P9 — RISK: ANTICIPATED. MITIGATED. ═══ -->
+<section data-snap-prog="8" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad">
+    <div class="th1 rv-up c" style="margin-bottom:48px">Anticipated. Mitigated.</div>
+    <div style="max-width:920px;margin:0 auto">
+      <div class="risk-table rv d2">
+        <div class="risk-row risk-header-row">
+          <span class="risk-col-head">Risk</span>
+          <span class="risk-col-head">Impact</span>
+          <span class="risk-col-head">Mitigation</span>
+        </div>
+        <div class="risk-row">
+          <span class="risk-risk">Geneva approval timeline unknown</span>
+          <span class="risk-impact">Could compress development to &lt;3 weeks</span>
+          <span class="risk-mitigation">Submit early, agree contingency dates now</span>
+        </div>
+        <div class="risk-row">
+          <span class="risk-risk">PPE DAM access delayed</span>
+          <span class="risk-impact">Blocks content population</span>
+          <span class="risk-mitigation">Confirm access Day 1 as project condition</span>
+        </div>
+        <div class="risk-row">
+          <span class="risk-risk">9-site scope creep</span>
+          <span class="risk-impact">Costs and timeline</span>
+          <span class="risk-mitigation">Fixed component library, strict change management</span>
+        </div>
+        <div class="risk-row">
+          <span class="risk-risk">CRM integration specs unknown</span>
+          <span class="risk-impact">Forms can't be built without destination system</span>
+          <span class="risk-mitigation">THG to confirm CRM before Phase 5</span>
+        </div>
+        <div class="risk-row">
+          <span class="risk-risk">Per-jurisdiction data compliance (6 countries)</span>
+          <span class="risk-impact">GDPR, PDPA, AU Privacy Act, Japan APPI</span>
+          <span class="risk-mitigation">Compliance review built into QA phase</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ P10 — NEXT STEPS ═══ -->
+<section data-snap-prog="9" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad">
+    <div class="th1 rv-up c" style="margin-bottom:80px">Next Steps</div>
+    <div class="pad-narrow" style="padding:0;margin:0 auto">
+      <div class="tbl rv" style="line-height:2.4">
+        Boutique visits &mdash; physical, in-person<br>
+        Specialist interviews &mdash; SEA buying journey<br>
+        NDA and brand guidelines from PPE<br>
+        Immersion week<br>
+        Access to PP magazine content<br>
+        Traffic data from The Hourglass website
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAMME CLOSE ═══ -->
+<section class="full-bleed dark" style="position:relative;z-index:10">
+  <div class="full" style="position:relative;overflow:hidden">
+    <div class="vbg">
+      <video autoplay muted loop playsinline>
+        <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266930-source/pp-5373p-001-screen-8-9-product-loop" type="video/mp4">
+      </video>
+      <div class="ov" style="background:rgba(14,13,12,.45)"></div>
+    </div>
+    <div style="position:relative;z-index:2;text-align:center">
+      <div class="td rv-up" style="margin-bottom:40px">Thank you.</div>
+      <div class="tl rv-fade d2" style="margin-bottom:16px">The Hour Glass</div>
+      <div class="ts rv-fade d3">Confidential &mdash; prepared for The Hourglass Group</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-programme -->
+
+<!-- ── PROGRAMME JS (paste inside <script>) ── -->
+<script>
+// ── PROGRAMME CROWN NAV ──
+(function(){
+  const cnProg=document.getElementById('crownNavProg');
+  if(!cnProg)return;
+  const progSections=document.querySelectorAll('.crown-section[data-section-prog]');
+  const progSnaps=document.querySelectorAll('[data-snap-prog]');
+
+  // Click to scroll
+  progSections.forEach(sec=>{
+    sec.addEventListener('click',()=>{
+      const idx=parseInt(sec.dataset.sectionProg);
+      if(progSnaps[idx])progSnaps[idx].scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // Scroll tracking
+  window.addEventListener('scroll',()=>{
+    if(cnProg.style.display==='none')return;
+    const vh=window.innerHeight;
+    let activeIdx=0;
+    progSnaps.forEach((sec,i)=>{
+      const rect=sec.getBoundingClientRect();
+      if(rect.top<vh*0.5)activeIdx=i;
+    });
+    if(activeIdx!==window._lastProgCrown){
+      window._lastProgCrown=activeIdx;
+      cnProg.querySelectorAll('.crown-ridge').forEach(r=>r.classList.remove('active'));
+      const activeSec=progSections[activeIdx];
+      if(activeSec){
+        activeSec.querySelectorAll('.crown-ridge').forEach(r=>r.classList.add('active'));
+        progSections.forEach(s=>s.classList.remove('just-arrived'));
+        activeSec.classList.add('just-arrived');
+        setTimeout(()=>activeSec.classList.remove('just-arrived'),1500);
+      }
+    }
+  },{passive:true});
+})();
+// ── PHASED JOURNEY SCROLL ──
+(function(){
+  const wrap=document.getElementById('phasedJourneyWrap');
+  if(!wrap)return;
+  const markers=wrap.querySelectorAll('.phase-marker');
+  const contents=wrap.querySelectorAll('.phase-content');
+  const totalPhases=4;
+
+  window.addEventListener('scroll',()=>{
+    const rect=wrap.getBoundingClientRect();
+    const total=wrap.offsetHeight-window.innerHeight;
+    const progress=Math.min(1,Math.max(0,-rect.top/total));
+
+    // Which phase is active (0-3)
+    const activePhase=Math.min(totalPhases-1,Math.floor(progress*totalPhases));
+
+    // Update markers — active tick is tall and bright, past ticks bright, future dim
+    markers.forEach((m,i)=>{
+      const tick=m.querySelector('.phase-tick');
+      const label=m.querySelector('.phase-marker-label');
+      if(i===activePhase){
+        tick.style.background='rgba(26,23,21,.45)';
+        tick.style.height='40px';
+        label.style.opacity='1';
+        label.style.color='var(--t2)';
+      }else if(i<activePhase){
+        tick.style.background='rgba(26,23,21,.25)';
+        tick.style.height='32px';
+        label.style.opacity='.7';
+        label.style.color='var(--t2)';
+      }else{
+        tick.style.background='rgba(26,23,21,.1)';
+        tick.style.height='32px';
+        label.style.opacity='.5';
+        label.style.color='var(--t4)';
+      }
+    });
+
+    // Update content
+    contents.forEach((c,i)=>{
+      c.style.opacity=i===activePhase?'1':'0';
+    });
+  },{passive:true});
+})();
+// ══════════════════════════════════════════
+// PROGRAMME TAB — Interactive Components JS
+// ══════════════════════════════════════════
+
+// ── COUNTER COUNTDOWN ──
+(function(){
+  function updateCounters(){
+    const now=new Date();
+    const pres=new Date('2026-03-23T00:00:00');
+    const launch=new Date('2026-05-31T00:00:00');
+    const dPres=Math.ceil((pres-now)/(1000*60*60*24));
+    const dLaunch=Math.ceil((launch-now)/(1000*60*60*24));
+    const dTotal=Math.ceil((launch-pres)/(1000*60*60*24));
+    const presEl=document.getElementById('dPres');
+    const launchEl=document.getElementById('dLaunch');
+    const totalEl=document.getElementById('dTotal');
+    if(presEl)presEl.textContent=dPres<=0?'Now':dPres;
+    if(launchEl)launchEl.textContent=dLaunch<=0?'Live':dLaunch;
+    if(totalEl)totalEl.textContent=dTotal;
+    // Urgent styling if <=3 days
+    const ccPres=document.getElementById('ccPres');
+    if(ccPres&&dPres<=3&&dPres>0)ccPres.classList.add('urgent');
+  }
+  updateCounters();
+})();
+
+// ── ACTION ITEM TOGGLE ──
+function toggleAct(el){
+  el.classList.toggle('checked');
+  // Update actions counter
+  const total=document.querySelectorAll('.tab-programme .act-row').length;
+  const done=document.querySelectorAll('.tab-programme .act-row.checked').length;
+  const dActions=document.getElementById('dActions');
+  if(dActions)dActions.textContent=done+' / '+total;
+}
+
+// ── GANTT CHART HOVER ──
+const GANTT_PHASES={
+  1:{title:'Discovery & Foundations',dates:'March 30 \u2013 April 3 \u00b7 1 week',risk:null,acts:['PPE DAM access setup \u2014 must happen Day 1, everything depends on it','Boutique visits: Singapore (Takashimaya) and KL (Gardens)','Final sitemap and content structure confirmed with THG','CRM system confirmed \u2014 forms need to know where they feed','\u25C6 Deliverable: signed-off sitemap, content matrix for all 9 sites']},
+  2:{title:'UX Wireframing',dates:'April 3 \u2013 10 \u00b7 1 week',risk:null,acts:['Information architecture \u2014 shared component library across all 9 sites','Wireframes: Homepage, Collections, Experience, Our Partnership, Services, Contact Us','Mobile-first wireframing \u2014 UHNW client, mobile is primary','Per-boutique differentiation mapped out','THG review and sign-off','\u25C6 Deliverable: approved Figma wireframes']},
+  3:{title:'UI Design & Brand Compliance',dates:'April 10 \u2013 24 \u00b7 2 weeks',risk:null,acts:['Visual design system: typography, spacing, colour, motion principles','High-fidelity Figma: all pages, all states, all responsive breakpoints','9-site differentiation: boutique-specific design elements per location','THG review \u2192 Michael Tay final sign-off','Submit to Patek Philippe Geneva for brand compliance approval','\u25C6 Deliverable: approved Figma designs + design system documentation']},
+  4:{title:'Patek Philippe Geneva Approval',dates:'April 24 \u2013 May 6 \u00b7 1.5 weeks',risk:'Critical path risk',acts:['This phase is outside our control. Geneva\'s review timeline is unknown.','Revision cycles based on Geneva feedback \u2014 assume at least one round','All key / major development work on hold pending approval','This is the critical path risk. If Geneva takes longer than 1.5 weeks, the May 31 launch date is under pressure.','\u25C6 Mitigation: submit Phase 3 work early, flag approval timeline to THG immediately, agree contingency protocol now.']},
+  5:{title:'Development',dates:'April 30 \u2013 May 24 \u00b7 3.5 weeks',risk:null,acts:['CMS Multisite architecture \u2014 9 sites, single codebase, shared components','Front-end: component library \u2192 assembled across 9 sites','Back-end: Appointment booking forms, CRM integration, security hardening','PPE iframe integration \u2014 homepage banner, per Patek guidelines','Content population from DAM per site','On-page & Technical SEO per boutique','Performance optimisation \u2014 lazy loading, image compression, CDN','\u25C6 Deliverable: fully built sites in staging environment']},
+  6:{title:'QA, Security Audit & UAT',dates:'May 22 \u2013 29 \u00b7 1 week',risk:null,acts:['Cross-device testing: mobile, tablet, desktop','Security audit + GDPR/PDPA compliance review per jurisdiction','Performance audit','User Acceptance Testing with THG per boutique','Bug fixes','\u25C6 Deliverable: UAT sign-off per site']},
+  7:{title:'Launch',dates:'May 31 \u00b7 Launch day',risk:null,acts:['Staged rollout \u2014 1 site first, remaining 8 within 24\u201348 hours','Domain configuration with PPE Gandhi platform','DNS, SSL, monitoring setup','\u25C6 Deliverable: 9 live sites']},
+  8:{title:'Post-Launch Support',dates:'June onwards',risk:null,acts:['30-day bug fix period included','Security patches and ongoing CMS training for THG team']}
+};
+(function(){
+  const wrap=document.querySelector('.tab-programme .gantt-wrap');
+  if(!wrap)return;
+  const rows=wrap.querySelectorAll('#ganttBody .gantt-row');
+  const detail=document.getElementById('ganttDetail');
+  const gdTitle=document.getElementById('gdTitle');
+  const gdDates=document.getElementById('gdDates');
+  const gdRisk=document.getElementById('gdRisk');
+  const gdActs=document.getElementById('gdActs');
+  let activeRow=null;
+  rows.forEach(row=>{
+    row.addEventListener('mouseenter',()=>{
+      const d=GANTT_PHASES[+row.dataset.phase];
+      if(!d)return;
+      if(activeRow)activeRow.classList.remove('g-active');
+      activeRow=row;
+      row.classList.add('g-active');
+      gdTitle.textContent=d.title;
+      gdDates.textContent=d.dates;
+      gdRisk.textContent=d.risk||'';
+      gdActs.innerHTML=d.acts.map(a=>{
+        if(!a.startsWith('\u25C6'))return '<li>'+a+'</li>';
+        const text=a.replace('\u25C6 ','');
+        const cls=text.startsWith('Mitigation')?'gd-mitigation':'gd-deliverable';
+        return '<li class="'+cls+'">'+text+'</li>';
+      }).join('');
+      detail.classList.add('gd-visible');
+    });
+  });
+  wrap.addEventListener('mouseleave',()=>{
+    if(activeRow)activeRow.classList.remove('g-active');
+    activeRow=null;
+    detail.classList.remove('gd-visible');
+  });
+})();
+// ── CODES OF LUXURY CAROUSEL ──
+(function(){
+  const codesData=[
+    {word:'Patience',desc:'Years on a waiting list. A lifetime to understand a grand complication. What is worthy cannot be\u00a0rushed.'},
+    {word:'Craft',desc:'Centuries of finishing in a single beveled edge \u2014 most of it behind the dial, where no one will ever\u00a0see.'},
+    {word:'Inheritance',desc:'Built to outlast its keeper. An heirloom your descendants will\u00a0treasure.'},
+    {word:'Restraint',desc:'The emblem is there \u2014 you simply have to know where to look. Confidence expressed in\u00a0silence.'},
+    {word:'Sanctuary',desc:'The world is loud and hurried and sure of itself. The right room asks nothing of you but\u00a0presence.'},
+    {word:'Intimacy',desc:'Your name remembered. A handwritten note after the purchase, not a sales pitch before\u00a0it.'},
+    {word:'Devotion',desc:'Every object has earned its place. Nothing ornamental. Nothing incidental. The collection is a portrait of its\u00a0collector.'}
+  ];
+  const cTrack=document.getElementById('codesCarouselTrack');
+  const cCalatrava=document.getElementById('codesCalatrava');
+  if(!cTrack||!cCalatrava)return;
+  const total=codesData.length;
+
+  // Build single set
+  codesData.forEach((c,i)=>{
+    const el=document.createElement('div');
+    el.className='codes-item';
+    el.dataset.idx=i;
+    el.innerHTML='<div class="codes-word">'+c.word+'</div>';
+    cTrack.appendChild(el);
+  });
+
+  const cItems=cTrack.querySelectorAll('.codes-item');
+  let cIdx=0;
+  let cRot=0;
+  let cLastOff=0;
+
+  const cDescEl=document.getElementById('codesDescText');
+  function cPos(anim){
+    cItems.forEach(el=>el.classList.toggle('codes-active',parseInt(el.dataset.idx)===cIdx));
+    // Reset transform to measure true natural positions
+    cTrack.style.transition='none';
+    cTrack.style.transform='translateX(0)';
+    // Force reflow
+    void cTrack.offsetWidth;
+    const activeEl=cItems[cIdx];
+    const trackRect=cTrack.parentElement.getBoundingClientRect();
+    const activeRect=activeEl.getBoundingClientRect();
+    const parentMid=trackRect.left+trackRect.width/2;
+    const activeMid=activeRect.left+activeRect.width/2;
+    const off=parentMid-activeMid;
+    if(anim){
+      // Set to current visual position first, then animate to new
+      cTrack.style.transform='translateX('+cLastOff+'px)';
+      void cTrack.offsetWidth;
+      cTrack.style.transition='transform .8s cubic-bezier(.22,1,.36,1)';
+      cTrack.style.transform='translateX('+off+'px)';
+    }else{
+      cTrack.style.transform='translateX('+off+'px)';
+    }
+    cLastOff=off;
+    cCalatrava.style.transition=anim?'transform .8s cubic-bezier(.22,1,.36,1)':'none';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+    // Fade description: out, swap text, in
+    if(anim){
+      cDescEl.style.opacity='0';
+      setTimeout(()=>{
+        cDescEl.textContent=codesData[cIdx].desc;
+        cDescEl.style.opacity='1';
+      },300);
+    }else{
+      cDescEl.textContent=codesData[cIdx].desc;
+      cDescEl.style.opacity='1';
+    }
+  }
+
+  function cNext(){if(cIdx<total-1){cIdx++;cRot+=90;cPos(true)}}
+  function cPrev(){if(cIdx>0){cIdx--;cRot-=90;cPos(true)}}
+
+  // Calatrava drag — spin freely, snap to 90° intervals, advance code
+  let cDrag=false,cDragX=0,cDragA=0,cDragRot=0;
+  cCalatrava.addEventListener('mousedown',e=>{cDrag=true;cDragX=e.clientX;cDragA=0;cDragRot=cRot;cCalatrava.style.cursor='grabbing';e.preventDefault()});
+  window.addEventListener('mousemove',e=>{
+    if(!cDrag)return;
+    const d=e.clientX-cDragX;cDragA+=d;cDragX=e.clientX;
+    cDragRot+=d*1.5;
+    cCalatrava.style.transition='none';
+    cCalatrava.style.transform='rotate('+cDragRot+'deg)';
+    if(cDragA>50){cDragA=0;cNext()}
+    else if(cDragA<-50){cDragA=0;cPrev()}
+  });
+  window.addEventListener('mouseup',()=>{
+    if(!cDrag)return;
+    cDrag=false;cDragA=0;cCalatrava.style.cursor='grab';
+    // Snap to nearest 90°
+    cRot=Math.round(cDragRot/90)*90;
+    cCalatrava.style.transition='transform .4s cubic-bezier(.22,1,.36,1)';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+  });
+  cCalatrava.addEventListener('touchstart',e=>{cDrag=true;cDragX=e.touches[0].clientX;cDragA=0;cDragRot=cRot});
+  cCalatrava.addEventListener('touchmove',e=>{
+    if(!cDrag)return;
+    const d=e.touches[0].clientX-cDragX;cDragA+=d;cDragX=e.touches[0].clientX;
+    cDragRot+=d*1.5;
+    cCalatrava.style.transition='none';
+    cCalatrava.style.transform='rotate('+cDragRot+'deg)';
+    if(cDragA>50){cDragA=0;cNext()}
+    else if(cDragA<-50){cDragA=0;cPrev()}
+  });
+  cCalatrava.addEventListener('touchend',()=>{
+    if(!cDrag)return;
+    cDrag=false;cDragA=0;
+    cRot=Math.round(cDragRot/90)*90;
+    cCalatrava.style.transition='transform .4s cubic-bezier(.22,1,.36,1)';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+  });
+
+  // Also allow clicking a code to select it
+  cItems.forEach(el=>{
+    el.addEventListener('click',()=>{
+      const target=parseInt(el.dataset.idx);
+      const current=((cIdx%total)+total)%total;
+      if(target===current)return;
+      const diff=target-current;
+      cIdx+=diff;
+      cRot+=diff*90;
+      cPos(true);
+    });
+  });
+
+  // Double-raf to ensure layout is ready
+  requestAnimationFrame(()=>requestAnimationFrame(()=>cPos(false)));
+  window.addEventListener('resize',()=>cPos(false));
+})();
+</script>
