@@ -39,7 +39,7 @@ function FormField({
           <span
             style={{
               fontFamily: "var(--font-open-sans), sans-serif",
-              fontSize: isActive ? 12 : 14,
+              fontSize: isActive ? 12 : 16,
               fontWeight: 400,
               letterSpacing: "0.1em",
               lineHeight: "110%",
@@ -70,7 +70,7 @@ function FormField({
               outline: "none",
               background: "transparent",
               fontFamily: "var(--font-open-sans), sans-serif",
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: 400,
               letterSpacing: "0.1em",
               lineHeight: "110%",

@@ -29,7 +29,7 @@ const row2Cards = [
     bodyText: "The Kissing Cabinet\u2019s true enchantment unfolds as it gracefully turns inside out, revealing hidden forms and secret compartments which resembles very much like the Nautilus collection. - Australian industrial designer Adam Goodrum and French marquetry artisan Arthur\u00A0Seigneur.",
   },
   { image: "/images/fy-r2-card2.jpg", name: "Nautilus", model: "5990/1R-001", material: "Rose Gold", href: "/aquanaut/5168g-001" },
-  { image: "/images/fy-r2-card3.jpg", name: "Nautilus", model: "5712/1R-001", material: "Rose gold" },
+  { image: "/images/fy-r2-card3.jpg", name: "Nautilus", model: "5980/60G-001", material: "White gold" },
 ];
 
 const row3Cards = [

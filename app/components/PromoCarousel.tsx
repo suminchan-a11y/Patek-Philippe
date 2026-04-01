@@ -11,12 +11,12 @@ const SLIDES = [
   },
   {
     image: "/images/promo/slide-2.jpg",
-    text: "A city that layers its history quietly in facades, in\nproportions, in the things built to last. Kuala Lumpur\nhas always understood the weight of permanence.",
+    text: "A city that layers its history quietly in facades, in proportions, in the things built to last. Kuala Lumpur has always understood the weight of permanence.",
     wide: false,
   },
   {
     image: "/images/promo/slide-3.jpg",
-    text: "The boutique and the city share the same instinct — that beauty is built through patience, layer by layer, detail by detail.",
+    text: "The boutique and the city share the same instinct that beauty is built through patience, layer by layer, detail by detail. - Patek Philippe Boutique at The Gardens Mall, Kuala Lumpur.",
     wide: true,
   },
   {
@@ -216,7 +216,7 @@ export default function PromoCarousel({
             key={i}
             style={{
               flexShrink: 0,
-              width: slide.wide ? 1005 : 499,
+              width: slide.wide ? 982 : 450,
               backgroundColor: "#FFFFFF",
               display: "flex",
               flexDirection: "column",
@@ -235,12 +235,12 @@ export default function PromoCarousel({
             />
             <div
               style={{
-                padding: slide.wide ? "24px 24px 32px 24px" : "24px 0px 32px 24px",
+                padding: slide.wide ? "24px 24px 32px 40px" : "24px 80px 32px 24px",
                 display: "flex",
                 alignItems: "flex-start",
               }}
             >
-              <p style={{ ...captionStyle, whiteSpace: "pre-line" }}>{slide.text}</p>
+              <p style={captionStyle}>{slide.text}</p>
             </div>
           </div>
         ))}

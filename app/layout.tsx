@@ -20,7 +20,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Patek Philippe — Suria KLCC Boutique",
+  title: "Patek Philippe — The Gardens Mall Boutique",
   description: "Enter a space where time is kept differently.",
 };
 

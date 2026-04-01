@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 const darkBrown = "rgb(80, 42, 34)";
@@ -21,10 +21,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [inHero, setInHero] = useState(true);
-  const dismissedRef = useRef(false);
-  const [, forceRender] = useState(0);
-  const prevInHeroRef = useRef(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -44,37 +40,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
     return () => observer.disconnect();
   }, [inline]);
 
-  // Track hero visibility via scroll position
-  useEffect(() => {
-    if (inline) return;
-
-    const checkHero = () => {
-      const heroEl = document.getElementById("hero");
-      if (!heroEl) {
-        setInHero(false);
-        return;
-      }
-      const rect = heroEl.getBoundingClientRect();
-      const nowInHero = rect.bottom > window.innerHeight * 0.5;
-
-      // Reset dismissed when hero transitions from hidden → visible
-      if (nowInHero && !prevInHeroRef.current && dismissedRef.current) {
-        dismissedRef.current = false;
-        forceRender((n) => n + 1);
-      }
-      prevInHeroRef.current = nowInHero;
-      setInHero(nowInHero);
-    };
-
-    checkHero();
-    window.addEventListener("scroll", checkHero, { passive: true });
-    return () => window.removeEventListener("scroll", checkHero);
-  }, [inline]);
-
-  const handleDismiss = useCallback(() => {
-    dismissedRef.current = true;
-    forceRender((n) => n + 1);
-  }, []);
 
   const handleSubmit = () => {
     const q = query || prompts[index];
@@ -103,9 +68,7 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
     };
   }, [focused, query]);
 
-  const dismissed = dismissedRef.current;
-  const shouldHide = hidden || (!inline && dismissed && !inHero);
-  const showCloseBtn = !inline && !inHero;
+  const shouldHide = hidden;
 
   return (
     <div
@@ -121,32 +84,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
         marginTop: inline ? undefined : -96,
       }}
     >
-      {/* Close button — top right, hidden when search bar is hidden */}
-      {showCloseBtn && !shouldHide && (
-        <div
-          onClick={handleDismiss}
-          style={{
-            position: "absolute",
-            top: -4,
-            right: -4,
-            width: 16,
-            height: 16,
-            borderRadius: "50%",
-            backgroundColor: "#000000",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            zIndex: 110,
-          }}
-        >
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-            <line x1="1" y1="1" x2="7" y2="7" stroke="#FFFFFF" strokeWidth="1" strokeLinecap="round" />
-            <line x1="7" y1="1" x2="1" y2="7" stroke="#FFFFFF" strokeWidth="1" strokeLinecap="round" />
-          </svg>
-        </div>
-      )}
-
       {/* SearchBar pill */}
       <div
         style={{

@@ -21,10 +21,12 @@ export default function AquanautHero() {
         overflow: "hidden",
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={isMobile ? "/images/aq-hero-mobile.jpg" : "/images/aq-hero.jpg"}
-        alt="Aquanaut collection"
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266464-source/pp-5164g-001-screen-8-9-product-loop"
         style={{
           position: "absolute",
           inset: 0,

@@ -23,7 +23,7 @@ function MobileHero() {
           loop
           muted
           playsInline
-          src="/images/hero-video-mobile.mp4"
+          src="/images/hero-video-stitched.mp4?v=2"
           style={{
             position: "absolute",
             inset: 0,
@@ -132,7 +132,7 @@ function DesktopHero() {
         loop
         muted
         playsInline
-        src="/images/hero-video-new.mp4"
+        src="/images/hero-video-stitched.mp4?v=2"
         style={{
           position: "absolute",
           inset: 0,

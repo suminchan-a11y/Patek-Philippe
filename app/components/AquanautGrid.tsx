@@ -7,11 +7,12 @@ interface WatchCard {
   image: string;
   name: string;
   model: string;
+  href?: string;
 }
 
 const rows: WatchCard[][] = [
   [
-    { image: "/images/aq-watch-1.png", name: "Aquanaut", model: "5168G - 001" },
+    { image: "/images/aq-watch-1-new.png", name: "Aquanaut", model: "5164G - 001", href: "/aquanaut/5164g-001" },
     { image: "/images/aq-watch-2.png", name: "Aquanaut", model: "5168G - 001" },
   ],
   [
@@ -33,7 +34,7 @@ const rows2: WatchCard[][] = [
 
 const rows3: WatchCard[][] = [
   [
-    { image: "/images/aq-watch-1.png", name: "Aquanaut", model: "5168G - 001" },
+    { image: "/images/aq-watch-1-new.png", name: "Aquanaut", model: "5164G - 001" },
     { image: "/images/aq-watch-6.png", name: "Aquanaut", model: "5168G - 001" },
   ],
   [
@@ -43,8 +44,10 @@ const rows3: WatchCard[][] = [
 ];
 
 function WatchCardComponent({ card, isMobile }: { card: WatchCard; isMobile: boolean }) {
+  const Tag = card.href ? "a" : "div";
   return (
-    <div
+    <Tag
+      href={card.href || undefined}
       style={{
         width: isMobile ? "100%" : "50%",
         height: 604,
@@ -53,6 +56,9 @@ function WatchCardComponent({ card, isMobile }: { card: WatchCard; isMobile: boo
         position: "relative",
         overflow: "hidden",
         flexShrink: 0,
+        textDecoration: "none",
+        color: "inherit",
+        display: "block",
       }}
     >
       {/* Watch image — centered */}
@@ -116,7 +122,7 @@ function WatchCardComponent({ card, isMobile }: { card: WatchCard; isMobile: boo
           {card.model}
         </span>
       </div>
-    </div>
+    </Tag>
   );
 }
 

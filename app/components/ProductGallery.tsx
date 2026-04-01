@@ -40,10 +40,12 @@ export default function ProductGallery() {
           ...revealStyle(0.1),
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/pdp-hero-1.jpg"
-          alt="Nautilus"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/220735-source/pp-5740-1g-001-banner-screen-9-16"
           style={{
             width: "100%",
             height: "100%",
@@ -73,22 +75,39 @@ export default function ProductGallery() {
         ...revealStyle(0.1),
       }}
     >
-      {/* Hero images — crossfade */}
-      {heroImages.map((src, i) => (
+      {/* Hero media — video first, then images with crossfade */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        src="https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/220818-source/pp-5740-1g-001-banner-screen-16-9"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: activeIndex === 0 ? 1 : 0,
+          transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
+          zIndex: activeIndex === 0 ? 1 : 0,
+        }}
+      />
+      {heroImages.slice(1).map((src, i) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={src}
           src={src}
-          alt={`Nautilus view ${i + 1}`}
+          alt={`Nautilus view ${i + 2}`}
           style={{
             position: "absolute",
             inset: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            opacity: i === activeIndex ? 1 : 0,
+            opacity: i + 1 === activeIndex ? 1 : 0,
             transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
-            zIndex: i === activeIndex ? 1 : 0,
+            zIndex: i + 1 === activeIndex ? 1 : 0,
           }}
         />
       ))}

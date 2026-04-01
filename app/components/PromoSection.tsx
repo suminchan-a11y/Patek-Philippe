@@ -5,7 +5,7 @@ import PromoHeader from "./PromoHeader";
 import PromoArrows from "./PromoArrows";
 import PromoCarousel from "./PromoCarousel";
 
-const SCROLL_AMOUNT = 510;
+const SCROLL_AMOUNT = 458;
 
 export default function PromoSection() {
   const scrollRef = useRef<HTMLDivElement>(null);

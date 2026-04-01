@@ -223,38 +223,40 @@ export default function Nav() {
               gap: isMobile ? 12 : 16,
             }}
           >
-            <a
-              href="#"
-              className="nav-link-hover"
-              onClick={(e) => {
-                e.preventDefault();
-                openExplore();
-              }}
-              style={{
-                ...navTextStyle,
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-                cursor: "pointer",
-              }}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                style={{ flexShrink: 0 }}
+            {!isMobile && (
+              <a
+                href="#"
+                className="nav-link-hover"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openExplore();
+                }}
+                style={{
+                  ...navTextStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  cursor: "pointer",
+                }}
               >
-                <path
-                  d="M8 2.5V13.5M2.5 8H13.5"
-                  stroke={textColor}
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  style={{ transition: "stroke 0.6s cubic-bezier(0.25, 0.1, 0.1, 1)" }}
-                />
-              </svg>
-              {!isMobile && "COLLECTION"}
-            </a>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  style={{ flexShrink: 0 }}
+                >
+                  <path
+                    d="M8 2.5V13.5M2.5 8H13.5"
+                    stroke={textColor}
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    style={{ transition: "stroke 0.6s cubic-bezier(0.25, 0.1, 0.1, 1)" }}
+                  />
+                </svg>
+                COLLECTION
+              </a>
+            )}
 
             {/* Hamburger icon */}
             <svg

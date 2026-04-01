@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 const items = [
   {
     label: "Chronograph watches",
-    video: "https://cd.patek.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/281999-source/pp-5370r-001-banner-22-9",
+    image: "/images/boutique-card-1.png",
   },
   {
     label: "The cubitus",
@@ -42,26 +42,45 @@ export default function Boutique() {
           overflow: "hidden",
         }}
       >
-        {/* Background videos — crossfade */}
+        {/* Background media — crossfade */}
         {items.map((item, i) => (
-          <video
-            key={i}
-            autoPlay
-            loop
-            muted
-            playsInline
-            src={item.video}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: i === activeIndex ? 1 : 0,
-              transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
-              zIndex: i === activeIndex ? 1 : 0,
-            }}
-          />
+          "image" in item && item.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={i}
+              src={item.image}
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: i === activeIndex ? 1 : 0,
+                transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
+                zIndex: i === activeIndex ? 1 : 0,
+              }}
+            />
+          ) : (
+            <video
+              key={i}
+              autoPlay
+              loop
+              muted
+              playsInline
+              src={"video" in item ? item.video : undefined}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: i === activeIndex ? 1 : 0,
+                transition: "opacity 0.8s cubic-bezier(0.25, 0.1, 0.1, 1)",
+                zIndex: i === activeIndex ? 1 : 0,
+              }}
+            />
+          )
         ))}
 
         {/* Bottom gradient overlay — 80% opacity */}

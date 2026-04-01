@@ -1,32 +1,49 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 const overlayEase = [0.76, 0, 0.24, 1] as const;
+const ease = [0.25, 0.1, 0.1, 1] as const;
 
 const MENU_ITEMS = [
   {
-    label: "About us",
-    subtitle: "The house, its history, and its values.",
+    label: "Our boutique",
+    subtitle: "The space, the story, and what to expect.",
+    mobileSubtitle: "The space and story.",
     href: "#",
   },
   {
     label: "Collection",
     subtitle: "Timepieces crafted for those who understand.",
+    mobileSubtitle: "Timepieces for those who understand.",
+    href: "#",
+  },
+  {
+    label: "Our Partnership",
+    subtitle: "The Hour Glass and Patek Philippe",
+    mobileSubtitle: "The Hour Glass and Patek Philippe",
     href: "#",
   },
   {
     label: "Services",
-    subtitle: "Care and expertise, for the long term.",
+    subtitle: "Servicing, maintenance, and your Extract from the Archives",
+    mobileSubtitle: "Servicing and maintenance",
+    href: "#",
+  },
+  {
+    label: "Contact",
+    subtitle: "Visit, book, or arrange a private consultation",
+    mobileSubtitle: "Visit and arrange a private consultation",
     href: "#",
   },
 ];
 
 export default function MenuOverlay({ onClose }: { onClose: () => void }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [locationOpen, setLocationOpen] = useState(false);
   const isMobile = useIsMobile();
 
   return (
@@ -44,46 +61,34 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
         flexDirection: "column",
       }}
     >
-      {/* Close button — top right */}
+      {/* Top nav bar */}
       <div
         style={{
           width: "100%",
           height: 64,
-          backgroundColor: "#EDEDED",
-          padding: isMobile ? "12px 24px 0 24px" : "12px 40px 0 40px",
+          padding: isMobile ? "0 24px" : "0 40px",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
+          alignItems: "center",
+          justifyContent: isMobile ? "flex-end" : "space-between",
           flexShrink: 0,
+          position: "relative",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            height: 40,
-            padding: "8px 0",
-          }}
-        >
-          <button
-            onClick={onClose}
+        {/* Left — Location (desktop only) */}
+        {!isMobile && (
+          <div
+            onClick={() => setLocationOpen((v) => !v)}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 4,
-              background: "none",
-              border: "none",
+              gap: 6,
               cursor: "pointer",
-              padding: 0,
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <svg width="14" height="17" viewBox="0 0 14 17" fill="none">
               <path
-                d="M4 4L12 12M12 4L4 12"
-                stroke="#6A655F"
-                strokeWidth="1.2"
-                strokeLinecap="round"
+                d="M7 0C3.13 0 0 3.13 0 7C0 11.17 4.42 14.92 6.24 16.51C6.64 16.84 7.37 16.84 7.77 16.51C9.58 14.92 14 11.17 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z"
+                fill="#2A2723"
               />
             </svg>
             <span
@@ -91,18 +96,147 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                 fontFamily: "var(--font-open-sans), sans-serif",
                 fontSize: 12,
                 fontWeight: 400,
-                letterSpacing: "0.05em",
+                letterSpacing: "0.12em",
                 lineHeight: "170%",
-                color: "#6A655F",
+                color: "#2A2723",
+                textTransform: "uppercase",
               }}
             >
-              CLOSE
+              THE GARDENS MALL, KL
             </span>
-          </button>
-        </div>
+          </div>
+        )}
+
+        {/* Center — Calatrava logo (desktop only) */}
+        {!isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/pp-calatrava-black.png"
+              alt="Patek Philippe"
+              style={{ height: 56, width: 56, objectFit: "contain" }}
+            />
+          </div>
+        )}
+
+        {/* Right — Close */}
+        <button
+          onClick={onClose}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path
+              d="M1 1L11 11M11 1L1 11"
+              stroke="#2A2723"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span
+            style={{
+              fontFamily: "var(--font-open-sans), sans-serif",
+              fontSize: 12,
+              fontWeight: 400,
+              letterSpacing: "0.12em",
+              lineHeight: "170%",
+              color: "#2A2723",
+              textTransform: "uppercase",
+            }}
+          >
+            CLOSE
+          </span>
+        </button>
       </div>
 
-      {/* Main content area — menu items centered */}
+      {/* Location dropdown */}
+      <AnimatePresence>
+        {locationOpen && (
+          <>
+            {/* Click-away */}
+            <div
+              onClick={() => setLocationOpen(false)}
+              style={{ position: "fixed", inset: 0, zIndex: 260 }}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease }}
+              style={{
+                position: "absolute",
+                top: 64,
+                left: isMobile ? 24 : 40,
+                width: 252,
+                padding: "24px 16px",
+                zIndex: 270,
+                borderRadius: 4,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  width: 220,
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "var(--font-open-sans), sans-serif",
+                    fontSize: 12,
+                    fontWeight: 400,
+                    letterSpacing: "0.12em",
+                    lineHeight: "20px",
+                    color: "#2A2723",
+                    textTransform: "uppercase",
+                    margin: 0,
+                  }}
+                >
+                  Visit us today
+                  <br />
+                  10:00am - 5:00pm
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-open-sans), sans-serif",
+                    fontSize: 12,
+                    fontWeight: 400,
+                    letterSpacing: "0.12em",
+                    lineHeight: "20px",
+                    color: "#2A2723",
+                    textTransform: "uppercase",
+                    margin: 0,
+                  }}
+                >
+                  Lot G226-227, Ground Floor
+                  <br />
+                  The Gardens Mall, Medan
+                  <br />
+                  Syed Putra Utara, 59200
+                  <br />
+                  Kuala Lumpur, Malaysia
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Main content — menu items centered */}
       <div
         style={{
           flex: 1,
@@ -119,7 +253,7 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: isMobile ? 24 : 32,
+            gap: isMobile ? 20 : 28,
             overflow: "visible",
           }}
         >
@@ -131,8 +265,8 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{
-                  y: { duration: 1, ease: smoothEase, delay: 0.4 + i * 0.1 },
-                  opacity: { duration: 0.6, ease: smoothEase, delay: 0.4 + i * 0.1 },
+                  y: { duration: 1, ease: smoothEase, delay: 0.4 + i * 0.08 },
+                  opacity: { duration: 0.6, ease: smoothEase, delay: 0.4 + i * 0.08 },
                 }}
               >
                 <a
@@ -148,26 +282,22 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 8,
+                    gap: 6,
                     textDecoration: "none",
                     cursor: "pointer",
-                    position: "relative",
                   }}
                 >
-
                   {/* Title */}
                   <span
                     style={{
                       fontFamily: "var(--font-lora), serif",
-                      fontSize: isMobile ? 40 : 54,
+                      fontSize: isMobile ? 32 : 40,
                       fontWeight: 400,
-                      letterSpacing: i === 0 ? "0em" : "-0.02em",
-                      lineHeight: "120%",
-                      color: "#2A2723",
+                      letterSpacing: "-0.02em",
+                      lineHeight: "110%",
+                      color: isActive ? "#2A2723" : "#C8C8C8",
                       textAlign: "center",
-                      opacity: isActive ? 1 : 0.3,
-                      transition:
-                        "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      transition: "color 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
                     {item.label}
@@ -177,18 +307,16 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                   <span
                     style={{
                       fontFamily: "var(--font-lora), serif",
-                      fontSize: isMobile ? 14 : 16,
+                      fontSize: isMobile ? 14 : 15,
                       fontWeight: 400,
                       letterSpacing: "0em",
                       lineHeight: "140%",
-                      color: "#2A2723",
+                      color: isActive ? "#6A655F" : "#B0B0B0",
                       textAlign: "center",
-                      opacity: isActive ? 0.8 : 0.3,
-                      transition:
-                        "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      transition: "color 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
-                    {item.subtitle}
+                    {isMobile ? item.mobileSubtitle : item.subtitle}
                   </span>
                 </a>
               </motion.div>
@@ -197,17 +325,17 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      {/* Bottom — social icons centered */}
+      {/* Bottom — social icons */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: smoothEase, delay: 0.9 }}
         style={{
-          padding: isMobile ? "0 0 40px 0" : "0 0 40px 0",
+          padding: "0 0 40px 0",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: 24,
+          gap: 20,
           flexShrink: 0,
         }}
       >
