@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 const darkBrown = "rgb(80, 42, 34)";
@@ -16,6 +17,7 @@ const prompts = [
 
 export default function SearchBar({ inline = false }: { inline?: boolean }) {
   const isMobile = useIsMobile();
+  const router = useRouter();
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<"in" | "out">("in");
   const [query, setQuery] = useState("");
@@ -44,7 +46,7 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
   const handleSubmit = () => {
     const q = query || prompts[index];
     if (q.trim()) {
-      window.dispatchEvent(new CustomEvent("showLoading"));
+      router.push("/for-you?q=" + encodeURIComponent(q));
     }
   };
 
