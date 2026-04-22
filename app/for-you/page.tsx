@@ -28,7 +28,7 @@ const row2Cards = [
     name: "",
     model: "",
     material: "",
-    bodyText: "The Kissing Cabinet’s true enchantment unfolds as it gracefully turns inside out, revealing hidden forms and secret compartments which resembles very much like the Nautilus collection. - Australian industrial designer Adam Goodrum and French marquetry artisan Arthur Seigneur.",
+    bodyText: "The Kissing Cabinet's true enchantment unfolds as it gracefully turns inside out, revealing hidden forms and secret compartments which resembles very much like the Nautilus collection. - Australian industrial designer Adam Goodrum and French marquetry artisan Arthur Seigneur.",
   },
   { image: "/images/fy-r2-card2.jpg", name: "Nautilus", model: "5990/1R-001", material: "Rose Gold", href: "/aquanaut/5168g-001" },
   { image: "/images/fy-r2-card3.jpg", name: "Nautilus", model: "5980/60G-001", material: "White gold" },
@@ -41,7 +41,7 @@ const row3Cards = [
     model: "",
     material: "",
     wide: true,
-    bodyText: "The city’s grid, worn like a second skin — the Aquanaut carries that same urban geometry, built for those who move through it with quiet confidence.",
+    bodyText: "The city's grid, worn like a second skin — the Aquanaut carries that same urban geometry, built for those who move through it with quiet confidence.",
     mobileBodyFontSize: 16,
   },
   { image: "/images/fy-r3-card2.jpg", name: "Aquanaut", model: "5327R-001", material: "White Gold" },
@@ -58,6 +58,8 @@ const mobileGroup1Cards = [
 const DEFAULT_EDITORIAL =
   "Some milestones require restraint, while others are worn daily as proof. The Nautilus embodies decades of belief that a sports watch can be as significant as any dress piece. The Aquanaut, built for those who value motion over ceremony, is designed to outlast the moments it celebrates. Choose the one that reflects not just the milestone, but the life that follows.";
 
+const INTELLIGENCE_API = "https://intelligence-one-beta.vercel.app/api/compose";
+
 function ForYouContent() {
   const isMobile = useIsMobile();
   const searchParams = useSearchParams();
@@ -67,7 +69,7 @@ function ForYouContent() {
 
   useEffect(() => {
     if (!query) return;
-    fetch("/api/compose", {
+    fetch(INTELLIGENCE_API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
