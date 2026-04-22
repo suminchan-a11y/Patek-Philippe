@@ -3,8 +3,14 @@
 import SearchBar from "./SearchBar";
 import { useIsMobile } from "../hooks/useIsMobile";
 
-export default function ForYouHero() {
+const DEFAULT_QUERY = "I want something to celebrate a milestone";
+const DEFAULT_HERO_TEXT =
+  "You’ve arrived at one of those moments that deserves more than memory. A Patek Philippe begins here, not as a reward, but as a companion to everything that follows. The piece you choose today will still be on your wrist, or your child’s, when this moment becomes the story you tell. We have brought together a selection with this moment in mind, each one chosen not for what it is, but for what it will mean.";
+
+export default function ForYouHero({ query, heroText }: { query?: string; heroText?: string }) {
   const isMobile = useIsMobile();
+  const displayQuery = query || DEFAULT_QUERY;
+  const displayHeroText = heroText || DEFAULT_HERO_TEXT;
 
   if (isMobile) {
     return (
@@ -80,7 +86,7 @@ export default function ForYouHero() {
                   animationDelay: "0s",
                 }}
               >
-                I want something to celebrate a&nbsp;milestone
+                {displayQuery}
               </h1>
             </div>
 
@@ -96,7 +102,7 @@ export default function ForYouHero() {
                 animationDelay: "0.25s",
               }}
             >
-              You&apos;ve arrived at one of those moments that deserves more than memory. A Patek Philippe begins here, not as a reward, but as a companion to everything that follows. The piece you choose today will still be on your wrist, or your child&apos;s, when this moment becomes the story you tell. We have brought together a selection with this moment in mind, each one chosen not for what it is, but for what it will&nbsp;mean.
+              {displayHeroText}
             </p>
           </div>
 
@@ -173,9 +179,7 @@ export default function ForYouHero() {
             animationDelay: "0s",
           }}
         >
-          I want something to
-          <br />
-          celebrate a milestone
+          {displayQuery}
         </h1>
 
         <p
@@ -190,7 +194,7 @@ export default function ForYouHero() {
             animationDelay: "0.25s",
           }}
         >
-          You&apos;ve arrived at one of those moments that deserves more than memory. A Patek Philippe begins here, not as a reward, but as a companion to everything that follows. The piece you choose today will still be on your wrist, or your child&apos;s, when this moment becomes the story you tell. We have brought together a selection with this moment in mind, each one chosen not for what it is, but for what it will mean.
+          {displayHeroText}
         </p>
 
         <div className="reveal-up" style={{ animationDelay: "0.4s" }}>

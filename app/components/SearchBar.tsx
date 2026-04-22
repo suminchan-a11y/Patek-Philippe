@@ -24,7 +24,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Hide when CraftVideo section enters the viewport
   useEffect(() => {
     if (inline) return;
     const craftEl = document.getElementById("craft-video");
@@ -40,15 +39,13 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
     return () => observer.disconnect();
   }, [inline]);
 
-
   const handleSubmit = () => {
     const q = query || prompts[index];
     if (q.trim()) {
-      window.dispatchEvent(new CustomEvent("showLoading"));
+      window.dispatchEvent(new CustomEvent("showLoading", { detail: { query: q } }));
     }
   };
 
-  // Start/stop prompt rotation based on focus and query
   useEffect(() => {
     if (focused || query) {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -84,7 +81,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
         marginTop: inline ? undefined : -96,
       }}
     >
-      {/* SearchBar pill */}
       <div
         style={{
           width: "100%",
@@ -113,7 +109,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
             width: "100%",
           }}
         >
-          {/* Input + rotating placeholder */}
           <div
             style={{
               flex: 1,
@@ -123,7 +118,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
             }}
             onClick={() => inputRef.current?.focus()}
           >
-            {/* Rotating placeholder (hidden when focused or typing) */}
             {!query && !focused && (
               <span
                 onClick={() => {
@@ -190,7 +184,6 @@ export default function SearchBar({ inline = false }: { inline?: boolean }) {
             />
           </div>
 
-          {/* Arrow up icon */}
           <div
             onMouseDown={(e) => { e.preventDefault(); handleSubmit(); }}
             style={{
