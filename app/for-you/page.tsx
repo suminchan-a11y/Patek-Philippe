@@ -58,7 +58,7 @@ const mobileGroup1Cards = [
 const DEFAULT_EDITORIAL =
   "Some milestones require restraint, while others are worn daily as proof. The Nautilus embodies decades of belief that a sports watch can be as significant as any dress piece. The Aquanaut, built for those who value motion over ceremony, is designed to outlast the moments it celebrates. Choose the one that reflects not just the milestone, but the life that follows.";
 
-const INTELLIGENCE_API = "https://intelligence-one-beta.vercel.app/api/compose";
+const INTELLIGENCE_API = "https://intelligence-pp.vercel.app/api/compose";
 
 function ForYouContent() {
   const isMobile = useIsMobile();
