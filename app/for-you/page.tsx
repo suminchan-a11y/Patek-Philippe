@@ -60,6 +60,23 @@ const DEFAULT_EDITORIAL =
 
 const INTELLIGENCE_API = "https://intelligence-pp.vercel.app/api/compose";
 
+function useTypewriter(text: string, speed = 35) {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    if (!text) { setDisplayed(""); return; }
+    setDisplayed("");
+    const words = text.split(" ");
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(words.slice(0, i).join(" "));
+      if (i >= words.length) clearInterval(id);
+    }, speed);
+    return () => clearInterval(id);
+  }, [text]);
+  return displayed;
+}
+
 function ForYouContent() {
   const isMobile = useIsMobile();
   const searchParams = useSearchParams();
@@ -82,6 +99,9 @@ function ForYouContent() {
       .catch(() => {});
   }, [query]);
 
+  const animatedHeroText = useTypewriter(heroText);
+  const animatedEditorialText = useTypewriter(editorialText);
+
   return (
     <main
       style={{
@@ -90,11 +110,11 @@ function ForYouContent() {
         gap: isMobile ? 0 : 8,
       }}
     >
-      <ForYouHero query={query} heroText={heroText} />
+      <ForYouHero query={query} heroText={animatedHeroText} />
 
       <ForYouCTA
         heading={"A curation\nconsidered for you"}
-        body={editorialText || DEFAULT_EDITORIAL}
+        body={animatedEditorialText || DEFAULT_EDITORIAL}
       />
 
       {isMobile ? (
