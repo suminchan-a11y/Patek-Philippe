@@ -23,10 +23,11 @@ export default function ForYouHero({ query, heroText }: { query?: string; heroTe
           overflow: "hidden",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/fy-hero-bg-new.jpg"
-          alt=""
+        <video
+          autoPlay
+          muted
+          playsInline
+          src="/images/fy-hero-video.mp4"
           style={{
             position: "absolute",
             inset: 0,
@@ -122,10 +123,11 @@ export default function ForYouHero({ query, heroText }: { query?: string; heroTe
         overflow: "hidden",
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/fy-hero-bg-new.jpg"
-        alt=""
+      <video
+        autoPlay
+        muted
+        playsInline
+        src="/images/fy-hero-video.mp4"
         style={{
           position: "absolute",
           inset: 0,

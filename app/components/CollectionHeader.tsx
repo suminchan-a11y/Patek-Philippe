@@ -54,10 +54,22 @@ export default function CollectionHeader() {
             margin: 0,
           }}
         >
-          Pieces Worth
-          <br />
-          Knowing
+          The new expression of time
         </h2>
+        <p
+          style={{
+            fontFamily: "var(--font-lora), serif",
+            fontSize: isMobile ? 14 : 16,
+            fontWeight: 400,
+            lineHeight: "160%",
+            color: "#626262",
+            textAlign: "center",
+            margin: 0,
+            maxWidth: isMobile ? undefined : 640,
+          }}
+        >
+          The Patek Philippe 2026 new models marked a measured evolution, balancing heritage with a sharper, more contemporary edge. Each piece reflected thoughtful refinements in form and detail, shaping a collection that felt both familiar and distinctly new.
+        </p>
       </div>
     </section>
   );

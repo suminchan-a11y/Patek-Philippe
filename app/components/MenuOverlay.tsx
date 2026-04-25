@@ -10,7 +10,7 @@ const ease = [0.25, 0.1, 0.1, 1] as const;
 
 const MENU_ITEMS = [
   {
-    label: "Our boutique",
+    label: "Our Boutique",
     subtitle: "The space, the story, and what to expect.",
     mobileSubtitle: "The space and story.",
     href: "#",

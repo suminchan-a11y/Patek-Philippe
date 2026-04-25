@@ -1,4 +1,5 @@
 import Nav from "./components/Nav";
+import HeroToast from "./components/HeroToast";
 import SearchBar from "./components/SearchBar";
 import Hero from "./components/Hero";
 import CraftVideo from "./components/CraftVideo";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <HeroToast />
       <main
         style={{
           display: "flex",

@@ -30,6 +30,8 @@ function MobileHero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            transform: "scale(1.15)",
+            transformOrigin: "center center",
           }}
         />
 
@@ -140,6 +142,8 @@ function DesktopHero() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center 20%",
+          transform: "scale(1.15)",
+          transformOrigin: "center center",
         }}
       />
 

@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hourglass × Patek Philippe</title>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://patek-res.cloudinary.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fff;--ow:#ffffff;--warm:#ededed;--bdr:#d8d3cb;
+  --t1:#000000;--t2:#2c2825;--t3:#6b6560;--t4:#8C7A66;--t5:#bdb8b2;
+  --accent:#BC7A66;--accent-dark:#533833;
+  --dk:#050608;--dk2:#0a0b0d;--dk3:#111214;--dkt:#ffffff;--dkd:#8C7A66;--dkb:rgba(255,255,255,.06);
+  --serif:'Lora',Georgia,serif;--sans:'Open Sans','Helvetica Neue',sans-serif;
+}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-snap-type:y proximity}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto}
+body{background:var(--ow);color:var(--t3);font-family:var(--serif);font-weight:400;line-height:1.7;overflow-x:hidden}
+
+/* ── REVEALS ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv-up{opacity:0;transform:translateY(60px);transition:opacity 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
+.rv-up.v{opacity:1;transform:translateY(0)}
+.rv-fade{opacity:0;transition:opacity 1.8s ease}
+.rv-fade.v{opacity:1}
+.rv-left{opacity:0;transform:translateX(-40px);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.rv-left.v{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}.d5{transition-delay:.6s}.d6{transition-delay:.72s}.d7{transition-delay:.84s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;pointer-events:none;background:transparent}
+nav::before{content:'';position:absolute;inset:0;bottom:-40px;background:linear-gradient(to bottom,var(--ow) 0%,var(--ow) 50%,transparent 100%);opacity:0;transition:opacity .4s ease;pointer-events:none}
+nav.nav-solid::before{opacity:1}
+nav::after{content:'';position:absolute;inset:0;bottom:-40px;background:linear-gradient(to bottom,var(--dk) 0%,var(--dk) 50%,transparent 100%);opacity:0;transition:opacity .6s ease;pointer-events:none}
+nav.nav-dark::before{opacity:0}
+nav.nav-dark::after{opacity:1}
+nav.nav-bleed::before{opacity:0}
+nav.nav-bleed::after{opacity:0}
+nav.nav-bleed{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);-webkit-mask-image:linear-gradient(to bottom,black 0%,black 30%,transparent 100%);mask-image:linear-gradient(to bottom,black 0%,black 30%,transparent 100%);padding-bottom:48px}
+nav .nb,nav .nl,nav .tab-link{transition:color .6s ease}
+nav .tab-link{color:rgba(255,255,255,.4)}
+nav .tab-link.active{color:rgba(255,255,255,.8)}
+nav.nav-light .nb,nav.nav-light .nl{color:rgba(0,0,0,.4)}
+nav.nav-light .tab-link{color:var(--t4)!important}
+nav.nav-light .tab-link.active{color:var(--t1)!important}
+nav.nav-bleed .nb,nav.nav-bleed .nl{color:rgba(255,255,255,.7)}
+nav.nav-bleed .tab-link{color:rgba(255,255,255,.5)!important}
+nav.nav-bleed .tab-link.active{color:rgba(255,255,255,.8)!important}
+nav.nav-clear::before{opacity:0}
+nav.nav-clear::after{opacity:0}
+nav.nav-clear{background:transparent}
+nav.nav-clear .nb,nav.nav-clear .nl{color:rgba(0,0,0,.4)}
+nav.nav-clear .tab-link{color:var(--t4)!important}
+nav.nav-clear .tab-link.active{color:var(--t2)!important}
+.nb{font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7);pointer-events:auto;position:relative;z-index:1}
+.nl{font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7);pointer-events:auto;position:relative;z-index:1;text-align:center}
+
+/* ── FULL SECTIONS ── */
+section{position:relative}
+.snap{scroll-snap-align:start;min-height:100vh}
+.full{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pad{padding:200px 60px;max-width:1400px;margin:0 auto;width:100%}
+.pad-narrow{padding:200px 60px;max-width:1000px;margin:0 auto;width:100%}
+.c{text-align:center}
+
+/* ── VIDEO ── */
+.vbg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+.vbg video{width:100%;height:100%;object-fit:cover}
+.vbg .ov{position:absolute;inset:0}
+.vi{position:relative;width:100%;overflow:hidden}
+.vi video{width:100%;display:block}
+.vp{overflow:hidden}
+.vp video{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── DARK / LIGHT ── */
+.light{background:var(--ow);color:var(--t2)}
+.light .td,.light .th1,.light .th2{color:var(--t1)}
+.light .tb{color:var(--t3)}
+.light .ts{color:var(--t4)}
+
+/* ── DARK SECTIONS (video-backed, close, hero) ── */
+.dark{background:var(--dk);color:var(--dkt)}
+.dark .td,.dark .th1,.dark .th2,.dark .th3{color:var(--ow)}
+.dark .tb,.dark .tbl{color:var(--dkt)}
+.dark .ts{color:var(--dkd)}
+.dark .tl{color:var(--dkd)}
+.dark .tq{color:var(--ow)}
+.dark .stat{color:var(--ow)}
+.dark .stat-label{color:var(--dkd)}
+.dark .stat-body{color:var(--dkt)}
+.dark .an{color:var(--ow)}
+.dark .ar{border-color:var(--dkb)}
+.dark .pr{border-color:var(--dkb)}
+.dark .pn{color:var(--dkd)}
+.dark .pt{color:var(--ow)}
+.dark .pb{color:var(--dkt)}
+.dark .line{background:rgba(255,255,255,.08)}
+
+/* ── TYPOGRAPHY — Fantasy scale ── */
+.td{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,7vw,6.5rem);line-height:1.02;letter-spacing:-.03em;color:var(--t1)}
+.th1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5.5vw,4.8rem);line-height:1.05;letter-spacing:-.025em;color:var(--t1)}
+.th2{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.2;color:var(--t1)}
+.th3{font-family:var(--serif);font-weight:500;font-size:1.1rem;line-height:1.35;color:var(--t1)}
+.tb{font-family:var(--serif);font-weight:400;font-size:clamp(.92rem,1.05vw,1rem);line-height:1.95;color:var(--t3)}
+.tbl{font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem,1.2vw,1.14rem);line-height:1.9;color:var(--t3)}
+.ts{font-family:var(--sans);font-weight:300;font-size:.78rem;line-height:1.7;color:var(--t4)}
+.tl{font-family:var(--sans);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+nav.nav-solid .tl,nav.nav-light .tl,nav.nav-clear .tl{color:var(--t4)}
+nav.nav-solid .tab-link{color:var(--t4)!important}
+nav.nav-solid .tab-link.active{color:var(--t1)!important}
+nav.nav-solid .nb{color:rgba(0,0,0,.4)}
+.tq{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.55;color:var(--t1)}
+
+.light .tl{color:var(--t4)}
+.light .tbl{color:var(--t3)}
+
+/* ── STAT ── */
+.stat{font-family:var(--serif);font-weight:400;font-size:clamp(4rem,8vw,7rem);line-height:1;color:var(--t1);letter-spacing:-.03em}
+.stat-label{font-family:var(--sans);font-size:.72rem;color:var(--t4);letter-spacing:1px;margin-top:8px}
+.stat-body{font-family:var(--serif);font-size:.92rem;line-height:1.9;color:var(--t3);margin-top:16px;max-width:300px}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:60px}
+.gw{display:grid;grid-template-columns:1.2fr 1fr;gap:120px;align-items:start}
+
+/* ── ARCHETYPE ── */
+.ar{padding:64px 0;border-top:1px solid var(--bdr)}
+.ar:last-child{border-bottom:1px solid var(--bdr)}
+.ag{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:baseline}
+.an{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,2.2vw,2rem);color:var(--t1);letter-spacing:-.01em}
+
+/* ── FROM/TO ── */
+.ft{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.ft .col{padding:48px}
+.ft .col:first-child{border-right:1px solid var(--bdr)}
+.ftl{font-family:var(--sans);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--t4);margin-bottom:32px}
+.fti{font-family:var(--serif);font-size:1.02rem;line-height:1.5;padding:12px 0;color:var(--t4)}
+.ft .col:last-child .fti{color:var(--t1)}
+
+/* ── PRINCIPLES ── */
+.pr{padding:48px 0;border-top:1px solid var(--bdr)}
+.pr:last-child{border-bottom:1px solid var(--bdr)}
+.pr .pg{display:grid;grid-template-columns:44px 1fr;gap:24px;align-items:start}
+.pn{font-family:var(--serif);font-size:1.3rem;color:var(--t4)}
+.pt{font-family:var(--serif);font-weight:500;font-size:1.15rem;color:var(--t1);margin-bottom:8px}
+.pb{font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)}
+
+/* ── EMOTION ── */
+.eg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ec{background:var(--warm);padding:48px 32px;min-height:400px;display:flex;flex-direction:column;justify-content:space-between}
+.en{font-family:var(--serif);font-size:4rem;font-weight:400;color:var(--bdr);line-height:1}
+.em{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--t1);margin:12px 0 4px}
+.emo{font-family:var(--sans);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--t4);margin-bottom:20px}
+.eb{font-family:var(--serif);font-size:.86rem;line-height:1.95;color:var(--t3)}
+
+/* ── TONALITY ── */
+.tr{display:grid;grid-template-columns:110px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--bdr);align-items:start}
+.trl{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t4);padding-top:5px}
+.trb{font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)}
+.tre{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--t1);margin-top:8px}
+
+/* ── VIDEO TRIO ── */
+.vtrio{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;width:100%}
+.vtrio .vp{aspect-ratio:9/16;max-height:80vh}
+
+/* ── HERO SCROLL SEQUENCE ── */
+.hero-wrap{position:fixed;top:0;left:0;right:0;height:100vh;overflow:hidden;z-index:1}
+.hero-beat{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:3;transition:opacity .8s ease}
+.hero-beat-1{opacity:1}
+.hero-beat-2{opacity:0;pointer-events:none}
+.hero-frost{position:absolute;inset:0;z-index:2;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);background:rgba(14,13,12,.3);opacity:0;transition:opacity .8s ease;-webkit-mask-image:url('assets/images/pp-calatrava.svg'),linear-gradient(#fff,#fff);-webkit-mask-size:300px auto,100% 100%;-webkit-mask-position:center 42%,center;-webkit-mask-repeat:no-repeat,no-repeat;-webkit-mask-composite:destination-out;mask-image:url('assets/images/pp-calatrava.svg'),linear-gradient(#fff,#fff);mask-size:300px auto,100% 100%;mask-position:center 42%,center;mask-repeat:no-repeat,no-repeat;mask-composite:exclude}
+.hero-wrap.scrolled .hero-beat-1{opacity:0;pointer-events:none}
+.hero-wrap.scrolled .hero-beat-2{opacity:1;pointer-events:auto}
+.hero-wrap.scrolled .hero-frost{opacity:1}
+
+/* ── PP FROSTED FILL ── */
+.pp-frost-fill{position:absolute;inset:0;z-index:3;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:rgba(255,255,255,.08);-webkit-mask-image:url('assets/images/pp-calatrava.svg');mask-image:url('assets/images/pp-calatrava.svg');-webkit-mask-size:300px auto;mask-size:300px auto;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center 42%;mask-position:center 42%;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.hero-wrap.scrolled .pp-frost-fill{opacity:1}
+
+/* ── CROWN PAGINATION ── */
+.crown-nav{position:fixed;right:32px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:0;opacity:0;transition:opacity .6s ease;pointer-events:none}
+.crown-nav.visible{opacity:1;pointer-events:auto}
+.crown-section{display:flex;align-items:center;gap:16px;cursor:pointer;padding:0}
+.crown-section .crown-label{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:transparent;transition:color .4s ease;white-space:nowrap;text-align:right}
+.crown-section:hover .crown-label{color:var(--t4)}
+.crown-section.just-arrived .crown-label{color:var(--t4);transition:color .4s ease}
+.crown-ridges{display:flex;flex-direction:column;align-items:center}
+.crown-ridge{width:14px;height:1.5px;background:rgba(0,0,0,.1);transition:all .3s ease}
+.crown-section:hover .crown-ridge{background:rgba(0,0,0,.25)}
+.crown-ridge.active{background:rgba(0,0,0,.5)}
+.crown-nav.crown-light .crown-ridge{background:rgba(0,0,0,.1)}
+.crown-nav.crown-light .crown-section:hover .crown-ridge{background:rgba(0,0,0,.25)}
+.crown-nav.crown-light .crown-ridge.active{background:rgba(0,0,0,.5)}
+.crown-nav.crown-light .crown-label{color:transparent}
+.crown-nav.crown-light .crown-section:hover .crown-label{color:var(--t4)}
+.crown-nav.crown-light .just-arrived .crown-label{color:var(--t4)}
+.ridge-gap{height:4px}
+.section-gap{height:14px}
+
+/* ── MAP DOTS ── */
+.map-dot{width:8px;height:8px;background:rgba(0,0,0,.25);border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:all .3s ease;z-index:2}
+.map-dot:hover,.map-dot:focus-visible,.map-dot.active{background:rgba(0,0,0,.6);box-shadow:0 0 12px rgba(0,0,0,.15)}
+.map-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(0,0,0,.12);animation:dot-pulse 3s ease-in-out infinite;pointer-events:none}
+@keyframes dot-pulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.8);opacity:0}}
+.map-dot:nth-child(2)::after{animation-delay:-.5s}
+.map-dot:nth-child(3)::after{animation-delay:-1s}
+.map-dot:nth-child(4)::after{animation-delay:-1.5s}
+.map-dot:nth-child(5)::after{animation-delay:-2s}
+.map-dot:nth-child(6)::after{animation-delay:-2.5s}
+@media(prefers-reduced-motion:reduce){.map-dot::after{animation:none}}
+
+/* ── CIRCLE DRAW-IN ── */
+#ringWorld,#ringStreet,#ringWrist{stroke-dasharray:var(--circ);stroke-dashoffset:var(--circ);transition:stroke-dashoffset 2s cubic-bezier(.16,1,.3,1),fill .4s ease,stroke .4s ease}
+#ringStreet{transition-delay:.3s}
+#ringWorld{transition-delay:.6s}
+.circles-drawn #ringWrist{stroke-dashoffset:0}
+.circles-drawn #ringStreet{stroke-dashoffset:0}
+.circles-drawn #ringWorld{stroke-dashoffset:0}
+.ring-label{opacity:0;transition:opacity .6s ease,fill .4s ease}
+.circles-drawn .ring-label[data-ring="wrist"]{opacity:1;transition-delay:.4s}
+.circles-drawn .ring-label[data-ring="street"]{opacity:1;transition-delay:.8s}
+.circles-drawn .ring-label[data-ring="world"]{opacity:1;transition-delay:1.2s}
+@media(prefers-reduced-motion:reduce){
+  #ringWorld,#ringStreet,#ringWrist{stroke-dasharray:none;stroke-dashoffset:0;transition:fill .4s ease,stroke .4s ease}
+  .ring-label{opacity:1;transition:fill .4s ease}
+}
+
+/* ── NAV STAGGER ── */
+.nav-item{opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.nav-item.v{opacity:1;transform:translateY(0)}
+
+/* ── EXPERIENCE LINK — underline draw ── */
+.nb{position:relative}
+.nb::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:currentColor;transition:width .4s cubic-bezier(.16,1,.3,1)}
+.nb:hover::after{width:100%}
+
+/* ── TAB CROSSFADE ── */
+.tab-content{transition:opacity .5s ease}
+.tab-content.tab-fading{opacity:0}
+
+/* ── LINE ── */
+.line{width:48px;height:1px;background:var(--bdr);margin:40px 0}
+.line-c{margin-left:auto;margin-right:auto}
+
+/* ── FILM GRAIN ── */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0;transition:opacity .8s ease;mix-blend-mode:overlay}
+.grain.grain-visible{opacity:.035}
+@media(prefers-reduced-motion:reduce){.grain{display:none}}
+
+/* ── CURSOR LIGHT ── */
+.cursor-light{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(200,175,140,.07) 0%,rgba(200,175,140,.02) 35%,transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity 1.2s ease;will-change:transform}
+.cursor-light.cl-visible{opacity:1}
+@media(prefers-reduced-motion:reduce){.cursor-light{display:none}}
+
+/* ── STAT COUNT-UP ── */
+.stat[data-count]{font-variant-numeric:tabular-nums}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .g2,.g3,.gw,.ft{grid-template-columns:1fr}
+  .eg{grid-template-columns:1fr}
+  .ag{grid-template-columns:1fr}.tr{grid-template-columns:1fr}
+  .ft .col{padding:28px 0}.ft .col:first-child{border-right:none;border-bottom:1px solid var(--bdr)}
+  .pad,.pad-narrow{padding:120px 24px}nav{padding:16px 24px}
+  .pr .pg{grid-template-columns:1fr}.pn{display:none}
+  .vtrio{grid-template-columns:1fr}.vtrio .vp{aspect-ratio:16/9;max-height:50vh}
+  .stat{font-size:clamp(3rem,12vw,5rem)}
+}
+
+/* ══════════════════════════════════════════
+   PROGRAMME TAB — Interactive Components
+   Colours remapped to Poon's dark palette
+   ══════════════════════════════════════════ */
+
+/* ── COUNTERS ── */
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--bdr);margin-top:32px}
+.counter-card{padding:24px 20px;border-right:1px solid var(--bdr)}
+.counter-card:last-child{border-right:none}
+.counter-label{font-family:var(--sans);font-size:10px;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.counter-value{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--t1);letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.counter-text{font-family:var(--sans);font-size:11px;color:var(--t4)}
+.counter-card.urgent .counter-value{color:#b44}
+
+/* ── GANTT CHART ── */
+.gantt-wrap{margin-top:28px;width:100%}
+.gantt-months{display:flex;margin-left:180px;margin-bottom:12px;position:relative;height:20px}
+.gantt-month{position:absolute;font-family:var(--sans);font-size:8px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t4);transform:translateX(-50%)}
+.gantt-body{border-top:1px solid var(--bdr);position:relative}
+.gantt-row{display:flex;align-items:center;height:42px;border-bottom:1px solid var(--bdr);cursor:default;transition:background .2s;position:relative}
+.gantt-row:hover,.gantt-row.g-active{background:var(--warm)}
+.gantt-label{flex:0 0 180px;padding-right:20px;box-sizing:border-box}
+.g-num{display:block;font-family:var(--sans);font-size:8px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t4);margin-bottom:1px}
+.g-name{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gantt-track{flex:1;position:relative;height:100%;display:flex;align-items:center}
+.g-bar{position:absolute;height:4px;background:var(--t1);opacity:.18;border-radius:1px;transition:opacity .25s,height .25s;top:50%;transform:translateY(-50%)}
+.gantt-row:hover .g-bar,.gantt-row.g-active .g-bar{opacity:.75;height:6px}
+.g-bar.g-risk{background:#b8963e}
+.gantt-row:hover .g-bar.g-risk,.gantt-row.g-active .g-bar.g-risk{opacity:.9}
+.g-bar.g-launch{width:1.5px!important;height:18px!important;border-radius:0;background:var(--t1);opacity:.3}
+.gantt-row:hover .g-bar.g-launch,.gantt-row.g-active .g-bar.g-launch{opacity:.85}
+.g-today-line{position:absolute;top:0;bottom:0;left:180px;width:1px;background:var(--t1);opacity:.08;pointer-events:none;z-index:0}
+.gantt-detail{margin-top:18px;padding-top:16px;border-top:1px solid var(--bdr);opacity:0;transform:translateY(5px);transition:opacity .3s ease,transform .3s ease;pointer-events:none;height:130px;overflow:hidden}
+.gantt-detail.gd-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.gd-header{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.gd-title{font-family:var(--serif);font-size:18px;color:var(--t1)}
+.gd-dates{font-family:var(--sans);font-size:10px;color:var(--t4);letter-spacing:.04em}
+.gd-risk-badge{font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b8963e;margin-left:auto}
+.gd-acts{display:grid;grid-template-columns:1fr 1fr;gap:4px 32px;list-style:none;padding:0;margin:0}
+.gd-acts li{font-family:var(--sans);font-size:11px;color:var(--t3);line-height:1.55;padding-left:12px;position:relative}
+.gd-acts li::before{content:'\2014';position:absolute;left:0;color:var(--t4)}
+.gd-acts li.gd-deliverable{color:var(--t1);font-weight:500}
+.gd-acts li.gd-deliverable::before{content:'\25C6';color:var(--t1);font-size:7px;top:3px}
+.gd-acts li.gd-mitigation{color:#b8963e;font-weight:500}
+.gd-acts li.gd-mitigation::before{content:'\25C6';color:#b8963e;font-size:7px;top:3px}
+
+/* ── PHASE BARS ── */
+.phase{margin-bottom:16px}
+.phase-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.phase-name{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--t1);letter-spacing:.04em}
+.phase-dates{font-family:var(--sans);font-size:11px;color:var(--t4)}
+.phase-bar-bg{height:28px;background:var(--warm);border:1px solid var(--bdr)}
+.phase-bar-fill{height:100%;background:var(--t1);display:flex;align-items:center;padding:0 10px;font-family:var(--sans);font-size:9px;font-weight:500;color:var(--ow);letter-spacing:.06em;text-transform:uppercase}
+.phase-bar-fill.upcoming{background:rgba(0,0,0,.06);color:var(--t4)}
+.phase-bar-fill.active-phase{background:var(--t3)}
+
+/* ── MILESTONES ── */
+.ms-row{display:flex;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.ms-row:last-child{border-bottom:none}
+.ms-dot{width:8px;height:8px;border:1.5px solid var(--t4);margin-right:14px;margin-top:4px;flex-shrink:0}
+.ms-row.done .ms-dot{background:var(--t1);border-color:var(--t1)}
+.ms-row.gate .ms-dot{border-color:var(--t1);border-width:2.5px}
+.ms-date{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--t1);margin-bottom:1px}
+.ms-text{font-family:var(--sans);font-size:12px;color:var(--t3)}
+.gate-tag{display:inline-block;font-family:var(--sans);font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:var(--t1);color:var(--ow);padding:2px 7px;margin-top:3px}
+
+/* ── ACTION ITEMS ── */
+.act-row{display:flex;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--bdr);cursor:pointer}
+.act-row:last-child{border-bottom:none}
+.act-row:hover{background:var(--warm)}
+.act-check{width:12px;height:12px;border:1.5px solid var(--t4);margin-right:12px;margin-top:2px;flex-shrink:0;transition:all .15s}
+.act-row.checked .act-check{background:var(--t1);border-color:var(--t1)}
+.act-row.checked .act-text{color:var(--t4);text-decoration:line-through}
+.act-text{font-family:var(--sans);font-size:12px;color:var(--t3);margin-bottom:2px}
+.act-meta{display:flex;gap:12px;font-family:var(--sans);font-size:10px;color:var(--t4);text-transform:uppercase;letter-spacing:.04em}
+.act-meta .today{color:#b44;font-weight:500}
+
+/* ── FLAGS GRID ── */
+.flags-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.flag{padding:14px 16px;border-left:2px solid var(--bdr)}
+.flag.blocker{border-left-color:#b44}
+.flag.risk{border-left-color:#b88a2a}
+.flag.note{border-left-color:var(--t4)}
+.flag-label{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;display:block}
+.flag.blocker .flag-label{color:#b44}
+.flag.risk .flag-label{color:#b88a2a}
+.flag.note .flag-label{color:var(--t4)}
+.flag-text{font-family:var(--sans);font-size:12px;color:var(--t3);line-height:1.5}
+
+/* ── TWO-COL TIMELINE ── */
+.tl-two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+
+/* ── TEAM TABLE ── */
+.team-table{width:100%;margin-top:32px;border-top:1px solid var(--bdr)}
+.team-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:7px 0;border-bottom:1px solid var(--bdr);align-items:baseline}
+.team-row.team-header{padding-bottom:10px}
+.team-role-head,.team-resp-head{font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t4)}
+.team-role{font-family:var(--sans);font-size:13px;font-weight:400;color:var(--t1)}
+.team-resp{font-family:var(--sans);font-size:13px;font-weight:300;color:var(--t3);line-height:1.5}
+
+/* ── APPROVAL CHAIN ── */
+.approval-list{margin-top:40px;border-top:1px solid var(--bdr);width:100%;max-width:680px}
+.approval-item{padding:22px 0;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:140px 1fr;gap:32px;align-items:baseline}
+.approval-cadence{font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t4)}
+.approval-desc{font-family:var(--sans);font-size:14px;font-weight:300;color:var(--t3);line-height:1.55}
+.approval-desc strong{font-weight:500;color:var(--t1)}
+
+/* ── RISK TABLE ── */
+.risk-table{width:100%;margin-top:36px;border-top:1px solid var(--bdr)}
+.risk-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:baseline}
+.risk-header-row{padding-bottom:8px}
+.risk-col-head{font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t4)}
+.risk-risk{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--t1);line-height:1.45}
+.risk-impact{font-family:var(--sans);font-size:12px;font-weight:300;color:var(--t3);line-height:1.45}
+.risk-mitigation{font-family:var(--sans);font-size:12px;font-weight:300;color:var(--t3);line-height:1.45}
+
+/* ── CODES CAROUSEL ── */
+.codes-item{flex-shrink:0;text-align:center;padding:0 72px;transition:all .8s cubic-bezier(.22,1,.36,1)}
+.codes-item .codes-word{font-family:var(--serif);font-size:15px;color:var(--t4);transition:all .8s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+.codes-item.codes-active{padding:0 80px}
+.codes-item.codes-active .codes-word{color:var(--t1)}
+
+/* ── PROGRAMME RESPONSIVE ── */
+@media(max-width:1024px){
+  .counters{grid-template-columns:1fr 1fr}
+  .counter-card:nth-child(2){border-right:none}
+  .tl-two-col{grid-template-columns:1fr}
+  .flags-grid{grid-template-columns:1fr}
+  .gantt-label{flex:0 0 120px}
+  .gantt-months{margin-left:120px}
+  .g-today-line{left:120px}
+  .team-row{grid-template-columns:1fr}
+  .approval-item{grid-template-columns:1fr}
+  .risk-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:var(--dk);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px">
+  <div style="font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dkd)">Enter password</div>
+  <input id="pwInput" type="password" autofocus style="background:transparent;border:none;border-bottom:1px solid var(--dkb);color:var(--ow);font-family:var(--serif);font-size:1.1rem;padding:8px 0;width:240px;text-align:center;outline:none;letter-spacing:2px" placeholder="">
+  <div id="pwError" style="font-family:var(--sans);font-size:11px;color:#c44;opacity:0;transition:opacity .3s ease">Incorrect password</div>
+</div>
+<script>
+(function(){
+  const HASH='a3f2b8c1d4e5'; // not real hash, using simple check
+  const EXPIRY=3600000; // 1 hour in ms
+  const stored=localStorage.getItem('pw_ts');
+  if(stored&&(Date.now()-parseInt(stored))<EXPIRY){
+    document.getElementById('pwGate').style.display='none';
+    return;
+  }
+  document.body.style.overflow='hidden';
+  const input=document.getElementById('pwInput');
+  const error=document.getElementById('pwError');
+  const gate=document.getElementById('pwGate');
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      if(input.value==='Aleph2026!'){
+        localStorage.setItem('pw_ts',Date.now().toString());
+        gate.style.opacity='0';
+        gate.style.transition='opacity .6s ease';
+        document.body.style.overflow='';
+        setTimeout(()=>gate.style.display='none',600);
+      }else{
+        error.style.opacity='1';
+        input.value='';
+        setTimeout(()=>error.style.opacity='0',2000);
+      }
+    }
+  });
+})();
+</script>
+
+<nav>
+  <div id="tabNav" style="display:flex;gap:32px;pointer-events:auto;position:relative;z-index:1">
+    <a class="tl tab-link active" data-tab="brief" href="#brief" style="transition:color .3s;text-decoration:none">Brief</a>
+    <a class="tl tab-link" data-tab="vision" href="#vision" style="transition:color .3s;text-decoration:none">Vision</a>
+  </div>
+  <a href="https://patek-philippe-v3.web.app/" target="_blank" rel="noopener" class="nb" style="display:flex;align-items:center;gap:6px;text-decoration:none;position:relative;z-index:1;pointer-events:auto;transition:color .4s ease" id="experienceLink">Experience <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+</nav>
+
+<!-- ═══ TAB 1 — BRIEF ═══ -->
+<main>
+<div class="tab-content tab-brief" data-tab="brief">
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 — HERO SCROLL SEQUENCE
+     Beat 1: THG + title (video plays behind)
+     Scroll: frost + PP cutout + invitation
+     ═══════════════════════════════════════ -->
+<div class="hero-wrap" id="heroWrap">
+    <!-- Video background -->
+    <div class="vbg">
+      <video autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/413492-source/pp-5204g-001-banner-16-9-homepage" type="video/mp4">
+      </video>
+      <div class="ov" style="background:linear-gradient(to top, rgba(0,0,0,0.60), transparent)"></div>
+    </div>
+
+    <!-- Frost overlay (fades in on scroll) -->
+    <div class="hero-frost"></div>
+
+    <!-- PP logo — lighter frosted glass fill -->
+    <div class="pp-frost-fill"></div>
+
+    <!-- Beat 1: Welcome + THG logo -->
+    <div class="hero-beat hero-beat-1" style="text-align:center;padding:48px">
+      <h1 class="rv td" style="opacity:.8;color:var(--ow)">Welcome</h1>
+      <div class="rv d2" style="margin-top:40px">
+        <img src="assets/images/thg-wordmark.svg" alt="The Hour Glass" style="width:160px;height:auto;filter:brightness(0) invert(1);opacity:.5">
+      </div>
+    </div>
+
+    <!-- Beat 2: Invitation (appears after scroll) -->
+    <div class="hero-beat hero-beat-2" style="text-align:center;padding:48px;padding-top:65vh">
+      <div style="font-family:var(--serif);font-size:clamp(.9rem,1.1vw,1rem);color:var(--dkt);line-height:1.95;max-width:420px;margin:0 auto;opacity:.8">We invite you to step inside — where the boutique experience lives before the&nbsp;visit.</div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CROWN PAGINATION — knurled ridges, subsection tracking
+     ═══════════════════════════════════════ -->
+<div class="crown-nav" id="crownNav">
+  <div class="crown-section" data-section="0"><div class="crown-label">Your Brief</div><div class="crown-ridges"><div class="crown-ridge active"></div><div class="ridge-gap"></div><div class="crown-ridge active"></div><div class="ridge-gap"></div><div class="crown-ridge active"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section="1"><div class="crown-label">Business</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section="2"><div class="crown-label">Your Buyers</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section="3"><div class="crown-label">Your Competitors</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+  <div class="section-gap"></div>
+  <div class="crown-section" data-section="4"><div class="crown-label">What If</div><div class="crown-ridges"><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div><div class="ridge-gap"></div><div class="crown-ridge"></div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — THE BRIEF
+     Slides up over the hero. Snap scroll.
+     Map + Vision + Nav structure.
+     ═══════════════════════════════════════ -->
+<section data-snap="0" class="snap" style="background:var(--ow);position:relative;z-index:10;margin-top:350vh">
+  <div style="width:100%">
+    <div class="pad" style="text-align:center;padding-bottom:80px">
+      <!-- Block 1: Map -->
+      <div class="rv tl" style="margin-bottom:40px">9 Boutique Websites</div>
+      <div class="rv d1" style="position:relative;width:440px;height:440px;margin:0 auto 24px">
+        <!-- Globe SVG -->
+        <img src="assets/images/globe.svg" alt="" style="width:100%;height:100%;object-fit:contain">
+        <!-- Dots -->
+        <div class="map-dot" role="button" tabindex="0" aria-label="Japan" data-loc="japan" style="position:absolute;left:47%;top:27.6%"></div>
+        <div class="map-dot" role="button" tabindex="0" aria-label="Hong Kong" data-loc="hongkong" style="position:absolute;left:31%;top:43%"></div>
+        <div class="map-dot" role="button" tabindex="0" aria-label="Thailand" data-loc="thailand" style="position:absolute;left:20%;top:56.9%"></div>
+        <div class="map-dot" role="button" tabindex="0" aria-label="Malaysia" data-loc="malaysia" style="position:absolute;left:23%;top:64.9%"></div>
+        <div class="map-dot" role="button" tabindex="0" aria-label="Singapore" data-loc="singapore" style="position:absolute;left:26%;top:68.7%"></div>
+        <div class="map-dot" role="button" tabindex="0" aria-label="Australia" data-loc="australia" style="position:absolute;left:81%;top:77.7%"></div>
+      </div>
+      <div class="rv d2" style="min-height:50px;margin-bottom:0;text-align:center" id="mapInfo">
+        <div class="th3" id="mapCountry" style="opacity:0;transition:opacity .3s ease"></div>
+        <div class="ts" id="mapBoutiques" style="opacity:0;transition:opacity .3s ease;margin-top:4px"></div>
+      </div>
+    </div>
+
+    <!-- Block 2: Vision -->
+    <div style="padding:0 60px 100px;max-width:780px;margin:0 auto;text-align:center">
+      <div class="rv-fade tq">"A digital extension of the physical boutique — an immersive, ultra-luxury experience. The digital gateway to explore Patek Philippe, view collections, and request personalised boutique&nbsp;appointments."</div>
+    </div>
+
+    <!-- Block 3: Nav structure -->
+    <div style="padding:0 60px 120px;text-align:center">
+      <div class="tl" style="display:flex;justify-content:center;gap:48px;flex-wrap:wrap">
+        <span class="nav-item" style="transition-delay:.1s">Homepage</span>
+        <span class="nav-item" style="transition-delay:.2s">Collections</span>
+        <span class="nav-item" style="transition-delay:.3s">Experience</span>
+        <span class="nav-item" style="transition-delay:.4s">Our Partnership</span>
+        <span class="nav-item" style="transition-delay:.5s">Services</span>
+        <span class="nav-item" style="transition-delay:.6s">Contact Us</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 — THE BUYER'S JOURNEY
+     Fixed behind content — brief scrolls away to reveal,
+     next section scrolls up to cover. Same pattern as hero.
+     ═══════════════════════════════════════ -->
+<div class="business-wrap dark" id="businessWrap" style="position:fixed;top:0;left:0;right:0;height:100vh;z-index:2;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .6s ease">
+  <div style="position:absolute;inset:0;background:url('assets/images/business-background-2.svg') center/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.60), transparent)"></div>
+  <div class="pad" style="position:relative;z-index:1">
+    <div class="g3">
+      <div data-biz-stat="0" style="opacity:0;transform:translateY(60px);will-change:transform,opacity">
+        <div class="stat">80%</div>
+        <div class="stat-label">of luxury purchases are digitally influenced</div>
+        <div class="stat-body">The boutique visit doesn't begin at the door. It begins on a screen. The website is the first impression — and right now, for most PP boutiques, that impression doesn't&nbsp;exist.</div>
+        <a href="https://bluebellgroup.com/insights/2025-asia-lifestyle-consumer-profile/" target="_blank" rel="noopener" class="ts" style="margin-top:12px;opacity:.5;display:inline-flex;align-items:center;gap:4px;color:var(--dkd);text-decoration:none;transition:opacity .4s ease" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='.5'">Bluebell Group, 2025 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+      </div>
+      <div data-biz-stat="1" style="opacity:0;transform:translateY(60px);will-change:transform,opacity">
+        <div class="stat">6 in 10</div>
+        <div class="stat-label">watch purchases are planned</div>
+        <div class="stat-body">42% say always planned. This is not impulse buying. The website is part of a consideration phase that lasts months — sometimes years.</div>
+        <a href="https://www.grandviewresearch.com/voice-of-consumer/us-watch-category-insights" target="_blank" rel="noopener" class="ts" style="margin-top:12px;opacity:.5;display:inline-flex;align-items:center;gap:4px;color:var(--dkd);text-decoration:none;transition:opacity .4s ease" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='.5'">Grand View Research <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+      </div>
+      <div data-biz-stat="2" style="opacity:0;transform:translateY(60px);will-change:transform,opacity">
+        <div class="stat">Time</div>
+        <div class="stat-label">is the currency of luxury, not money</div>
+        <div class="stat-body">For UHNWIs, the willingness to wait, to be patient, to earn access — this is the real signal of value. The website should honour that&nbsp;patience.</div>
+        <a href="https://www.bain.com/insights/luxury-in-transition-securing-future-growth/" target="_blank" rel="noopener" class="ts" style="margin-top:12px;opacity:.5;display:inline-flex;align-items:center;gap:4px;color:var(--dkd);text-decoration:none;transition:opacity .4s ease" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='.5'">Bain &amp; Company, 2024 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Spacer: keeps scroll height for the fixed business panel -->
+<div id="businessSpacer" data-snap="1" style="height:250vh;position:relative;z-index:5;pointer-events:none"></div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 7 — YOUR BUYERS
+     ═══════════════════════════════════════ -->
+<section data-snap="5" class="snap" style="background:var(--ow);position:relative;z-index:10">
+  <div class="pad" style="text-align:center">
+    <h2 class="th1 rv-up">They each carry a different<br>weight of&nbsp;time.</h2>
+    <div class="tb rv-fade d2" style="max-width:640px;margin:48px auto 0">Everyone who arrives brings their own relationship with Patek Philippe — how deep, how long, how personal. The website must honour all of them: depth for the one who seeks it, space for the one still finding their way, and for the one who has been here for decades —&nbsp;recognition.</div>
+  </div>
+  <div class="pad-narrow" style="padding-top:0">
+    <div class="ar rv d1">
+      <div class="ag">
+        <h3 class="an">The Custodian</h3>
+        <div class="tb">Already owns Patek Philippe. Views each piece as something held in trust. Expects digital to mirror the considered attention they receive in the boutique. They notice what is missing more than what is&nbsp;present.</div>
+      </div>
+    </div>
+    <div class="ar rv d2">
+      <div class="ag">
+        <h3 class="an">The Convert</h3>
+        <div class="tb">Walks in asking for the Nautilus. Leaves understanding the Calatrava. The boutique's quiet art is this gentle redirection — from aspiration to appreciation. The website must begin this journey before they step through the&nbsp;door.</div>
+      </div>
+    </div>
+    <div class="ar rv d3">
+      <div class="ag">
+        <h3 class="an">The Connoisseur</h3>
+        <div class="tb">Speaks in finishing, complications, and calibres. Knows the difference between perlage and Côtes de Genève. For them, the collection pages are not decoration — they are&nbsp;substance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     VIDEO BREAK — Between buyers and competitors
+     ═══════════════════════════════════════ -->
+<section class="full-bleed snap" data-snap="5b" style="background:var(--ow);position:relative;z-index:10">
+  <div class="vtrio">
+    <div class="vp"><video autoplay muted loop playsinline aria-hidden="true" preload="none"><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266929-source/pp-5316-50p-001-screen-8-9-chiming-product-loop" type="video/mp4"></video></div>
+    <div class="vp"><video autoplay muted loop playsinline aria-hidden="true" preload="none"><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266927-source/pp-6002r-001-celestial-watch-loop-960x1080" type="video/mp4"></video></div>
+    <div class="vp"><video autoplay muted loop playsinline aria-hidden="true" preload="none"><source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/266928-source/pp-5236p-010-screen-8-9-product-loop" type="video/mp4"></video></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 8 — YOUR COMPETITORS
+     Concentric circles with hover zones
+     ═══════════════════════════════════════ -->
+<section data-snap="6" class="snap" style="background:var(--ow);position:relative;z-index:11">
+  <div class="pad" style="text-align:center">
+    <h2 class="th1 rv-up">We're not the only thing<br>on their&nbsp;mind.</h2>
+    <div class="tbl rv-fade d2" style="max-width:700px;margin:32px auto 0">The competition isn't just other watchmakers. It's anyone competing for the time and attention of someone who values both above everything&nbsp;else.</div>
+  </div>
+  <div class="rv d3" style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:0;align-items:center;padding:0 60px 60px;max-width:1400px;margin:0 auto">
+    <!-- Left: brand logos -->
+    <div id="compBrands" style="text-align:center;padding-right:48px;min-height:200px;display:flex;align-items:center;justify-content:center">
+      <div style="opacity:0;transition:opacity .25s ease" id="compBrandText"></div>
+    </div>
+    <!-- Centre: concentric circles -->
+    <div style="display:flex;justify-content:center">
+      <svg viewBox="0 0 500 500" width="600" height="600" style="overflow:visible">
+        <!-- Outer ring — The world (cy=220, r=220) -->
+        <circle cx="250" cy="220" r="220" fill="rgba(0,0,0,.02)" stroke="rgba(0,0,0,.1)" stroke-width="1" id="ringWorld" style="--circ:1382"/>
+        <!-- Label between outer and middle: midpoint of top gaps — outer top=0, middle top=150, mid=75 -->
+        <text x="250" y="85" text-anchor="middle" fill="rgba(0,0,0,.25)" font-family="'Open Sans',sans-serif" font-size="9" letter-spacing="4" style="text-transform:uppercase;transition:fill .4s ease" class="ring-label" data-ring="world">THE WORLD</text>
+        <!-- Middle ring — The street (cy=280, r=130) -->
+        <circle cx="250" cy="280" r="130" fill="rgba(0,0,0,.03)" stroke="rgba(0,0,0,.1)" stroke-width="1" id="ringStreet" style="--circ:817"/>
+        <!-- Label between middle and inner: middle top=150, inner top=260, mid=205 -->
+        <text x="250" y="215" text-anchor="middle" fill="rgba(0,0,0,.25)" font-family="'Open Sans',sans-serif" font-size="9" letter-spacing="4" style="text-transform:uppercase;transition:fill .4s ease" class="ring-label" data-ring="street">THE STREET</text>
+        <!-- Inner ring — The wrist (cy=320, r=60) -->
+        <circle cx="250" cy="320" r="60" fill="rgba(0,0,0,.04)" stroke="rgba(0,0,0,.1)" stroke-width="1" id="ringWrist" style="--circ:377"/>
+        <!-- Label in centre of inner ring -->
+        <text x="250" y="324" text-anchor="middle" fill="rgba(0,0,0,.25)" font-family="'Open Sans',sans-serif" font-size="9" letter-spacing="4" style="text-transform:uppercase;transition:fill .4s ease" class="ring-label" data-ring="wrist">THE WRIST</text>
+        <!-- Invisible hover zones -->
+        <circle cx="250" cy="320" r="60" fill="transparent" stroke="none" data-ring="wrist" class="ring-zone" tabindex="0" role="button" aria-label="The Wrist — direct competitors" style="cursor:pointer"/>
+        <path d="M250,280 m-130,0 a130,130 0 1,0 260,0 a130,130 0 1,0 -260,0 Z M250,320 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0 Z" fill="transparent" stroke="none" data-ring="street" class="ring-zone" tabindex="0" role="button" aria-label="The Street — adjacent competitors" style="cursor:pointer" fill-rule="evenodd"/>
+        <path d="M250,220 m-220,0 a220,220 0 1,0 440,0 a220,220 0 1,0 -440,0 Z M250,280 m-130,0 a130,130 0 1,1 260,0 a130,130 0 1,1 -260,0 Z" fill="transparent" stroke="none" data-ring="world" class="ring-zone" tabindex="0" role="button" aria-label="The World — lifestyle competitors" style="cursor:pointer" fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <!-- Right: description -->
+    <div id="compDesc" style="text-align:left;padding-left:48px;min-height:200px;display:flex;align-items:center">
+      <div class="tbl" style="opacity:0;transition:opacity .25s ease" id="compDescText"></div>
+    </div>
+  </div>
+  <!-- Bridge line -->
+  <div style="padding:0 60px 400px;max-width:780px;margin:0 auto;text-align:center">
+    <div class="tq bridge-line" style="opacity:.3;transition:opacity 1.2s ease">Their attention is claimed from every angle. The website is where it lands — and&nbsp;stays.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 9 — WHAT IF
+     Fixed behind content — competitors scrolls away to reveal,
+     9B scrolls up to cover. Same pattern as business stats.
+     ═══════════════════════════════════════ -->
+<div class="dark" id="whatIfPanel" data-whatif-section style="position:fixed;top:0;left:0;right:0;height:100vh;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .6s ease">
+  <img src="assets/images/what-if.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none">
+  <div style="position:absolute;inset:0;background:rgba(14,13,12,.2);pointer-events:none"></div>
+  <div id="whatIfFrost" style="position:absolute;inset:0;background:rgba(14,13,12,0);-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px);pointer-events:none;will-change:backdrop-filter,background"></div>
+  <div id="whatIfWrap" style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1">
+    <h2 class="th1 whatif-line" data-line="0" style="line-height:1.15;color:var(--ow);opacity:0;transform:translateY(30px);will-change:transform,opacity">What if the journey began<br>with quiet intimacy —</h2>
+    <div class="th1 whatif-line" data-line="1" style="line-height:1.15;color:var(--ow);opacity:0;transform:translateY(30px);will-change:transform,opacity">rich with detail,</div>
+    <div class="th1 whatif-line" data-line="2" style="line-height:1.15;color:var(--ow);opacity:0;transform:translateY(30px);will-change:transform,opacity">free from noise?</div>
+    <div class="tbl whatif-line" data-line="3" style="max-width:600px;margin-top:48px;color:var(--dkt);opacity:0;transform:translateY(30px);will-change:transform,opacity">Where the craft comes forward because everything else has stepped&nbsp;back.</div>
+  </div>
+</div>
+<!-- Spacer: scroll height for the fixed what-if panel -->
+<div id="whatIfSpacer" data-snap="7" style="height:500vh;position:relative;z-index:5;pointer-events:none"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 9B — DARK BOTTOM (slides over What If)
+     ═══════════════════════════════════════ -->
+<section class="dark" style="background:var(--dk);position:relative;z-index:11;min-height:100vh;display:flex;flex-direction:column;justify-content:center">
+  <div class="pad" style="padding-top:120px">
+    <div class="g2">
+      <div class="tbl rv-left" style="color:var(--dkt)">Every competitor site tries to be impressive. Grand. Cinematic. But Patek's power has never been spectacle — it's the opposite. The quiet room at the back. The private appointment. The specialist who already knows your name. The digital experience should feel the same way — not louder, but&nbsp;closer.</div>
+      <div class="tbl rv-left d2" style="color:var(--dkt)">A digital experience so considered that every detail earns its place — the movement, the finishing, the centuries of craft — all present, nothing in the way. Not designed for the many, but for the one. The person browsing should feel the same shift they feel when they step from the street into the boutique: the noise falls away, the pace changes, and someone has been expecting&nbsp;them.</div>
+    </div>
+    <!-- Continue + attribution -->
+    <div style="text-align:center;margin-top:120px">
+      <a href="#" class="tl rv d3 tab-link" data-tab="vision" style="color:var(--dkt);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .4s ease;margin-bottom:80px" onmouseover="this.style.color='var(--ow)'" onmouseout="this.style.color='var(--dkt)'">Vision <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></a>
+      <div class="rv-fade d4" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="ts" style="color:var(--dkd)">Prepared for</span>
+          <img src="assets/images/thg-wordmark.svg" alt="The Hour Glass" style="height:10px;width:auto;filter:brightness(0) invert(1);opacity:.3">
+        </div>
+        <div class="ts" style="color:var(--dkd);opacity:.6">by Aleph</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-brief -->
+
+<!-- ═══ TAB 2 — VISION ═══ -->
+<div class="tab-content tab-vision" data-tab="vision" style="display:none">
+
+<!-- ═══════════════════════════════════════
+     SECTION 10 — MANIFESTO
+     ═══════════════════════════════════════ -->
+<section data-snap="8" class="dark" style="background:var(--dk);position:relative;z-index:5">
+  <!-- Poetry — sticky scroll reveal -->
+  <div id="poemWrap" style="position:relative;height:800vh">
+    <div style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px;overflow:hidden">
+      <!-- max.svg background — fades in with light bg on final beat -->
+      <div id="poemMaxBg" style="position:absolute;inset:0;background:url('assets/images/max.svg') center/cover no-repeat;opacity:0;transition:opacity 1.2s ease;pointer-events:none"></div>
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,.35);opacity:0;transition:opacity 1.2s ease;pointer-events:none" id="poemMaxOverlay"></div>
+      <!-- Poem stanzas -->
+      <div id="poemText" style="display:flex;flex-direction:column;align-items:center;gap:40px;max-width:500px;position:relative;z-index:1;transition:opacity .8s ease">
+        <div class="tq poem-stanza" data-stanza="0" style="color:var(--ow);opacity:1">
+          Before the door opens,<br>there is a room.
+        </div>
+        <div class="tq poem-stanza" data-stanza="1" style="color:var(--ow);opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(.16,1,.3,1)">
+          Not empty — considered.<br>
+          Every detail placed<br>
+          the way a hand places an index on a&nbsp;dial.
+        </div>
+        <div class="tq poem-stanza" data-stanza="2" style="color:var(--ow);opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(.16,1,.3,1)">
+          The craft took centuries.<br>
+          Your decision deserves its own time.<br>
+          This is where that time&nbsp;begins.
+        </div>
+      </div>
+      <!-- Title + subtitle — appear after poem dissolves (now on light bg) -->
+      <div id="poemNext" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2">
+        <h2 class="th1" style="color:var(--ow);opacity:0;transition:opacity 1s ease" id="poemTitle">The Art of Curated&nbsp;Maximalism</h2>
+        <div class="th3" style="color:var(--dkt);opacity:0;transform:translateY(16px);transition:all .8s cubic-bezier(.16,1,.3,1);margin-top:24px" id="poemSubtitle">Rich, not empty. Quiet, not&nbsp;silent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 11 — CREATIVE DIRECTION (scrolls over manifesto)
+     ═══════════════════════════════════════ -->
+<section style="background:var(--ow);position:relative;z-index:10;margin-top:-250vh">
+
+  <!-- Weighted two-col intro -->
+  <div class="pad" style="padding-top:80px;padding-bottom:0">
+    <div class="gw">
+      <div>
+        <div class="tbl rv-left">Luxury on the internet defaults to whitespace — vast, clinical, safe. But walk into any Patek Philippe boutique and the room is full. Warm wood. Flowers. A display case lit like a stage. Every detail present, every detail considered. The digital experience should feel the same — not sparse, but curated. Not minimal, but intentional. A room where everything earns its place through craft, through history, through meaning.</div>
+      </div>
+      <div class="tq rv-fade d3" style="padding-top:16px">Not the silence of less — but the silence of everything in its right&nbsp;place.</div>
+    </div>
+  </div>
+
+  <!-- Codes of Luxury carousel -->
+  <div style="padding:100px 0 200px;overflow:hidden">
+    <div style="text-align:center;margin-bottom:16px">
+      <div id="codesCalatrava" style="display:inline-block;width:24px;height:24px;opacity:.25;transition:opacity .4s ease,transform .8s cubic-bezier(.22,1,.36,1);cursor:grab" onmouseenter="this.style.opacity='.5'" onmouseleave="this.style.opacity='.25'">
+        <img src="assets/images/pp-calatrava.svg" alt="" style="width:100%;height:100%">
+      </div>
+    </div>
+    <div class="tl" style="text-align:center;margin-bottom:56px">The Codes of Luxury</div>
+    <div style="width:100%;display:flex;justify-content:center">
+      <div id="codesCarouselTrack" style="display:flex;align-items:center;transition:transform .6s cubic-bezier(.16,1,.3,1)"></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;min-height:60px;display:flex;align-items:flex-start;justify-content:center">
+      <div id="codesDescText" style="font-family:var(--serif);font-style:italic;font-size:clamp(.82rem,.95vw,.9rem);color:var(--t3);line-height:1.8;max-width:400px;opacity:0;transition:opacity .4s ease"></div>
+    </div>
+  </div>
+
+  <!-- Video break — Gemsetting -->
+  <div class="vi" style="margin-top:0">
+    <video autoplay muted loop playsinline aria-hidden="true" preload="none">
+      <source src="https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/357729-source/pp-savoir-faire-banner-16-9-7118-1450r-gemsetting" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Six Invitations — pinned horizontal scroll -->
+  <div style="position:relative;height:700vh" id="inviteOuter">
+    <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow:hidden">
+      <!-- Header -->
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:120px 60px 20px">
+        <h2 class="th1 rv-fade">The journey invites you&nbsp;to</h2>
+        <div style="display:flex;gap:12px;margin-top:56px;justify-content:center" id="invitePips">
+          <div class="invite-pip" data-pip="0" style="width:20px;height:1px;background:var(--t1);transition:background .4s ease"></div>
+          <div class="invite-pip" data-pip="1" style="width:20px;height:1px;background:var(--bdr);transition:background .4s ease"></div>
+          <div class="invite-pip" data-pip="2" style="width:20px;height:1px;background:var(--bdr);transition:background .4s ease"></div>
+          <div class="invite-pip" data-pip="3" style="width:20px;height:1px;background:var(--bdr);transition:background .4s ease"></div>
+          <div class="invite-pip" data-pip="4" style="width:20px;height:1px;background:var(--bdr);transition:background .4s ease"></div>
+        </div>
+      </div>
+      <!-- Horizontal scrolling invitations -->
+      <div style="flex:1;position:relative;overflow:hidden" id="inviteTrack">
+        <div class="invite-step" data-step="0" style="position:absolute;top:30%;width:400px;text-align:center;will-change:transform,opacity;transform:translate(-50%,-50%)">
+          <div style="font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--t1);margin-bottom:8px">The space</div>
+          <div style="font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)">The boutique itself — its architecture, its atmosphere, its place in the city. Each location rendered with the specificity it deserves. Singapore feels like Singapore.</div>
+        </div>
+        <div class="invite-step" data-step="1" style="position:absolute;top:30%;width:400px;text-align:center;will-change:transform,opacity;transform:translate(-50%,-50%)">
+          <div style="font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--t1);margin-bottom:8px">The collections</div>
+          <div style="font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)">The watches presented not as catalogue entries but as craft objects — the movement, the finishing, the complications. Close enough to feel the weight.</div>
+        </div>
+        <div class="invite-step" data-step="2" style="position:absolute;top:30%;width:400px;text-align:center;will-change:transform,opacity;transform:translate(-50%,-50%)">
+          <div style="font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--t1);margin-bottom:8px">The craft</div>
+          <div style="font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)">Behind the dial. The savoir-faire. Centuries of technique distilled into a single beveled edge. The closer you look, the more you find.</div>
+        </div>
+        <div class="invite-step" data-step="3" style="position:absolute;top:30%;width:400px;text-align:center;will-change:transform,opacity;transform:translate(-50%,-50%)">
+          <div style="font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--t1);margin-bottom:8px">Your own story</div>
+          <div style="font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)">An AI-curated experience that listens — your taste, your relationship with time, your reasons for looking. A conversation that helps you discover which Patek Philippe belongs in your&nbsp;life.</div>
+        </div>
+        <div class="invite-step" data-step="4" style="position:absolute;top:30%;width:400px;text-align:center;will-change:transform,opacity;transform:translate(-50%,-50%)">
+          <div style="font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--t1);margin-bottom:8px">The boutique</div>
+          <div style="font-family:var(--serif);font-size:.93rem;line-height:1.95;color:var(--t3)">The final threshold. A personalised appointment — not a form, but a considered request. The specialist already knows your name before you walk through the&nbsp;door.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three principles -->
+  <div class="pad-narrow">
+    <h2 class="th2 rv c" style="margin-bottom:60px">Guided by three principles.</h2>
+    <div class="pr rv">
+      <div class="pg">
+        <div class="pn">I</div>
+        <div>
+          <div class="pt">Intentional density.</div>
+          <div class="pb">Every element earns its place through craft, history, or meaning. The page feels inhabited. Like a boutique, not a&nbsp;gallery.</div>
+        </div>
+      </div>
+    </div>
+    <div class="pr rv d1">
+      <div class="pg">
+        <div class="pn">II</div>
+        <div>
+          <div class="pt">Layered depth.</div>
+          <div class="pb">Surface for the curious. Depth for the collector. The closer you look, the more you&nbsp;find.</div>
+        </div>
+      </div>
+    </div>
+    <div class="pr rv d2">
+      <div class="pg">
+        <div class="pn">III</div>
+        <div>
+          <div class="pt">Language of detail.</div>
+          <div class="pb">Perlage. Côtes de Genève. Beveling. Chamfering. The language of the craft becomes the language of the&nbsp;interface.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     CLOSE — VISION TAB (matches Brief ending)
+     ═══════════════════════════════════════ -->
+<section class="full" style="position:relative;z-index:10;background:var(--ow)">
+  <div style="text-align:center">
+    <div class="rv-fade d4" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="ts" style="color:var(--t4)">Prepared for</span>
+        <img src="assets/images/thg-wordmark.svg" alt="The Hour Glass" style="height:10px;width:auto;opacity:.3">
+      </div>
+      <div class="ts" style="color:var(--t4);opacity:.6">by Aleph</div>
+      <a href="https://patek-philippe-v3.web.app/" target="_blank" rel="noopener" class="tl rv-fade d5" id="visionExperienceLink" style="margin-top:48px;color:var(--t4);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .4s ease" onmouseover="this.style.color='var(--t1)'" onmouseout="this.style.color='var(--t4)'">Experience <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="11 7 17 7 17 13"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-vision -->
+
+<!-- ═══════════════════════════════════════
+     TAB 3 — PROGRAMME
+     ═══════════════════════════════════════ -->
+<div class="tab-content tab-programme" data-tab="programme" style="display:none">
+<!-- PARKED — see parked-sections.html -->
+</div><!-- /tab-programme -->
+</main>
+
+<script>
+// Cred data
+const credBrands=['porsche','cartier','rollsroyce','hermes','vancleef'];
+const credData={
+  hermes:{logo:'assets/images/logos/hermes.svg',name:'Hermès',title:'House of Silk',teaser:'The perfect physical store, reimagined online',body:'An entirely illustrated, fully responsive e-commerce experience showcasing over 600 Hermès silk products across 27 countries. The strategy combined artistic creativity with practical e-commerce functionality, drawing inspiration from the concept of the perfect physical store. Rather than a standard shopping interface, it prioritised immersive brand storytelling while remaining accessible across all devices.',video:'assets/videos/hermes.mp4',vStart:26,vEnd:34,logoH:'40px'},
+  cartier:{logo:'assets/images/logos/cartier.svg',name:'Cartier',title:'Panther — Global Campaign',teaser:'Heritage honoured through contemporary vision',body:'Since its first appearance in 1914, Cartier\'s Panther has embodied freedom, elegance and style. For a new international campaign, the challenge was to honour this heritage while creating a contemporary and evocative vision of the Cartier universe. A global media strategy combined innovation and high-impact placements — large-scale displays in Paris, London, New York and Shanghai, alongside collaborations with the New York Times and the Financial Times. In a significant break from its 132-year tradition, the FT adapted its production for a unique over-cover not printed on its signature salmon paper.',video:'assets/videos/cartier.mp4',vStart:0,vEnd:10,logoH:'22px'},
+  rollsroyce:{logo:'assets/images/logos/rolls-royce.svg',name:'Rolls-Royce',title:'Cullinan Black Badge Series II',teaser:'In-camera craft, no shortcuts',body:'The creative concept centres on "Black Badge transcends from the darkness and moves into the light." Every frame captured using practical camera techniques — motion blur, single-shot complex moves, and seamless VFX integration rather than relying solely on post-production. The craft of making is the message. In-camera optical effects and sophisticated motion control cinematography that lets the car speak through how it was filmed, not what was added after.',video:'assets/videos/rollsroyce.mp4',vStart:0,vEnd:10,logoH:'50px'},
+  porsche:{logo:'assets/images/logos/porsche.svg',name:'Porsche',title:'Motorsport\'s New Home',teaser:'Making the complex accessible',body:'A digital platform designed to make motorsport racing accessible and engaging for fans worldwide, launched in four months for the 24 Hours of Le Mans. The team recognised that the thrill of competition is universal but motorsport felt intimidating to newcomers. The strategy involved simplifying complex regulations and race strategies while maintaining authenticity. Built on a MACH framework prioritising lightweight, responsive performance. Users increased 645% year-on-year; page views rose 673%.',video:'assets/videos/porsche.mp4',vStart:0,vEnd:10,logoH:'14px'},
+  vancleef:{logo:'assets/images/logos/vancleef.svg',name:'Van Cleef & Arpels',title:'[Project Title TBD]',teaser:'Crafting wonder into digital',body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',video:'',vStart:0,vEnd:10,logoH:'20px'}
+};
+let credIdx=0;
+
+// Cred logos — hover
+document.querySelectorAll('.cred-logo').forEach(logo=>{
+  const imgEl=logo.querySelector('img');
+  const teaserEl=logo.querySelector('.cred-teaser');
+  logo.addEventListener('mouseenter',()=>{imgEl.style.opacity='.45';teaserEl.style.opacity='1'});
+  logo.addEventListener('mouseleave',()=>{if(!logo.classList.contains('active')){imgEl.style.opacity='.18';teaserEl.style.opacity='0'}});
+  logo.addEventListener('click',()=>credOpen(logo.dataset.cred));
+});
+
+function credOpen(brand){
+  credIdx=credBrands.indexOf(brand);
+  credUpdate();
+  document.getElementById('credSheet2').style.transform='translateX(0)';
+  document.getElementById('credSheet1').style.transform='translateX(0)';
+  const bd=document.getElementById('credBackdrop');
+  bd.style.background='rgba(14,13,12,.35)';
+  bd.style.pointerEvents='auto';
+  // Hide crown nav and main nav behind sheets
+  document.getElementById('crownNav').style.opacity='0';
+  document.getElementById('crownNav').style.pointerEvents='none';
+  document.querySelector('nav').style.opacity='0';
+  document.querySelector('nav').style.pointerEvents='none';
+}
+function credUpdate(){
+  const d=credData[credBrands[credIdx]];
+  const logoEl=document.getElementById('credSheetLogo');
+  logoEl.src=d.logo;
+  logoEl.style.height=d.logoH;
+  document.getElementById('credSheetTitle').textContent=d.title;
+  document.getElementById('credSheetBody').textContent=d.body;
+  const vidEl=document.getElementById('credVideo');
+  const vidFullEl=document.getElementById('credVideoFullPlayer');
+  if(d.video){
+    vidEl.src=d.video;
+    vidEl.currentTime=d.vStart;
+    vidEl.play();
+    vidEl.ontimeupdate=()=>{if(vidEl.currentTime>=d.vEnd)vidEl.currentTime=d.vStart};
+    vidFullEl.src=d.video;
+  document.getElementById('credSheet2').style.transform=d.video?'translateX(0)':'translateX(100%)';
+  }else{vidEl.removeAttribute('src');vidFullEl.removeAttribute('src');vidEl.ontimeupdate=null;
+  document.getElementById('credSheet2').style.transform='translateX(100%)';}
+  const pi=(credIdx-1+credBrands.length)%credBrands.length;
+  const ni=(credIdx+1)%credBrands.length;
+  document.getElementById('credPrevLabel').textContent=credData[credBrands[pi]].name;
+  document.getElementById('credNextLabel').textContent=credData[credBrands[ni]].name;
+  document.querySelectorAll('.cred-logo').forEach(l=>{l.classList.remove('active');l.querySelector('img').style.opacity='.25';l.querySelector('.cred-teaser').style.opacity='0'});
+  const active=document.querySelector(`[data-cred="${credBrands[credIdx]}"]`);
+  if(active){active.classList.add('active');active.querySelector('img').style.opacity='.5';active.querySelector('.cred-teaser').style.opacity='1'}
+}
+function credClose(){
+  document.getElementById('credSheet1').style.transform='translateX(100%)';
+  document.getElementById('credSheet2').style.transform='translateX(100%)';
+  const bd=document.getElementById('credBackdrop');
+  bd.style.background='rgba(14,13,12,0)';
+  bd.style.pointerEvents='none';
+  document.querySelectorAll('.cred-logo').forEach(l=>{l.classList.remove('active');l.querySelector('img').style.opacity='.25';l.querySelector('.cred-teaser').style.opacity='0'});
+  // Restore crown nav and main nav
+  const cn=document.getElementById('crownNav');
+  if(cn.classList.contains('visible')){cn.style.opacity='1';cn.style.pointerEvents='auto'}
+  document.querySelector('nav').style.opacity='';
+  document.querySelector('nav').style.pointerEvents='';
+}
+
+if(document.getElementById('credCloseBtn'))document.getElementById('credCloseBtn').addEventListener('click',credClose);
+if(document.getElementById('credBackdrop'))document.getElementById('credBackdrop').addEventListener('click',credClose);
+function credSwitch(newIdx){
+  const sheet1=document.getElementById('credSheet1');
+  const sheet2=document.getElementById('credSheet2');
+  if(!sheet1||!sheet2)return;
+  const contentEls=sheet1.querySelectorAll('#credSheetLogo,#credSheetTitle,#credSheetBody');
+  contentEls.forEach(el=>{el.style.transition='opacity .25s ease';el.style.opacity='0'});
+  sheet2.style.transform='translateX(100%)';
+  setTimeout(()=>{
+    credIdx=newIdx;
+    credUpdate();
+    contentEls.forEach(el=>{el.style.opacity='1'});
+    const newD=credData[credBrands[newIdx]];
+    sheet2.style.transform=newD.video?'translateX(0)':'translateX(100%)';
+  },300);
+}
+['credPrev','credNext','credVideoArea','credVideoFullClose','credVideoFull'].forEach(id=>{
+  // Guard: only attach if element exists (cred sheet HTML may be parked)
+  const el=document.getElementById(id);if(!el)return;
+  if(id==='credPrev')el.addEventListener('click',()=>credSwitch((credIdx-1+credBrands.length)%credBrands.length));
+  if(id==='credNext')el.addEventListener('click',()=>credSwitch((credIdx+1)%credBrands.length));
+  if(id==='credVideoArea')el.addEventListener('click',()=>{const vf=document.getElementById('credVideoFull');if(vf){vf.style.opacity='1';vf.style.pointerEvents='auto'}});
+  if(id==='credVideoFullClose')el.addEventListener('click',(e)=>{e.stopPropagation();const vf=document.getElementById('credVideoFull');if(vf){vf.style.opacity='0';vf.style.pointerEvents='none'}});
+  if(id==='credVideoFull')el.addEventListener('click',()=>{const vf=document.getElementById('credVideoFull');if(vf){vf.style.opacity='0';vf.style.pointerEvents='none'}});
+});
+
+// Reveal observer
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.04,rootMargin:'0px 0px -10px 0px'});
+document.querySelectorAll('.rv,.rv-up,.rv-fade,.rv-left').forEach(el=>obs.observe(el));
+
+// Hero scroll sequence
+const heroWrap=document.getElementById('heroWrap');
+const crownNav=document.getElementById('crownNav');
+const crownSections=document.querySelectorAll('.crown-section');
+const snapSections=document.querySelectorAll('[data-snap]');
+
+// Crown click — scroll to section
+crownSections.forEach(sec=>{
+  sec.addEventListener('click',()=>{
+    const idx=parseInt(sec.dataset.section);
+    if(snapSections[idx])snapSections[idx].scrollIntoView({behavior:'smooth'});
+  });
+});
+
+window.addEventListener('scroll',()=>{
+  const scrollY=window.scrollY;
+  const vh=window.innerHeight;
+
+  // Hero frost transition
+  if(heroWrap){
+    if(scrollY>vh*0.7){heroWrap.classList.add('scrolled')}else{heroWrap.classList.remove('scrolled')}
+  }
+
+  // Business stats — scroll-driven entrance + staggered parallax exit
+  const businessWrap=document.getElementById('businessWrap');
+  const businessSpacer=document.getElementById('businessSpacer');
+  if(businessWrap&&businessSpacer){
+    const spacerRect=businessSpacer.getBoundingClientRect();
+    const spacerH=businessSpacer.offsetHeight;
+    const show=spacerRect.top<vh&&spacerRect.bottom>0;
+    businessWrap.style.opacity=show?'1':'0';
+    businessWrap.style.pointerEvents=show?'auto':'none';
+
+    if(show){
+      // progress: 0 = spacer top at viewport bottom, 1 = spacer bottom at viewport top
+      const progress=Math.max(0,Math.min(1,(vh-spacerRect.top)/spacerH));
+
+      const stats=businessWrap.querySelectorAll('[data-biz-stat]');
+      // Entrance phase: 0–0.35 of progress, staggered per stat
+      // Hold phase: 0.35–0.65
+      // Exit phase: 0.65–1.0, each stat moves up at different speeds
+      const entranceEnd=0.35;
+      const staggerDelay=[0, 0.08, 0.16]; // entrance offset per stat
+      const exitSpeeds=[15, 30, 50]; // subtle stagger tied to cover overlap
+
+      // How much the next section covers the viewport (0 = not covering, 1 = fully covered)
+      const nextSection=businessSpacer.nextElementSibling;
+      let coverP=0;
+      if(nextSection){
+        const nextRect=nextSection.getBoundingClientRect();
+        coverP=Math.max(0,Math.min(1,(vh-nextRect.top)/vh));
+      }
+
+      stats.forEach(stat=>{
+        const i=parseInt(stat.dataset.bizStat);
+        let opacity=0, y=60;
+
+        if(progress<entranceEnd){
+          // Entrance: fade up with stagger
+          const localP=Math.max(0,Math.min(1,(progress-staggerDelay[i])/(entranceEnd-staggerDelay[i])));
+          const ease=1-Math.pow(1-localP,3); // ease-out cubic
+          opacity=ease;
+          y=60*(1-ease);
+        }else{
+          // Hold + exit: stagger only while next section is covering
+          opacity=1;
+          y=-(exitSpeeds[i]*coverP);
+        }
+
+        stat.style.opacity=opacity;
+        stat.style.transform=`translateY(${y}px)`;
+      });
+    }
+  }
+
+  // Nav solid bg (transparent during hero, gradient from section 2 onwards)
+  // Nav light/dark based on which section is at top
+  const navEl=document.querySelector('nav');
+  if(navEl){
+    // Check if a dark/bleed section is at the top (including fixed panels)
+    const bleedSections=document.querySelectorAll('.full-bleed,.dark,[data-whatif-section]');
+    let isBleed=false;
+    bleedSections.forEach(sec=>{
+      const rect=sec.getBoundingClientRect();
+      // For fixed panels, also check opacity to know if they're actually visible
+      const isVisible=sec.style.opacity!=='0';
+      if(rect.top<80&&rect.bottom>80&&isVisible)isBleed=true;
+    });
+    if(scrollY>vh*3.2&&!isBleed){navEl.classList.add('nav-solid')}else{navEl.classList.remove('nav-solid')}
+    // Priority: poem control > bleed > default (light)
+    const poemControlling=navEl.classList.contains('nav-clear')||(poemWrap&&poemWrap.getBoundingClientRect().top<=0&&poemWrap.getBoundingClientRect().bottom>0);
+    if(!poemControlling){
+      if(isBleed){
+        navEl.classList.add('nav-bleed');
+      }else{
+        navEl.classList.remove('nav-bleed');
+      }
+    }
+    // Crown is light-mode by default now
+  }
+
+  // Show/hide crown nav (appears once past hero)
+  if(crownNav){
+    if(scrollY>vh*1.8){crownNav.classList.add('visible')}else{crownNav.classList.remove('visible')}
+  }
+
+  // Update active crown ridge
+  let activeIdx=0;
+  snapSections.forEach((sec,i)=>{
+    const rect=sec.getBoundingClientRect();
+    if(rect.top<vh*0.5)activeIdx=i;
+  });
+  if(activeIdx!==window._lastCrownIdx){
+    window._lastCrownIdx=activeIdx;
+    // Clear all ridges
+    document.querySelectorAll('.crown-ridge').forEach(r=>r.classList.remove('active'));
+    // Light up ALL ridges in the active section
+    const activeSec=crownSections[activeIdx];
+    if(activeSec){
+      activeSec.querySelectorAll('.crown-ridge').forEach(r=>r.classList.add('active'));
+      // Flash label
+      crownSections.forEach(s=>s.classList.remove('just-arrived'));
+      activeSec.classList.add('just-arrived');
+      setTimeout(()=>activeSec.classList.remove('just-arrived'),1500);
+    }
+  }
+},{passive:true});
+
+// ── POEM STANZA SCROLL REVEAL ──
+const poemWrap=document.getElementById('poemWrap');
+if(poemWrap){
+  const poemStanzas=poemWrap.querySelectorAll('.poem-stanza');
+  const poemText=document.getElementById('poemText');
+  const poemMaxBg=document.getElementById('poemMaxBg');
+  const poemMaxOverlay=document.getElementById('poemMaxOverlay');
+  const poemNext=document.getElementById('poemNext');
+  window.addEventListener('scroll',()=>{
+    const rect=poemWrap.getBoundingClientRect();
+    const totalH=poemWrap.offsetHeight-window.innerHeight;
+    const scrolled=Math.max(0,Math.min(1,-rect.top/totalH));
+    // Stanzas 2 & 3 fade in at 15% and 30%
+    poemStanzas.forEach((s,i)=>{
+      if(i===0)return;
+      const threshold=i*0.15;
+      if(scrolled>=threshold){s.style.opacity='1';s.style.transform='translateY(0)'}
+      else{s.style.opacity='0';s.style.transform='translateY(20px)'}
+    });
+    // Beat 4 (40%+): dissolve poem, reveal max.svg bg
+    if(scrolled>=0.4){
+      poemText.style.opacity='0';
+      poemMaxBg.style.opacity='1';
+      poemMaxOverlay.style.opacity='1';
+    }else{
+      poemText.style.opacity='1';
+      poemMaxBg.style.opacity='0';
+      poemMaxOverlay.style.opacity='0';
+    }
+    // Beat 5 (50%+): title appears
+    const poemTitle=document.getElementById('poemTitle');
+    const poemSubtitle=document.getElementById('poemSubtitle');
+    if(scrolled>=0.5){
+      poemTitle.style.opacity='1';
+    }else{
+      poemTitle.style.opacity='0';
+    }
+    // Beat 6 (58%+): subtitle appears — holds until covered
+    if(scrolled>=0.58){
+      poemSubtitle.style.opacity='1';
+      poemSubtitle.style.transform='translateY(0)';
+    }else{
+      poemSubtitle.style.opacity='0';
+      poemSubtitle.style.transform='translateY(16px)';
+    }
+    // Nav: bleed (light text) throughout — dark poem then dark max.svg bg
+    const navEl=document.querySelector('nav');
+    if(rect.top<=0&&rect.bottom>0){
+      navEl.classList.add('nav-bleed');
+      navEl.classList.remove('nav-solid','nav-clear');
+    }else if(rect.bottom<=0){
+      navEl.classList.remove('nav-clear','nav-bleed');
+    }
+  },{passive:true});
+}
+
+// ── BRIDGE LINE — brighten at centre of viewport ──
+const bridgeLine=document.querySelector('.bridge-line');
+if(bridgeLine){
+  const bridgeObs=new IntersectionObserver(([e])=>{
+    bridgeLine.style.opacity=e.isIntersecting?'1':'.25';
+  },{rootMargin:'-40% 0px -40% 0px',threshold:0});
+  bridgeObs.observe(bridgeLine);
+}
+
+// ── TAB SWITCHING ──
+const tabLinks=document.querySelectorAll('.tab-link');
+const tabContents=document.querySelectorAll('.tab-content');
+function switchTab(tabName){
+  // Crossfade: fade out current, swap, fade in new
+  const current=document.querySelector('.tab-content[style*="block"],.tab-content:not([style*="none"])');
+  if(current&&current.dataset.tab!==tabName){current.classList.add('tab-fading')}
+  setTimeout(()=>{
+    tabContents.forEach(tc=>{
+      tc.style.display=tc.dataset.tab===tabName?'block':'none';
+      tc.classList.remove('tab-fading');
+    });
+    tabLinks.forEach(tl=>{
+      if(tl.dataset.tab===tabName){tl.classList.add('active')}
+      else{tl.classList.remove('active')}
+    });
+    const cn=document.getElementById('crownNav');
+    const cnProg=document.getElementById('crownNavProg');
+    if(cn)cn.style.display='none';
+    if(cnProg){cnProg.style.display='none';cnProg.classList.remove('visible')}
+    if(tabName==='brief'&&cn){cn.style.display=''}
+    else if(tabName==='programme'&&cnProg){cnProg.style.display='';cnProg.classList.add('visible')}
+    const hw=document.getElementById('heroWrap');
+    if(hw){hw.style.display=tabName==='brief'?'':'none'}
+    window.scrollTo({top:0,behavior:'instant'});
+    const activeTab=document.querySelector(`.tab-content[data-tab="${tabName}"]`);
+    if(activeTab){const firstH=activeTab.querySelector('h1,h2,h3,[class*="th"]');if(firstH){firstH.setAttribute('tabindex','-1');firstH.focus({preventScroll:true})}}
+    document.querySelectorAll('.rv,.rv-up,.rv-fade,.rv-left').forEach(el=>{
+      el.classList.remove('v');
+      obs.observe(el);
+    });
+    requestAnimationFrame(()=>{
+      document.querySelectorAll('.rv,.rv-up,.rv-fade,.rv-left').forEach(el=>obs.observe(el));
+    });
+  },current&&current.dataset.tab!==tabName?400:0);
+}
+
+// ── SIX INVITATIONS — pinned horizontal scroll ──
+(function(){
+  const outer=document.getElementById('inviteOuter');
+  const track=document.getElementById('inviteTrack');
+  if(!outer||!track)return;
+  const steps=outer.querySelectorAll('.invite-step');
+  const pips=outer.querySelectorAll('.invite-pip');
+  const total=steps.length;
+  const stepW=500; // horizontal spacing between steps
+  let lastIdx=-1;
+
+  window.addEventListener('scroll',()=>{
+    const rect=outer.getBoundingClientRect();
+    const scrollH=outer.offsetHeight-window.innerHeight;
+    if(scrollH<=0)return;
+    const progress=Math.min(1,Math.max(0,-rect.top/scrollH));
+    const raw=progress*(total-1);
+    const idx=Math.round(raw);
+    const centerX=track.offsetWidth*0.5;
+
+    steps.forEach((step,i)=>{
+      const dist=i-raw;
+      const x=centerX+dist*stepW;
+      step.style.left=x+'px';
+      const absDist=Math.abs(dist);
+      let opacity=1;
+      if(absDist>1)opacity=0;
+      else if(absDist>0.2)opacity=Math.max(0,1-(absDist-0.2)/0.6);
+      step.style.opacity=opacity;
+    });
+
+    if(idx!==lastIdx){
+      lastIdx=idx;
+      pips.forEach((p,i)=>{
+        p.style.background=i===idx?'var(--t1)':'var(--bdr)';
+      });
+    }
+  },{passive:true});
+})();
+
+// ── CODES OF LUXURY CAROUSEL ──
+(function(){
+  const codesData=[
+    {word:'Patience',desc:'Years on a waiting list. A lifetime to understand a grand complication. What is worthy cannot be\u00a0rushed.'},
+    {word:'Craft',desc:'Centuries of finishing in a single beveled edge \u2014 most of it behind the dial, where no one will ever\u00a0see.'},
+    {word:'Restraint',desc:'The emblem is there \u2014 you simply have to know where to look. Confidence expressed in\u00a0silence.'},
+    {word:'Intimacy',desc:'Your name remembered. The right room asks nothing of you but presence. A handwritten note after the purchase, not a sales pitch before\u00a0it.'},
+    {word:'Devotion',desc:'Every object has earned its place. Nothing ornamental. Nothing incidental. The collection is a portrait of its\u00a0collector.'}
+  ];
+  const cTrack=document.getElementById('codesCarouselTrack');
+  const cCalatrava=document.getElementById('codesCalatrava');
+  if(!cTrack||!cCalatrava)return;
+  const total=codesData.length;
+  codesData.forEach((c,i)=>{
+    const el=document.createElement('div');
+    el.className='codes-item';
+    el.dataset.idx=i;
+    el.innerHTML='<div class="codes-word">'+c.word+'</div>';
+    cTrack.appendChild(el);
+  });
+  const cItems=cTrack.querySelectorAll('.codes-item');
+  let cIdx=0;
+  let cRot=0;
+  let cLastOff=0;
+  const cDescEl=document.getElementById('codesDescText');
+  function cPos(anim){
+    cItems.forEach(el=>el.classList.toggle('codes-active',parseInt(el.dataset.idx)===cIdx));
+    cTrack.style.transition='none';
+    cTrack.style.transform='translateX(0)';
+    void cTrack.offsetWidth;
+    const activeEl=cItems[cIdx];
+    const trackRect=cTrack.parentElement.getBoundingClientRect();
+    const activeRect=activeEl.getBoundingClientRect();
+    const parentMid=trackRect.left+trackRect.width/2;
+    const activeMid=activeRect.left+activeRect.width/2;
+    const off=parentMid-activeMid;
+    if(anim){
+      cTrack.style.transform='translateX('+cLastOff+'px)';
+      void cTrack.offsetWidth;
+      cTrack.style.transition='transform .8s cubic-bezier(.22,1,.36,1)';
+      cTrack.style.transform='translateX('+off+'px)';
+    }else{
+      cTrack.style.transform='translateX('+off+'px)';
+    }
+    cLastOff=off;
+    cCalatrava.style.transition=anim?'transform .8s cubic-bezier(.22,1,.36,1)':'none';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+    if(anim){
+      cDescEl.style.opacity='0';
+      setTimeout(()=>{cDescEl.textContent=codesData[cIdx].desc;cDescEl.style.opacity='1'},300);
+    }else{
+      cDescEl.textContent=codesData[cIdx].desc;
+      cDescEl.style.opacity='1';
+    }
+  }
+  function cNext(){if(cIdx<total-1){cIdx++;cRot+=90;cPos(true)}}
+  function cPrev(){if(cIdx>0){cIdx--;cRot-=90;cPos(true)}}
+  let cDrag=false,cDragX=0,cDragA=0,cDragRot=0;
+  cCalatrava.addEventListener('mousedown',e=>{cDrag=true;cDragX=e.clientX;cDragA=0;cDragRot=cRot;cCalatrava.style.cursor='grabbing';e.preventDefault()});
+  window.addEventListener('mousemove',e=>{
+    if(!cDrag)return;
+    const d=e.clientX-cDragX;cDragA+=d;cDragX=e.clientX;
+    cDragRot+=d*1.5;
+    cCalatrava.style.transition='none';
+    cCalatrava.style.transform='rotate('+cDragRot+'deg)';
+    if(cDragA>50){cDragA=0;cNext()}
+    else if(cDragA<-50){cDragA=0;cPrev()}
+  });
+  window.addEventListener('mouseup',()=>{
+    if(!cDrag)return;
+    cDrag=false;cDragA=0;cCalatrava.style.cursor='grab';
+    cRot=Math.round(cDragRot/90)*90;
+    cCalatrava.style.transition='transform .4s cubic-bezier(.22,1,.36,1)';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+  });
+  cCalatrava.addEventListener('touchstart',e=>{cDrag=true;cDragX=e.touches[0].clientX;cDragA=0;cDragRot=cRot});
+  cCalatrava.addEventListener('touchmove',e=>{
+    if(!cDrag)return;
+    const d=e.touches[0].clientX-cDragX;cDragA+=d;cDragX=e.touches[0].clientX;
+    cDragRot+=d*1.5;
+    cCalatrava.style.transition='none';
+    cCalatrava.style.transform='rotate('+cDragRot+'deg)';
+    if(cDragA>50){cDragA=0;cNext()}
+    else if(cDragA<-50){cDragA=0;cPrev()}
+  });
+  cCalatrava.addEventListener('touchend',()=>{
+    if(!cDrag)return;
+    cDrag=false;cDragA=0;
+    cRot=Math.round(cDragRot/90)*90;
+    cCalatrava.style.transition='transform .4s cubic-bezier(.22,1,.36,1)';
+    cCalatrava.style.transform='rotate('+cRot+'deg)';
+  });
+  cItems.forEach(el=>{
+    el.addEventListener('click',()=>{
+      const target=parseInt(el.dataset.idx);
+      const current=((cIdx%total)+total)%total;
+      if(target===current)return;
+      const diff=target-current;
+      cIdx+=diff;
+      cRot+=diff*90;
+      cPos(true);
+    });
+  });
+  requestAnimationFrame(()=>requestAnimationFrame(()=>cPos(false)));
+  window.addEventListener('resize',()=>cPos(false));
+})();
+
+tabLinks.forEach(tl=>{
+  tl.addEventListener('click',e=>{
+    e.preventDefault();
+    const tab=tl.dataset.tab;
+    switchTab(tab);
+    history.replaceState(null,null,'#'+tab);
+  });
+});
+// ── HASH ROUTING — load correct tab from URL ──
+const hashTab=location.hash.replace('#','');
+if(hashTab&&['brief','vision','programme'].includes(hashTab)){switchTab(hashTab)}
+
+// ── BOUTIQUE NAME CLICK + AUTO-CYCLE ──
+(function(){
+  const bgs=document.querySelectorAll('.boutique-bg');
+  const names=document.querySelectorAll('.boutique-name');
+  if(!bgs.length)return;
+  let currentB=0;
+  let autoTimer;
+
+  function showBoutique(idx){
+    bgs.forEach(bg=>bg.style.opacity='0');
+    names.forEach(n=>n.style.opacity='.3');
+    bgs[idx].style.opacity='1';
+    names[idx].style.opacity='1';
+    currentB=idx;
+  }
+
+  function startAuto(){
+    clearInterval(autoTimer);
+    autoTimer=setInterval(()=>{
+      showBoutique((currentB+1)%bgs.length);
+    },4000);
+  }
+
+  names.forEach(name=>{
+    name.addEventListener('click',()=>{
+      showBoutique(parseInt(name.dataset.idx));
+      startAuto();
+    });
+  });
+
+  startAuto();
+})();
+
+// ── MAP DOT HOVER ──
+const mapData={
+  japan:{country:'Japan',boutiques:''},
+  hongkong:{country:'Hong Kong',boutiques:''},
+  thailand:{country:'Thailand',boutiques:''},
+  malaysia:{country:'Malaysia',boutiques:''},
+  singapore:{country:'Singapore',boutiques:''},
+  australia:{country:'Australia',boutiques:''}
+};
+const mapCountry=document.getElementById('mapCountry');
+const mapBoutiques=document.getElementById('mapBoutiques');
+function showDot(dot){
+  const d=mapData[dot.dataset.loc];
+  document.querySelectorAll('.map-dot').forEach(d2=>d2.classList.remove('active'));
+  dot.classList.add('active');
+  mapCountry.textContent=d.country;
+  mapBoutiques.textContent=d.boutiques;
+  mapCountry.style.opacity='1';
+  mapBoutiques.style.opacity='1';
+}
+function hideDot(dot){
+  dot.classList.remove('active');
+  mapCountry.style.opacity='0';
+  mapBoutiques.style.opacity='0';
+}
+document.querySelectorAll('.map-dot').forEach(dot=>{
+  dot.addEventListener('mouseenter',()=>showDot(dot));
+  dot.addEventListener('mouseleave',()=>hideDot(dot));
+  dot.addEventListener('click',()=>showDot(dot));
+  dot.addEventListener('focus',()=>showDot(dot));
+  dot.addEventListener('blur',()=>hideDot(dot));
+  dot.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDot(dot)}});
+});
+
+// ── COMPETITION CONCENTRIC CIRCLES ──
+const compData={
+  wrist:{logos:['assets/images/logos/competitors/ap.svg','assets/images/logos/competitors/vacheron.svg','assets/images/logos/competitors/lange.svg'],desc:'The website must go where theirs cannot — behind the dial, into the finishing, through the centuries of craft that no competitor can\u00a0claim.',ring:'ringWrist'},
+  street:{logos:['assets/images/logos/competitors/cortina.svg','assets/images/logos/competitors/jfarren.svg'],desc:'Shared foot traffic, shared neighbourhood, shared search results. The website must own the first impression — the moment someone searches for Patek Philippe in this city, the boutique site must be the door they walk\u00a0through.',ring:'ringStreet'},
+  world:{logos:['assets/images/logos/competitors/hermes-light.svg','assets/images/logos/competitors/aman.svg','assets/images/logos/competitors/33club.svg'],desc:'Competing for the same person\u2019s attention, time, and sense of belonging. The website must feel like it belongs among the world\u2019s most considered luxury\u00a0experiences.',ring:'ringWorld'}
+};
+const compBrandText=document.getElementById('compBrandText');
+const compDescText=document.getElementById('compDescText');
+
+function showRing(zone){
+  const ring=zone.dataset.ring;
+  const d=compData[ring];
+  const ringEl=document.getElementById(d.ring);
+  ringEl.setAttribute('stroke','rgba(0,0,0,.2)');
+  ringEl.setAttribute('fill','rgba(0,0,0,.06)');
+  document.querySelector(`.ring-label[data-ring="${ring}"]`).setAttribute('fill','rgba(0,0,0,.5)');
+  compBrandText.style.opacity='0';
+  compDescText.style.opacity='0';
+  setTimeout(()=>{
+    const sizes={wrist:140,street:100,world:80};
+    const mw=sizes[ring]||120;
+    compBrandText.innerHTML=d.logos.map(l=>'<img src="'+l+'" alt="" style="width:100%;max-width:'+mw+'px;height:auto;opacity:1;display:block;margin:0 auto 32px">').join('');
+    compBrandText.style.opacity='1';
+    compDescText.textContent=d.desc;
+    compDescText.style.opacity='1';
+  },250);
+}
+function hideRing(zone){
+  const ring=zone.dataset.ring;
+  const d=compData[ring];
+  const ringEl2=document.getElementById(d.ring);
+  const defaultFills={ringWrist:'.04',ringStreet:'.03',ringWorld:'.02'};
+  ringEl2.setAttribute('stroke','rgba(0,0,0,.1)');
+  ringEl2.setAttribute('fill','rgba(0,0,0,'+defaultFills[d.ring]+')');
+  document.querySelector(`.ring-label[data-ring="${ring}"]`).setAttribute('fill','rgba(0,0,0,.25)');
+  compBrandText.style.opacity='0';
+  compDescText.style.opacity='0';
+}
+document.querySelectorAll('.ring-zone').forEach(zone=>{
+  zone.addEventListener('mouseenter',()=>showRing(zone));
+  zone.addEventListener('mouseleave',()=>hideRing(zone));
+  zone.addEventListener('click',()=>showRing(zone));
+  zone.addEventListener('focus',()=>showRing(zone));
+  zone.addEventListener('blur',()=>hideRing(zone));
+  zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showRing(zone)}});
+});
+
+// ── WHAT IF — FIXED PANEL + BEAT SEQUENCE ──
+(function(){
+  const panel=document.getElementById('whatIfPanel');
+  const spacer=document.getElementById('whatIfSpacer');
+  const frost=document.getElementById('whatIfFrost');
+  if(!panel||!spacer||!frost)return;
+  const lines=panel.querySelectorAll('.whatif-line');
+  const exitSpeeds=[10, 20, 35, 50];
+
+  // Beats (progress ranges within post-reveal scroll):
+  // 0.00–0.12  Pause — bare image visible
+  // 0.12–0.22  Beat 0: blur + darken
+  // 0.22–0.32  Beat 1: line 0 — "What if the journey began…"
+  // 0.32–0.42  Beat 2: line 1 — "rich with detail,"
+  // 0.42–0.52  Beat 3: line 2 — "free from noise?"
+  // 0.52–0.65  Beat 4: line 3 — "Where the craft comes forward…"
+  // 0.65–1.00  Hold, then exit stagger on cover
+
+  const beatStarts=[0.35, 0.45, 0.55, 0.65]; // line entrance starts
+  const beatLen=0.08; // each line fades in over this range
+  const frostStart=0.25, frostEnd=0.35;
+  const maxBlur=12; // px
+  const maxDarken=0.35; // additional darkness
+
+  window.addEventListener('scroll',()=>{
+    const vh=window.innerHeight;
+    const spacerRect=spacer.getBoundingClientRect();
+    const spacerH=spacer.offsetHeight;
+    const show=spacerRect.top<vh&&spacerRect.bottom>0;
+    panel.style.opacity=show?'1':'0';
+    panel.style.pointerEvents=show?'auto':'none';
+
+    if(!show){
+      // Reset frost when not visible
+      frost.style.backdropFilter='blur(0px)';
+      frost.style.webkitBackdropFilter='blur(0px)';
+      frost.style.background='rgba(14,13,12,0)';
+      return;
+    }
+
+    const progress=Math.max(0,Math.min(1,(vh-spacerRect.top)/spacerH));
+
+    // Frost beat: blur + darken
+    const frostP=Math.max(0,Math.min(1,(progress-frostStart)/(frostEnd-frostStart)));
+    const easeFrost=1-Math.pow(1-frostP,3);
+    const blur=maxBlur*easeFrost;
+    const darken=maxDarken*easeFrost;
+    frost.style.backdropFilter=`blur(${blur}px)`;
+    frost.style.webkitBackdropFilter=`blur(${blur}px)`;
+    frost.style.background=`rgba(14,13,12,${darken})`;
+
+    // Cover: next section overlap drives exit stagger
+    const nextSection=spacer.nextElementSibling;
+    let coverP=0;
+    if(nextSection){
+      const nextRect=nextSection.getBoundingClientRect();
+      coverP=Math.max(0,Math.min(1,(vh-nextRect.top)/vh));
+    }
+
+    // Lines: each fades in at its beat
+    lines.forEach((line,i)=>{
+      const localP=Math.max(0,Math.min(1,(progress-beatStarts[i])/beatLen));
+      const ease=1-Math.pow(1-localP,3);
+      const opacity=ease;
+      const yEntrance=30*(1-ease);
+      const yExit=-(exitSpeeds[i]*coverP);
+      line.style.opacity=opacity;
+      line.style.transform=`translateY(${yEntrance+yExit}px)`;
+    });
+  },{passive:true});
+})();
+
+// ── VISIT CARD HOVER ──
+document.querySelectorAll('.visit-card').forEach(card=>{
+  const overlay=card.querySelector('.visit-overlay');
+  card.addEventListener('mouseenter',()=>overlay.style.opacity='1');
+  card.addEventListener('mouseleave',()=>overlay.style.opacity='0');
+});
+
+// ── FILM GRAIN (retina-safe, pauses when off-screen) ──
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const size=512;
+  const src=document.createElement('canvas');
+  src.width=size;src.height=size;
+  const sctx=src.getContext('2d',{willReadFrequently:true});
+  const frames=[];
+  for(let f=0;f<4;f++){
+    const img=sctx.createImageData(size,size);
+    const d=img.data;
+    for(let i=0;i<d.length;i+=4){
+      const v=Math.random()*255;
+      d[i]=d[i+1]=d[i+2]=v;
+      d[i+3]=18;
+    }
+    frames.push(img);
+  }
+  const canvas=document.createElement('canvas');
+  canvas.className='grain';
+  canvas.width=size;canvas.height=size;
+  canvas.style.width='120vmax';canvas.style.height='120vmax';
+  canvas.style.left='50%';canvas.style.top='50%';
+  canvas.style.transform='translate(-50%,-50%) rotate(0deg)';
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});
+  let fi=0,rot=0,grainActive=false,grainRaf=null;
+  function drawGrain(){
+    if(!grainActive){grainRaf=null;return}
+    ctx.putImageData(frames[fi%frames.length],0,0);
+    fi++;rot+=0.3;
+    canvas.style.transform=`translate(-50%,-50%) rotate(${rot%360}deg)`;
+    grainRaf=setTimeout(()=>requestAnimationFrame(drawGrain),80);
+  }
+  function checkGrain(){
+    const darkEls=document.querySelectorAll('.dark,[data-whatif-section],.hero-wrap');
+    let inDark=false;
+    darkEls.forEach(el=>{
+      const r=el.getBoundingClientRect();
+      const vis=el.style.opacity!=='0'&&el.style.display!=='none';
+      if(r.top<window.innerHeight&&r.bottom>0&&vis)inDark=true;
+    });
+    canvas.classList.toggle('grain-visible',inDark);
+    if(inDark&&!grainActive){grainActive=true;drawGrain()}
+    else if(!inDark&&grainActive){grainActive=false;if(grainRaf){clearTimeout(grainRaf);grainRaf=null}}
+  }
+  window.addEventListener('scroll',checkGrain,{passive:true});
+  checkGrain();
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&grainActive){grainActive=false;if(grainRaf){clearTimeout(grainRaf);grainRaf=null}}
+    else if(!document.hidden)checkGrain();
+  });
+})();
+
+// ── CURSOR LIGHT (pauses when not on dark section) ──
+(function(){
+  const light=document.createElement('div');
+  light.className='cursor-light';
+  document.body.appendChild(light);
+  let mx=0,my=0,lx=0,ly=0,visible=false,looping=false;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+  function loop(){
+    if(!visible){looping=false;return}
+    lx+=(mx-lx)*0.08;ly+=(my-ly)*0.08;
+    light.style.left=lx+'px';light.style.top=ly+'px';
+    requestAnimationFrame(loop);
+  }
+  function checkDark(){
+    const darkEls=document.querySelectorAll('.dark,[data-whatif-section],.hero-wrap');
+    let inDark=false;
+    darkEls.forEach(el=>{
+      const r=el.getBoundingClientRect();
+      const vis=el.style.opacity!=='0'&&el.style.display!=='none';
+      if(r.top<window.innerHeight&&r.bottom>0&&vis)inDark=true;
+    });
+    if(inDark!==visible){
+      visible=inDark;light.classList.toggle('cl-visible',visible);
+      if(visible&&!looping){looping=true;requestAnimationFrame(loop)}
+    }
+  }
+  window.addEventListener('scroll',checkDark,{passive:true});
+  checkDark();
+})();
+
+// ── STAT COUNT-UP ──
+(function(){
+  const statEls=document.querySelectorAll('[data-biz-stat]');
+  const statTargets=['80%','6 in 10','Time'];
+  const statNums=[80,null,null]; // only first is numeric
+  let lastProgress=-1;
+  const origHandler=window._bizStatHandler;
+  // Patch the scroll handler to also do count-up
+  const businessWrap2=document.getElementById('businessWrap');
+  const businessSpacer2=document.getElementById('businessSpacer');
+  if(!businessWrap2||!businessSpacer2)return;
+  window.addEventListener('scroll',()=>{
+    const vh=window.innerHeight;
+    const spacerRect=businessSpacer2.getBoundingClientRect();
+    const spacerH=businessSpacer2.offsetHeight;
+    const show=spacerRect.top<vh&&spacerRect.bottom>0;
+    if(!show)return;
+    const progress=Math.max(0,Math.min(1,(vh-spacerRect.top)/spacerH));
+    // Count-up for the 80% stat
+    const entranceEnd=0.35;
+    const localP=Math.max(0,Math.min(1,progress/entranceEnd));
+    const ease=1-Math.pow(1-localP,3);
+    const statEl=businessWrap2.querySelector('[data-biz-stat="0"] .stat');
+    if(statEl){
+      const val=Math.round(80*ease);
+      statEl.textContent=val+'%';
+    }
+  },{passive:true});
+})();
+
+// ── SMOOTH SCROLL (Lenis) ──
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  if(typeof Lenis==='undefined')return;
+  const lenis=new Lenis();
+  function raf(time){lenis.raf(time);requestAnimationFrame(raf)}
+  requestAnimationFrame(raf);
+})();
+
+// ── CIRCLE DRAW-IN ──
+(function(){
+  const svg=document.querySelector('#ringWrist')?.closest('svg');
+  if(!svg)return;
+  const io=new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){svg.parentElement.classList.add('circles-drawn');io.disconnect()}
+  },{threshold:0.3});
+  io.observe(svg);
+})();
+
+// ── NAV ITEM STAGGER ──
+(function(){
+  const items=document.querySelectorAll('.nav-item');
+  if(!items.length)return;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')});
+  },{threshold:0.1});
+  items.forEach(el=>io.observe(el));
+})();
+
+// ── CONSOLE EASTER EGG ──
+console.log('%c⌚','font-size:48px');
+console.log('%cYou begin by looking.','font-family:Georgia,serif;font-size:14px;color:#6b6560;line-height:2');
+console.log('%cThat is the first complication.','font-family:Georgia,serif;font-size:14px;color:#6b6560;line-height:2');
+console.log('%c— Prepared by Aleph','font-family:Georgia,serif;font-size:11px;color:#9a9590;line-height:2');
+
+// ── RE-QUERY SNAP SECTIONS (new ones added) ──
+// Update crown nav click handlers for new sections
+const allSnapSections=document.querySelectorAll('[data-snap]');
+const allCrownSections=document.querySelectorAll('.crown-section');
+allCrownSections.forEach(sec=>{
+  sec.addEventListener('click',()=>{
+    const idx=parseInt(sec.dataset.section);
+    if(allSnapSections[idx])allSnapSections[idx].scrollIntoView({behavior:'smooth'});
+  });
+});
+
+</script>
+</body>
+</html>
